@@ -54,14 +54,86 @@
 		CE7FAADA2AECF30B000E3209 /* Everyday */ = {
 			isa = PBXGroup;
 			children = (
-				CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */,
-				CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */,
-				CE7FAADF2AECF30B000E3209 /* ViewController.swift */,
-				CE7FAAE42AECF312000E3209 /* Assets.xcassets */,
-				CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */,
+				CE84B8FA2AF0590C00B1E795 /* Screens */,
+				CE84B8FB2AF0592100B1E795 /* CustomViews */,
+				CE84B8FF2AF0599500B1E795 /* Managers */,
+				CE84B9012AF05A4B00B1E795 /* Utilities */,
+				CE84B9002AF05A0F00B1E795 /* Extensions */,
+				CE84B8FE2AF0598A00B1E795 /* Model */,
+				CE84B8F92AF058E000B1E795 /* Support */,
 				CE7FAAE92AECF312000E3209 /* Info.plist */,
 			);
 			path = Everyday;
+			sourceTree = "<group>";
+		};
+		CE84B8F92AF058E000B1E795 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */,
+				CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */,
+				CE7FAAE42AECF312000E3209 /* Assets.xcassets */,
+				CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		CE84B8FA2AF0590C00B1E795 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CE7FAADF2AECF30B000E3209 /* ViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		CE84B8FB2AF0592100B1E795 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B8FD2AF0593800B1E795 /* Cells */,
+				CE84B8FC2AF0593000B1E795 /* Buttons */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		CE84B8FC2AF0593000B1E795 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		CE84B8FD2AF0593800B1E795 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CE84B8FE2AF0598A00B1E795 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE84B8FF2AF0599500B1E795 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CE84B9002AF05A0F00B1E795 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE84B9012AF05A4B00B1E795 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
