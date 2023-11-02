@@ -125,13 +125,13 @@
 		CE84B8FA2AF0590C00B1E795 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				CE84B9022AF1394600B1E795 /* TasksVC.swift */,
-				CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */,
-				CE84B9062AF1398B00B1E795 /* SettingsVC.swift */,
-				CE84B9082AF139E500B1E795 /* LoginVC.swift */,
-				CE84B90A2AF139F800B1E795 /* RegisterVC.swift */,
-				CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */,
-				CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */,
+				CE84B91B2AF4222F00B1E795 /* AddTask */,
+				CE84B9192AF4221000B1E795 /* Profile */,
+				CE84B9182AF4220100B1E795 /* Register */,
+				CE84B9172AF421DD00B1E795 /* Login */,
+				CE84B9162AF421CA00B1E795 /* Settings */,
+				CE84B9152AF421BE00B1E795 /* Analytics */,
+				CE84B9142AF4219D00B1E795 /* Tasks */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -194,6 +194,62 @@
 				CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */,
 			);
 			path = TabBarControllers;
+			sourceTree = "<group>";
+		};
+		CE84B9142AF4219D00B1E795 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9022AF1394600B1E795 /* TasksVC.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		CE84B9152AF421BE00B1E795 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		CE84B9162AF421CA00B1E795 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9062AF1398B00B1E795 /* SettingsVC.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		CE84B9172AF421DD00B1E795 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9082AF139E500B1E795 /* LoginVC.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		CE84B9182AF4220100B1E795 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B90A2AF139F800B1E795 /* RegisterVC.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		CE84B9192AF4221000B1E795 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		CE84B91B2AF4222F00B1E795 /* AddTask */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */,
+			);
+			path = AddTask;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -11,7 +11,6 @@ class EDTabBarController: UITabBarController {
     
     let tabBarAppearance = UITabBarAppearance()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarAppearance.configureWithOpaqueBackground()
@@ -19,20 +18,17 @@ class EDTabBarController: UITabBarController {
         viewControllers = [createTasksNC(), createAnalyticsNC(), createSettingsNC()]
     }
     
-    
     func createTasksNC() -> UINavigationController {
         let tasksVC = TasksVC()
         tasksVC.title = "Tasks"
         return UINavigationController(rootViewController: tasksVC)
     }
     
-    
     func createAnalyticsNC() -> UINavigationController {
         let analyticsVC = AnalyticsVC()
         analyticsVC.title = "Analytics"
         return UINavigationController(rootViewController: analyticsVC)
     }
-    
     
     func createSettingsNC() -> UINavigationController {
         let settingsVC = SettingsVC()
