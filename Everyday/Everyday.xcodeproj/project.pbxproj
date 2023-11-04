@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E00C0192AF436B700935ED0 /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 9E00C0182AF436B700935ED0 /* SwiftLintFramework */; };
-		9E00C01B2AF436B700935ED0 /* swiftlint in Frameworks */ = {isa = PBXBuildFile; productRef = 9E00C01A2AF436B700935ED0 /* swiftlint */; };
 		9E3F695B2AF2D80300638BC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E3F695A2AF2D80300638BC2 /* GoogleService-Info.plist */; };
 		9E3F695E2AF2DE2400638BC2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F695D2AF2DE2400638BC2 /* FirebaseAnalytics */; };
 		9E3F69602AF2DE2400638BC2 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F695F2AF2DE2400638BC2 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -17,7 +15,7 @@
 		9E3F69662AF2DE2400638BC2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69652AF2DE2400638BC2 /* FirebaseAuth */; };
 		9E3F69682AF2DE2400638BC2 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69672AF2DE2400638BC2 /* FirebaseAuthCombine-Community */; };
 		9E3F696A2AF2DE2400638BC2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69692AF2DE2400638BC2 /* FirebaseDatabase */; };
-		9E3F696C2AF2DE2400638BC2 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F696B2AF2DE2400638BC2 /* FirebaseDatabaseSwift */; settings = {ATTRIBUTES = (Required, ); }; };
+		9E3F696C2AF2DE2400638BC2 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F696B2AF2DE2400638BC2 /* FirebaseDatabaseSwift */; };
 		9E3F696E2AF2DE2400638BC2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F696D2AF2DE2400638BC2 /* FirebaseFirestore */; };
 		9E3F69702AF2DE2400638BC2 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F696F2AF2DE2400638BC2 /* FirebaseFirestoreCombine-Community */; };
 		9E3F69722AF2DE2400638BC2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69712AF2DE2400638BC2 /* FirebaseFirestoreSwift */; };
@@ -74,9 +72,7 @@
 				9E3F696E2AF2DE2400638BC2 /* FirebaseFirestore in Frameworks */,
 				9E3F69602AF2DE2400638BC2 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				9E3F696A2AF2DE2400638BC2 /* FirebaseDatabase in Frameworks */,
-				9E00C01B2AF436B700935ED0 /* swiftlint in Frameworks */,
 				9E3F69642AF2DE2400638BC2 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				9E00C0192AF436B700935ED0 /* SwiftLintFramework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +86,6 @@
 				CE7FAAD92AECF30B000E3209 /* Products */,
 			);
 			sourceTree = "<group>";
-			usesTabs = 0;
 		};
 		CE7FAAD92AECF30B000E3209 /* Products */ = {
 			isa = PBXGroup;
@@ -271,7 +266,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9E00C01D2AF436DE00935ED0 /* PBXTargetDependency */,
 			);
 			name = Everyday;
 			packageProductDependencies = (
@@ -289,8 +283,6 @@
 				9E3F69732AF2DE2400638BC2 /* FirebaseInstallations */,
 				9E3F69752AF2DE2400638BC2 /* FirebaseStorage */,
 				9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */,
-				9E00C0182AF436B700935ED0 /* SwiftLintFramework */,
-				9E00C01A2AF436B700935ED0 /* swiftlint */,
 			);
 			productName = Everyday;
 			productReference = CE7FAAD82AECF30B000E3209 /* Everyday.app */;
@@ -322,7 +314,6 @@
 			mainGroup = CE7FAACF2AECF30B000E3209;
 			packageReferences = (
 				9E3F695C2AF2DE2300638BC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				9E00C0172AF436B700935ED0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = CE7FAAD92AECF30B000E3209 /* Products */;
 			projectDirPath = "";
@@ -365,13 +356,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9E00C01D2AF436DE00935ED0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 9E00C01C2AF436DE00935ED0 /* SwiftLintPlugin */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */ = {
@@ -436,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -491,7 +475,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -513,10 +497,8 @@
 				INFOPLIST_FILE = Everyday/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,10 +524,8 @@
 				INFOPLIST_FILE = Everyday/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,14 +563,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9E00C0172AF436B700935ED0 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.53.0;
-			};
-		};
 		9E3F695C2AF2DE2300638BC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -602,21 +574,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9E00C0182AF436B700935ED0 /* SwiftLintFramework */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9E00C0172AF436B700935ED0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = SwiftLintFramework;
-		};
-		9E00C01A2AF436B700935ED0 /* swiftlint */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9E00C0172AF436B700935ED0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = swiftlint;
-		};
-		9E00C01C2AF436DE00935ED0 /* SwiftLintPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9E00C0172AF436B700935ED0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintPlugin";
-		};
 		9E3F695D2AF2DE2400638BC2 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9E3F695C2AF2DE2300638BC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
