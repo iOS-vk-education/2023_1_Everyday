@@ -1,18 +1,19 @@
 //
-//  ViewController.swift
+//  AnalyticsVC.swift
 //  Everyday
 //
-//  Created by user on 28.10.2023.
+//  Created by user on 03.11.2023.
 //
 
 import UIKit
 import SwiftUI
 
-class ViewController: UIViewController {
+class AnalyticsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green  // to check if everything is fine
+        
+        view.backgroundColor = .systemBackground
         setUpView()
     }
     
@@ -23,9 +24,6 @@ class ViewController: UIViewController {
         
         view.addSubview(chartView)
         
-        chartView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            // set constraints
-        ])
+        chartView.pinToEdges(of: view)
     }
 }
