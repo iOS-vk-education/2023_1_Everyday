@@ -1,0 +1,4 @@
+opt_in_rules:
+- force_unwrapping
+
+force_unwrapping: warning
