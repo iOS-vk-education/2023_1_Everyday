@@ -63,15 +63,16 @@ class AuthScreenVC: UIViewController {
         regButton = UIButton(type: .system)
         view.addSubview(regButton)
         regButton.setTitle("Создать аккаунт", for: .normal)
-        regButton.titleLabel?.font = UIFont(name: "Coves Bold", size: 16)
+        regButton.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         regButton.setTitleColor(.black, for: .normal)
         regButton.backgroundColor = .white
-        regButton.layer.cornerRadius = regButton.frame.size.height / 2
-        regButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        regButton.clipsToBounds = true
+        regButton.layer.cornerRadius = 5
        // regButton.addTarget(self, action: #selector(createAccountButtonTapped), for: .touchUpInside)
         
         regButton.translatesAutoresizingMaskIntoConstraints = false
+        regButton.widthAnchor.constraint(equalTo: textStackView.widthAnchor).isActive = true
+        regButton.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05).isActive = true
+
         regButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         regButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
     }
