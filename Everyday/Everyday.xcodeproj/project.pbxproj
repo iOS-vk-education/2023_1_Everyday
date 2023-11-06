@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E22B1192AF938420002A1EC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B1182AF938420002A1EC /* logo.png */; };
+		9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11B2AF947740002A1EC /* Coves Bold.otf */; };
+		9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11D2AF9477B0002A1EC /* Coves Light.otf */; };
+		9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */; };
+		9E22B1222AF94A800002A1EC /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */; };
 		9E3F695B2AF2D80300638BC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E3F695A2AF2D80300638BC2 /* GoogleService-Info.plist */; };
 		9E3F695E2AF2DE2400638BC2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F695D2AF2DE2400638BC2 /* FirebaseAnalytics */; };
 		9E3F69602AF2DE2400638BC2 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F695F2AF2DE2400638BC2 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -22,6 +27,7 @@
 		9E3F69742AF2DE2400638BC2 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69732AF2DE2400638BC2 /* FirebaseInstallations */; };
 		9E3F69762AF2DE2400638BC2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69752AF2DE2400638BC2 /* FirebaseStorage */; };
 		9E3F69782AF2DE2400638BC2 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */; };
+		9EDE907E2AF84E2E00F16F3C /* AuthScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE907D2AF84E2E00F16F3C /* AuthScreenVC.swift */; };
 		CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */; };
 		CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */; };
 		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
@@ -37,7 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E22B1182AF938420002A1EC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		9E22B11B2AF947740002A1EC /* Coves Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Bold.otf"; sourceTree = "<group>"; };
+		9E22B11D2AF9477B0002A1EC /* Coves Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Light.otf"; sourceTree = "<group>"; };
+		9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		9E3F695A2AF2D80300638BC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9EDE907D2AF84E2E00F16F3C /* AuthScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenVC.swift; sourceTree = "<group>"; };
 		CE7FAAD82AECF30B000E3209 /* Everyday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everyday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +91,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E22B11A2AF947360002A1EC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */,
+				9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */,
+				9E22B11D2AF9477B0002A1EC /* Coves Light.otf */,
+				9E22B11B2AF947740002A1EC /* Coves Bold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9EDE907A2AF84D8F00F16F3C /* AuthScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9EDE907D2AF84E2E00F16F3C /* AuthScreenVC.swift */,
+			);
+			path = AuthScreen;
+			sourceTree = "<group>";
+		};
 		CE7FAACF2AECF30B000E3209 = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +145,11 @@
 		CE84B8F92AF058E000B1E795 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				9E22B11A2AF947360002A1EC /* Fonts */,
 				CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */,
 				CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */,
 				CE7FAAE42AECF312000E3209 /* Assets.xcassets */,
+				9E22B1182AF938420002A1EC /* logo.png */,
 				CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */,
 			);
 			path = Support;
@@ -125,6 +158,7 @@
 		CE84B8FA2AF0590C00B1E795 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				9EDE907A2AF84D8F00F16F3C /* AuthScreen */,
 				CE84B91B2AF4222F00B1E795 /* AddTask */,
 				CE84B9192AF4221000B1E795 /* Profile */,
 				CE84B9182AF4220100B1E795 /* Register */,
@@ -330,8 +364,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E22B1192AF938420002A1EC /* logo.png in Resources */,
 				CE7FAAE82AECF312000E3209 /* LaunchScreen.storyboard in Resources */,
+				9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */,
+				9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */,
+				9E22B1222AF94A800002A1EC /* Montserrat-Bold.ttf in Resources */,
 				CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */,
+				9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */,
 				9E3F695B2AF2D80300638BC2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +412,7 @@
 				CE84B90B2AF139F800B1E795 /* RegisterVC.swift in Sources */,
 				CE84B9032AF1394600B1E795 /* TasksVC.swift in Sources */,
 				CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */,
+				9EDE907E2AF84E2E00F16F3C /* AuthScreenVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
