@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E22B1192AF938420002A1EC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B1182AF938420002A1EC /* logo.png */; };
+		9E118C8C2AF9824B0041D5B7 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E118C8B2AF9824B0041D5B7 /* logo.png */; };
 		9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11B2AF947740002A1EC /* Coves Bold.otf */; };
 		9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11D2AF9477B0002A1EC /* Coves Light.otf */; };
 		9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */; };
@@ -43,7 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9E22B1182AF938420002A1EC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		9E118C8B2AF9824B0041D5B7 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		9E22B11B2AF947740002A1EC /* Coves Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Bold.otf"; sourceTree = "<group>"; };
 		9E22B11D2AF9477B0002A1EC /* Coves Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Light.otf"; sourceTree = "<group>"; };
 		9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 				CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */,
 				CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */,
 				CE7FAAE42AECF312000E3209 /* Assets.xcassets */,
-				9E22B1182AF938420002A1EC /* logo.png */,
+				9E118C8B2AF9824B0041D5B7 /* logo.png */,
 				CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */,
 			);
 			path = Support;
@@ -368,6 +368,7 @@
 				9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */,
 				9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */,
 				9E22B1222AF94A800002A1EC /* Montserrat-Bold.ttf in Resources */,
+				9E118C8C2AF9824B0041D5B7 /* logo.png in Resources */,
 				CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */,
 				9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */,
 				9E3F695B2AF2D80300638BC2 /* GoogleService-Info.plist in Resources */,

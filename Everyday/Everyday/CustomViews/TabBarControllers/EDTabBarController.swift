@@ -15,7 +15,7 @@ class EDTabBarController: UITabBarController {
         super.viewDidLoad()
         tabBarAppearance.configureWithOpaqueBackground()
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        viewControllers = [createTasksNC(), createAnalyticsNC(), createSettingsNC() ,createAuthScreenVC()]
+        viewControllers = [createTasksNC(), createAnalyticsNC(), createSettingsNC(), createAuthScreenVC()]
     }
     
     func createTasksNC() -> UINavigationController {

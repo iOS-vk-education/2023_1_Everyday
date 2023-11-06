@@ -21,7 +21,7 @@ class AuthScreenVC: UIViewController {
     }
     
     func configureScreen() {
-        view.backgroundColor = UIColor(red: 6/255, green: 38/255, blue: 55/255, alpha: 1)
+        view.backgroundColor = UIColor(red: 6 / 255, green: 38 / 255, blue: 55 / 255, alpha: 1)
         
         // расположение и установка изображения
         imageArea = UIImageView()
@@ -43,12 +43,12 @@ class AuthScreenVC: UIViewController {
         textLabel = UILabel()
         textLabel.text = "Планируй, Действуй, "
         textLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
-        textLabel.textColor = UIColor(red: 255/255, green: 167/255, blue: 32/255, alpha: 1)
+        textLabel.textColor = UIColor(red: 255 / 255, green: 167 / 255, blue: 32 / 255, alpha: 1)
         
         everydayLabel = UILabel()
         everydayLabel.text = "Everyday"
         everydayLabel.font = UIFont(name: "Montserrat-Bold", size: 16)
-        everydayLabel.textColor = UIColor(red: 255/255, green: 167/255, blue: 32/255, alpha: 1)
+        everydayLabel.textColor = UIColor(red: 255 / 255, green: 167 / 255, blue: 32 / 255, alpha: 1)
         
         let textStackView = UIStackView(arrangedSubviews: [textLabel, everydayLabel])
         textStackView.axis = .horizontal
@@ -82,8 +82,4 @@ class AuthScreenVC: UIViewController {
             imageArea.image = logotype
         }
     }
-    
 }
-
-
-
