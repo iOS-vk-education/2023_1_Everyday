@@ -21,10 +21,7 @@ class AuthScreenVC: UIViewController {
         
         view.backgroundColor = UIColor(red: 6 / 255, green: 38 / 255, blue: 55 / 255, alpha: 1)
         
-        view.addSubview(imageArea)
-        view.addSubview(textStackView)
-        view.addSubview(regButton)
-        view.addSubview(loginButton)
+        view.addSubviews(imageArea, textStackView, regButton, loginButton)
     }
     
     override func viewDidLayoutSubviews() {
