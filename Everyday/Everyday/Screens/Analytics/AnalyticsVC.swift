@@ -9,21 +9,43 @@ import UIKit
 import SwiftUI
 
 class AnalyticsVC: UIViewController {
+    
+    var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        setUpView()
+        configureCollectionView()
     }
     
-    func setUpView() {
-        let controller = UIHostingController(rootView: ContentView())
+    func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createTwoColumnFlowLayout(in: view))
+        view.addSubview(collectionView)
+        collectionView.pinToEdges(of: view)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(ChartCell.self, forCellWithReuseIdentifier: ChartCell.reuseID)
+    }
+}
+
+extension AnalyticsVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChartCell.reuseID, for: indexPath) as? ChartCell else {
+            fatalError("Failed to dequeue ChartCell in AnalyticsVC")
+        }
         
-        guard let chartView = controller.view else { return }
-        
-        view.addSubview(chartView)
-        
-        chartView.pinToEdges(of: view)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let destVC = UIHostingController(rootView: BLChartView())
+        navigationController?.pushViewController(destVC, animated: true)
     }
 }

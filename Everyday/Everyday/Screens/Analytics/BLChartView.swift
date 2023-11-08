@@ -1,15 +1,15 @@
 //
-//  ContentView.swift
+//  BLChartView.swift
 //  Everyday
 //
-//  Created by user on 03.11.2023.
+//  Created by user on 09.11.2023.
 //
 
 import SwiftUI
 import Foundation
 import Charts
 
-struct ContentView: View {
+struct BLChartView: View {
     
     let viewMonth: [ViewMonth] = [
         .init(date: Date.from(year: 2023, month: 1, day: 1), viewCount: 5),
@@ -19,16 +19,15 @@ struct ContentView: View {
         .init(date: Date.from(year: 2023, month: 5, day: 1), viewCount: 3),
         .init(date: Date.from(year: 2023, month: 6, day: 1), viewCount: 5),
         .init(date: Date.from(year: 2023, month: 7, day: 1), viewCount: 10),
-        .init(date: Date.from(year: 2023, month: 8, day: 1), viewCount: 5),
-        .init(date: Date.from(year: 2023, month: 9, day: 1), viewCount: 4),
-        .init(date: Date.from(year: 2023, month: 10, day: 1), viewCount: 2),
-        .init(date: Date.from(year: 2023, month: 11, day: 1), viewCount: 5),
-        .init(date: Date.from(year: 2023, month: 12, day: 1), viewCount: 12)
     ]
+    
+    @State var isLineGraph: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Youtube Views")
+            
+            Toggle("Line Graph", isOn: $isLineGraph)
             
             Text("Total: \(viewMonth.reduce(0, { $0 + $1.viewCount }))")
                 .fontWeight(.semibold)
@@ -38,23 +37,31 @@ struct ContentView: View {
             
             Chart {
                 RuleMark(y: .value("Goal", 8))
-                    .foregroundStyle(.mint)
+                    .foregroundStyle(.pink.gradient)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                     .annotation(alignment: .leading) {
                         Text("Goal")
                             .font(.caption)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.pink)
                     }
                 
                 ForEach(viewMonth) { viewMonth in
-                    BarMark(
-                        x: .value("Month", viewMonth.date, unit: .month),
-                        y: .value("Views", viewMonth.viewCount)
-                    )
-                    .foregroundStyle(Color.pink.gradient)
+                    if isLineGraph {
+                        LineMark(
+                            x: .value("Month", viewMonth.date, unit: .month),
+                            y: .value("Views", viewMonth.viewCount)
+                        )
+                        .foregroundStyle(Color.pink.gradient)
+                    } else {
+                        BarMark(
+                            x: .value("Month", viewMonth.date, unit: .month),
+                            y: .value("Views", viewMonth.viewCount)
+                        )
+                        .foregroundStyle(Color.pink.gradient)
+                    }
                 }
             }
-            .frame(height: 180)  // hard code for now -> change for collection cell size
+//            .frame(height: 180)  // hard code for now -> change for collection cell size
             .chartPlotStyle { plotContent in
                 plotContent
                     .background(.mint.gradient.opacity(0.3))
@@ -77,7 +84,7 @@ struct ContentView: View {
                 Image(systemName: "line.diagonal")
                     .rotationEffect(Angle(degrees: 45))
                     .foregroundColor(.mint)
-                
+
                 Text("Monthly Goal")
                     .foregroundColor(.secondary)
             }
@@ -85,12 +92,14 @@ struct ContentView: View {
             .padding(.leading, 4)
         }
         .padding()
+        .background(Color.mint)
+        .cornerRadius(10.0)
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
+//struct BLChartView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ContentView()
+//        BLChartView()
 //    }
 //}
 
@@ -106,3 +115,4 @@ extension Date {
         return Calendar.current.date(from: components)!
     }
 }
+

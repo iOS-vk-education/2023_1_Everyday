@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE25C8412AF4CC930056382E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25C8402AF4CC930056382E /* ContentView.swift */; };
 		CE25C85E2AF5245E0056382E /* EDTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25C85D2AF5245E0056382E /* EDTabBarController.swift */; };
 		CE25C8712AF525BF0056382E /* AnalyticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25C8702AF525BF0056382E /* AnalyticsVC.swift */; };
 		CE25C8752AF5287A0056382E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25C8742AF5287A0056382E /* UIView+Ext.swift */; };
@@ -17,10 +16,14 @@
 		CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */; };
 		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
 		CE7FAAE82AECF312000E3209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */; };
+		CE9EEFB22AFAE3E40089187B /* AnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EEFB12AFAE3E40089187B /* AnalyticsModel.swift */; };
+		CE9EEFB42AFAF10D0089187B /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EEFB32AFAF10D0089187B /* UIHelper.swift */; };
+		CEECC8582AFB7A6100B730DE /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC8572AFB7A6100B730DE /* ChartCell.swift */; };
+		CEECC85C2AFC32CE00B730DE /* BLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC85B2AFC32CE00B730DE /* BLChartView.swift */; };
+		CEECC85E2AFC33C200B730DE /* MiniBLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE25C8402AF4CC930056382E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CE25C85D2AF5245E0056382E /* EDTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDTabBarController.swift; sourceTree = "<group>"; };
 		CE25C8702AF525BF0056382E /* AnalyticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsVC.swift; sourceTree = "<group>"; };
 		CE25C8742AF5287A0056382E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -32,6 +35,11 @@
 		CE7FAAE42AECF312000E3209 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7FAAE72AECF312000E3209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7FAAE92AECF312000E3209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE9EEFB12AFAE3E40089187B /* AnalyticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsModel.swift; sourceTree = "<group>"; };
+		CE9EEFB32AFAF10D0089187B /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		CEECC8572AFB7A6100B730DE /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
+		CEECC85B2AFC32CE00B730DE /* BLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLChartView.swift; sourceTree = "<group>"; };
+		CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniBLChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				CE25C8702AF525BF0056382E /* AnalyticsVC.swift */,
-				CE25C8402AF4CC930056382E /* ContentView.swift */,
+				CE9EEFB12AFAE3E40089187B /* AnalyticsModel.swift */,
+				CEECC8572AFB7A6100B730DE /* ChartCell.swift */,
+				CEECC85B2AFC32CE00B730DE /* BLChartView.swift */,
+				CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -163,6 +174,7 @@
 		CE84B9012AF05A4B00B1E795 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CE9EEFB32AFAF10D0089187B /* UIHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -237,10 +249,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEECC8582AFB7A6100B730DE /* ChartCell.swift in Sources */,
 				CE25C85E2AF5245E0056382E /* EDTabBarController.swift in Sources */,
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
-				CE25C8412AF4CC930056382E /* ContentView.swift in Sources */,
+				CEECC85C2AFC32CE00B730DE /* BLChartView.swift in Sources */,
+				CE9EEFB42AFAF10D0089187B /* UIHelper.swift in Sources */,
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
+				CE9EEFB22AFAE3E40089187B /* AnalyticsModel.swift in Sources */,
+				CEECC85E2AFC33C200B730DE /* MiniBLChartView.swift in Sources */,
 				CE25C8752AF5287A0056382E /* UIView+Ext.swift in Sources */,
 				CE25C8712AF525BF0056382E /* AnalyticsVC.swift in Sources */,
 				CE25C8782AF529370056382E /* TasksVC.swift in Sources */,
