@@ -9,14 +9,14 @@ import UIKit
 
 class RegisterVC: UIViewController {
 
-    var regLabel: UILabel!
-    var logLabel: UILabel!
-    var regButton: UIButton!
-    var logButton: UIButton!
-    var emailField: UITextField!
-    var usernameField: UITextField!
-    var passwordField: UITextField!
-    var repPasswordField: UITextField!
+//    private let regLabel = UILabel()
+//    private let logLabel = UILabel()
+//    private let regButton = UIButton()
+//    private let logButton = UIButton()
+//    private let emailField =  UITextField()
+//    private let usernameField = UITextField()
+//    private let passwordField = UITextField()
+//    private let repPasswordField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
