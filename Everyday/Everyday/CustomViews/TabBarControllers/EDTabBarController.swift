@@ -15,7 +15,7 @@ class EDTabBarController: UITabBarController {
         super.viewDidLoad()
         tabBarAppearance.configureWithOpaqueBackground()
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        viewControllers = [createTasksNC(), createAnalyticsNC(), createSettingsNC(), createAuthScreenVC()]
+        viewControllers = [createTasksNC(), createAnalyticsNC(), createSettingsNC()]
     }
     
     func createTasksNC() -> UINavigationController {
@@ -34,11 +34,5 @@ class EDTabBarController: UITabBarController {
         let settingsVC = SettingsVC()
         settingsVC.title = "Settings"
         return UINavigationController(rootViewController: settingsVC)
-    }
-    
-    // тестирую окно для авторизации
-    func createAuthScreenVC() -> UINavigationController {
-        let authVC = AuthScreenVC()
-        return UINavigationController(rootViewController: authVC)
     }
 }
