@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AuthScreenVC: UIViewController {
+class WelcomeScreenVC: UIViewController {
     
     // MARK: - Private properties
     
