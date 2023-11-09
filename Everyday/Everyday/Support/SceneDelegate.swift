@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = EDTabBarController()
+        window?.rootViewController = AuthScreenVC()
         window?.makeKeyAndVisible()
     }
 }
