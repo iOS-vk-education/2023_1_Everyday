@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EDTabBarController: UITabBarController {
+final class EDTabBarController: UITabBarController {
     
     let tabBarAppearance = UITabBarAppearance()
     

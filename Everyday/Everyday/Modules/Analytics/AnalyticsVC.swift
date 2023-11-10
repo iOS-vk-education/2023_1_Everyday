@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AnalyticsVC: UIViewController {
+final class AnalyticsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

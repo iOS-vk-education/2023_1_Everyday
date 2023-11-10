@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11B2AF947740002A1EC /* Coves Bold.otf */; };
+		9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11D2AF9477B0002A1EC /* Coves Light.otf */; };
+		9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */; };
+		9E22B1222AF94A800002A1EC /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */; };
 		9E3F695B2AF2D80300638BC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E3F695A2AF2D80300638BC2 /* GoogleService-Info.plist */; };
 		9E3F695E2AF2DE2400638BC2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F695D2AF2DE2400638BC2 /* FirebaseAnalytics */; };
 		9E3F69602AF2DE2400638BC2 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F695F2AF2DE2400638BC2 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -22,6 +26,8 @@
 		9E3F69742AF2DE2400638BC2 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69732AF2DE2400638BC2 /* FirebaseInstallations */; };
 		9E3F69762AF2DE2400638BC2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69752AF2DE2400638BC2 /* FirebaseStorage */; };
 		9E3F69782AF2DE2400638BC2 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */; };
+		9E97DB352AFC1D6D00491C98 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */; };
+		9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */; };
 		CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */; };
 		CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */; };
 		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
@@ -30,14 +36,20 @@
 		CE84B9052AF1397600B1E795 /* AnalyticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */; };
 		CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9062AF1398B00B1E795 /* SettingsVC.swift */; };
 		CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9082AF139E500B1E795 /* LoginVC.swift */; };
-		CE84B90B2AF139F800B1E795 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B90A2AF139F800B1E795 /* RegisterVC.swift */; };
+		CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B90A2AF139F800B1E795 /* SignUpVC.swift */; };
 		CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */; };
 		CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */; };
 		CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E22B11B2AF947740002A1EC /* Coves Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Bold.otf"; sourceTree = "<group>"; };
+		9E22B11D2AF9477B0002A1EC /* Coves Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Light.otf"; sourceTree = "<group>"; };
+		9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		9E3F695A2AF2D80300638BC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVC.swift; sourceTree = "<group>"; };
 		CE7FAAD82AECF30B000E3209 /* Everyday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everyday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +60,7 @@
 		CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsVC.swift; sourceTree = "<group>"; };
 		CE84B9062AF1398B00B1E795 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		CE84B9082AF139E500B1E795 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		CE84B90A2AF139F800B1E795 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		CE84B90A2AF139F800B1E795 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskVC.swift; sourceTree = "<group>"; };
 		CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDTabBarController.swift; sourceTree = "<group>"; };
@@ -79,6 +91,98 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E22B11A2AF947360002A1EC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */,
+				9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */,
+				9E22B11D2AF9477B0002A1EC /* Coves Light.otf */,
+				9E22B11B2AF947740002A1EC /* Coves Bold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9E97DB332AFC1D5800491C98 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */,
+			);
+			name = Extensions;
+			path = "/Users/mk126/Desktop/Технопарк 12/2023_1_Everyday/Everyday/Everyday/Extensions";
+			sourceTree = "<absolute>";
+		};
+		9E97DB382AFD5A7300491C98 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9022AF1394600B1E795 /* TasksVC.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		9E97DB392AFD5A7E00491C98 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		9E97DB3A2AFD5A8600491C98 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9062AF1398B00B1E795 /* SettingsVC.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9E97DB3B2AFD5A8D00491C98 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9082AF139E500B1E795 /* LoginVC.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9E97DB3C2AFD5A9400491C98 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B90A2AF139F800B1E795 /* SignUpVC.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		9E97DB3D2AFD5AE400491C98 /* WelcomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */,
+			);
+			path = WelcomeScreen;
+			sourceTree = "<group>";
+		};
+		9E97DB3E2AFD5AEE00491C98 /* AddTask */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */,
+			);
+			path = AddTask;
+			sourceTree = "<group>";
+		};
+		9E97DB3F2AFD5AFA00491C98 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9E97DB402AFD5B4000491C98 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		CE7FAACF2AECF30B000E3209 = {
 			isa = PBXGroup;
 			children = (
@@ -98,12 +202,8 @@
 		CE7FAADA2AECF30B000E3209 /* Everyday */ = {
 			isa = PBXGroup;
 			children = (
-				CE84B8FA2AF0590C00B1E795 /* Screens */,
-				CE84B8FB2AF0592100B1E795 /* CustomViews */,
-				CE84B8FF2AF0599500B1E795 /* Managers */,
-				CE84B9012AF05A4B00B1E795 /* Utilities */,
-				CE84B9002AF05A0F00B1E795 /* Extensions */,
-				CE84B8FE2AF0598A00B1E795 /* Model */,
+				9E97DB332AFC1D5800491C98 /* Extensions */,
+				CE84B8FA2AF0590C00B1E795 /* Modules */,
 				CE84B8F92AF058E000B1E795 /* Support */,
 				CE7FAAE92AECF312000E3209 /* Info.plist */,
 				9E3F695A2AF2D80300638BC2 /* GoogleService-Info.plist */,
@@ -114,6 +214,7 @@
 		CE84B8F92AF058E000B1E795 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				9E22B11A2AF947360002A1EC /* Fonts */,
 				CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */,
 				CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */,
 				CE7FAAE42AECF312000E3209 /* Assets.xcassets */,
@@ -122,134 +223,20 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		CE84B8FA2AF0590C00B1E795 /* Screens */ = {
+		CE84B8FA2AF0590C00B1E795 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				CE84B91B2AF4222F00B1E795 /* AddTask */,
-				CE84B9192AF4221000B1E795 /* Profile */,
-				CE84B9182AF4220100B1E795 /* Register */,
-				CE84B9172AF421DD00B1E795 /* Login */,
-				CE84B9162AF421CA00B1E795 /* Settings */,
-				CE84B9152AF421BE00B1E795 /* Analytics */,
-				CE84B9142AF4219D00B1E795 /* Tasks */,
+				9E97DB402AFD5B4000491C98 /* TabBar */,
+				9E97DB3F2AFD5AFA00491C98 /* Profile */,
+				9E97DB3E2AFD5AEE00491C98 /* AddTask */,
+				9E97DB3D2AFD5AE400491C98 /* WelcomeScreen */,
+				9E97DB3C2AFD5A9400491C98 /* SignUp */,
+				9E97DB3B2AFD5A8D00491C98 /* Login */,
+				9E97DB3A2AFD5A8600491C98 /* Settings */,
+				9E97DB392AFD5A7E00491C98 /* Analytics */,
+				9E97DB382AFD5A7300491C98 /* Tasks */,
 			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
-		CE84B8FB2AF0592100B1E795 /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B9102AF13A6500B1E795 /* TabBarControllers */,
-				CE84B8FD2AF0593800B1E795 /* Cells */,
-				CE84B8FC2AF0593000B1E795 /* Buttons */,
-			);
-			path = CustomViews;
-			sourceTree = "<group>";
-		};
-		CE84B8FC2AF0593000B1E795 /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Buttons;
-			sourceTree = "<group>";
-		};
-		CE84B8FD2AF0593800B1E795 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		CE84B8FE2AF0598A00B1E795 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CE84B8FF2AF0599500B1E795 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		CE84B9002AF05A0F00B1E795 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		CE84B9012AF05A4B00B1E795 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		CE84B9102AF13A6500B1E795 /* TabBarControllers */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */,
-			);
-			path = TabBarControllers;
-			sourceTree = "<group>";
-		};
-		CE84B9142AF4219D00B1E795 /* Tasks */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B9022AF1394600B1E795 /* TasksVC.swift */,
-			);
-			path = Tasks;
-			sourceTree = "<group>";
-		};
-		CE84B9152AF421BE00B1E795 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */,
-			);
-			path = Analytics;
-			sourceTree = "<group>";
-		};
-		CE84B9162AF421CA00B1E795 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B9062AF1398B00B1E795 /* SettingsVC.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		CE84B9172AF421DD00B1E795 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B9082AF139E500B1E795 /* LoginVC.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		CE84B9182AF4220100B1E795 /* Register */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B90A2AF139F800B1E795 /* RegisterVC.swift */,
-			);
-			path = Register;
-			sourceTree = "<group>";
-		};
-		CE84B9192AF4221000B1E795 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		CE84B91B2AF4222F00B1E795 /* AddTask */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */,
-			);
-			path = AddTask;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,7 +318,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7FAAE82AECF312000E3209 /* LaunchScreen.storyboard in Resources */,
+				9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */,
+				9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */,
+				9E22B1222AF94A800002A1EC /* Montserrat-Bold.ttf in Resources */,
 				CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */,
+				9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */,
 				9E3F695B2AF2D80300638BC2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,10 +361,12 @@
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
+				9E97DB352AFC1D6D00491C98 /* UIView+Extensions.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
-				CE84B90B2AF139F800B1E795 /* RegisterVC.swift in Sources */,
+				CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */,
 				CE84B9032AF1394600B1E795 /* TasksVC.swift in Sources */,
 				CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */,
+				9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,9 +505,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_WARNINGS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LW5X22QCW4;
+				DEVELOPMENT_TEAM = 72F47Y7J7T;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Everyday/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -530,7 +525,7 @@
 					"-Xlinker",
 					"-no_warn_duplicate_libraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = EDTeam.Everyday;
+				PRODUCT_BUNDLE_IDENTIFIER = "ed-Everyday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -543,9 +538,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_WARNINGS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LW5X22QCW4;
+				DEVELOPMENT_TEAM = 72F47Y7J7T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Everyday/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
