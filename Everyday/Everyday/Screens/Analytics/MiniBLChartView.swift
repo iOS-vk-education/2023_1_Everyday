@@ -13,13 +13,8 @@ import Charts
 
 struct MiniBLChartView: View {
     
-    let viewMonth: [ViewMonth]?
-    var chartType: ChartType?
-    
-    init(chartType: ChartType, data: [ViewMonth]) {
-        self.chartType = chartType
-        self.viewMonth = data
-    }
+    let viewMonth: [ViewMonth]
+    var chartType: ChartType
     
     var body: some View {
         VStack() {
@@ -34,7 +29,7 @@ struct MiniBLChartView: View {
                             .foregroundColor(.pink)
                     }
                 
-                ForEach(viewMonth ?? []) { viewMonth in
+                ForEach(viewMonth) { viewMonth in
                     switch chartType {
                     case .line:
                         LineMark(

@@ -17,7 +17,7 @@ protocol ChartCellDelegate {
 class ChartCell: UICollectionViewCell {
     
     static let reuseID = "ChartCell"
-    var chartViewController: UIHostingController<MiniBLChartView>!
+    var chartViewController: UIHostingController<MiniBLChartView>?
     var delegate: ChartCellDelegate?
     
     func set(chartType: ChartType, data: [ViewMonth]) {
