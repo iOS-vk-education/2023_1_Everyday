@@ -50,45 +50,45 @@ struct BLChartView: View {
                         .foregroundStyle(Color.pink.gradient)
                     }
                 }
-                //            .frame(height: 180)  // hard code for now -> change for collection cell size
-                .chartPlotStyle { plotContent in
-                    plotContent
-                        .background(.mint.gradient.opacity(0.3))
-                }
-                .chartXAxis {
-                    AxisMarks(values: viewMonth.map { $0.date }) { date in
-                        AxisGridLine()
-                        AxisTick()
-                        AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 12)  // hard code, because didn't find another solution to show the last column label, but the number changes for every device
-                    }
-                }
-                .chartYAxis {
-                    AxisMarks { mark in
-                        AxisValueLabel()
-                        AxisGridLine()
-                    }
-                }
-                .padding(.bottom)
-                HStack {
-                    Image(systemName: "line.diagonal")
-                        .rotationEffect(Angle(degrees: 45))
-                        .foregroundColor(.mint)
-                    
-                    Text("Monthly Goal")
-                        .foregroundColor(.secondary)
-                }
-                .font(.caption2)
-                .padding(.leading, 4)
             }
-            .padding()
-            .background(Color.mint)
-            .cornerRadius(10.0)
+            //            .frame(height: 180)  // hard code for now -> change for collection cell size
+            .chartPlotStyle { plotContent in
+                plotContent
+                    .background(.mint.gradient.opacity(0.3))
+            }
+            .chartXAxis {
+                AxisMarks(values: viewMonth.map { $0.date }) { date in
+                    AxisGridLine()
+                    AxisTick()
+                    AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 12)  // hard code, because didn't find another solution to show the last column label, but the number changes for every device
+                }
+            }
+            .chartYAxis {
+                AxisMarks { mark in
+                    AxisValueLabel()
+                    AxisGridLine()
+                }
+            }
+            .padding(.bottom)
+            HStack {
+                Image(systemName: "line.diagonal")
+                    .rotationEffect(Angle(degrees: 45))
+                    .foregroundColor(.mint)
+                
+                Text("Monthly Goal")
+                    .foregroundColor(.secondary)
+            }
+            .font(.caption2)
+            .padding(.leading, 4)
         }
+        .padding()
+        .background(Color.mint)
+        .cornerRadius(10.0)
     }
 }
-    
-    //struct BLChartView_Previews: PreviewProvider {
-    //    static var previews: some View {
-    //        BLChartView()
-    //    }
-    //}
+
+//struct BLChartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BLChartView()
+//    }
+//}

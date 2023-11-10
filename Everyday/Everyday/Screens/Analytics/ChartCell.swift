@@ -17,12 +17,18 @@ protocol ChartCellDelegate {
 class ChartCell: UICollectionViewCell {
     
     static let reuseID = "ChartCell"
-    var chartViewController: UIHostingController<MiniBLChartView>?
+    var chartHostingController: UIHostingController<MiniBLChartView>?
     var delegate: ChartCellDelegate?
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        set(chartType: , data: <#T##[ViewMonth]#>)
+    }
+    
     func set(chartType: ChartType, data: [ViewMonth]) {
-        chartViewController = UIHostingController(rootView: MiniBLChartView(chartType: chartType, data: data))
-        guard let chartView = chartViewController.view else {
+        chartHostingController = UIHostingController(rootView: MiniBLChartView(viewMonth: data, chartType: chartType))
+        guard let chartHostingController = chartHostingController,
+              let chartView = chartHostingController.view else {
             return
         }
         
