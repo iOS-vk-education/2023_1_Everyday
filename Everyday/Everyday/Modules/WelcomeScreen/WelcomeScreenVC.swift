@@ -28,10 +28,6 @@ class WelcomeScreenVC: UIViewController {
         setupUI()
         
         view.addSubviews(logoImageView, textStackView, signUpButton, logInButton)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
         logoImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
         logoImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
@@ -50,7 +46,6 @@ class WelcomeScreenVC: UIViewController {
         textStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         textStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: view.bounds.width * 0.02).isActive = true
     }
-    
     // MARK: - Setup
     
     private func setupUI() {
