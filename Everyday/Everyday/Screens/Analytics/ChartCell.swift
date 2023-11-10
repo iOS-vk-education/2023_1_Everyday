@@ -8,22 +8,20 @@
 import UIKit
 import SwiftUI
 
+// FIXME: move this protocol to basic class
+
+protocol ChartCellDelegate {
+    func didChooseChart(chartType: ChartType)
+}
+
 class ChartCell: UICollectionViewCell {
     
     static let reuseID = "ChartCell"
+    var chartViewController: UIHostingController<MiniBLChartView>!
+    var delegate: ChartCellDelegate?
     
-    let chartViewController = UIHostingController(rootView: MiniBLChartView())
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configure() {
+    func set(chartType: ChartType, data: [ViewMonth]) {
+        chartViewController = UIHostingController(rootView: MiniBLChartView(chartType: chartType, data: data))
         guard let chartView = chartViewController.view else {
             return
         }

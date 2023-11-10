@@ -9,7 +9,7 @@ import UIKit
 
 enum UIHelper {
     
-    // TODO: - remove height hardcode
+    // FIXME: remove height hardcode
     
     static func createTwoColumnFlowLayout(in view: UIView) -> UICollectionViewFlowLayout {
         let width = view.bounds.width
