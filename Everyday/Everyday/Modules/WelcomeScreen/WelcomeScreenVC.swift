@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WelcomeScreenVC: UIViewController {
+final class WelcomeScreenVC: UIViewController {
     
     // MARK: - Private properties
     
@@ -29,22 +29,7 @@ class WelcomeScreenVC: UIViewController {
         
         view.addSubviews(logoImageView, textStackView, signUpButton, logInButton)
         
-        logoImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
-        logoImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
-        logoImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        logoImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -0.18 * view.bounds.height).isActive = true
-        
-        logInButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -0.1 * view.bounds.height).isActive = true
-        signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -0.17 * view.bounds.height).isActive = true
-        
-        [logInButton, signUpButton].forEach { button in
-            button.widthAnchor.constraint(equalTo: textStackView.widthAnchor).isActive = true
-            button.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05).isActive = true
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        }
-        
-        textStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        textStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: view.bounds.width * 0.02).isActive = true
+        setupConstraints()
     }
     // MARK: - Setup
     
@@ -91,6 +76,25 @@ class WelcomeScreenVC: UIViewController {
         textStackView.translatesAutoresizingMaskIntoConstraints = false
         textStackView.addArrangedSubview(semiBoldLabel)
         textStackView.addArrangedSubview(boldLabel)
+    }
+    
+    private func setupConstraints() {
+        logoImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
+        logoImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
+        logoImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -0.18 * view.bounds.height).isActive = true
+        
+        logInButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -0.1 * view.bounds.height).isActive = true
+        signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -0.17 * view.bounds.height).isActive = true
+        
+        [logInButton, signUpButton].forEach { button in
+            button.widthAnchor.constraint(equalTo: textStackView.widthAnchor).isActive = true
+            button.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05).isActive = true
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        }
+        
+        textStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        textStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: view.bounds.width * 0.02).isActive = true
     }
     
     // MARK: - Actions
