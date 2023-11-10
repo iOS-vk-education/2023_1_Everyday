@@ -78,6 +78,8 @@ final class WelcomeScreenVC: UIViewController {
         textStackView.addArrangedSubview(boldLabel)
     }
     
+    // MARK: - Layout
+    
     private func setupConstraints() {
         logoImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
         logoImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true

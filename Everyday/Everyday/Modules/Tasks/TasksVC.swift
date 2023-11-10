@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TasksVC: UIViewController {
+final class TasksVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
