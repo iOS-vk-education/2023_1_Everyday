@@ -5,6 +5,7 @@
 //  Created by user on 31.10.2023.
 //
 import UIKit
+import SwiftUI
 
 class EDTabBarController: UITabBarController {
 
@@ -24,7 +25,7 @@ class EDTabBarController: UITabBarController {
     }
 
     func createAnalyticsNC() -> UINavigationController {
-        let analyticsVC = AnalyticsVC()
+        let analyticsVC = UIHostingController(rootView: ChartGridView())
         analyticsVC.title = "Analytics"
         return UINavigationController(rootViewController: analyticsVC)
     }

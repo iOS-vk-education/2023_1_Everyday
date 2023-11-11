@@ -18,6 +18,8 @@
 		CE7FAAE82AECF312000E3209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */; };
 		CE9EEFB22AFAE3E40089187B /* AnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EEFB12AFAE3E40089187B /* AnalyticsModel.swift */; };
 		CE9EEFB42AFAF10D0089187B /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EEFB32AFAF10D0089187B /* UIHelper.swift */; };
+		CEBA586F2AFEC57D00FE3BD1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA586E2AFEC57D00FE3BD1 /* Task.swift */; };
+		CEBA58712AFEC64900FE3BD1 /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA58702AFEC64900FE3BD1 /* ChartGridView.swift */; };
 		CEECC8582AFB7A6100B730DE /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC8572AFB7A6100B730DE /* ChartCell.swift */; };
 		CEECC85C2AFC32CE00B730DE /* BLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC85B2AFC32CE00B730DE /* BLChartView.swift */; };
 		CEECC85E2AFC33C200B730DE /* MiniBLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */; };
@@ -37,6 +39,8 @@
 		CE7FAAE92AECF312000E3209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9EEFB12AFAE3E40089187B /* AnalyticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsModel.swift; sourceTree = "<group>"; };
 		CE9EEFB32AFAF10D0089187B /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		CEBA586E2AFEC57D00FE3BD1 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CEBA58702AFEC64900FE3BD1 /* ChartGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
 		CEECC8572AFB7A6100B730DE /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		CEECC85B2AFC32CE00B730DE /* BLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLChartView.swift; sourceTree = "<group>"; };
 		CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniBLChartView.swift; sourceTree = "<group>"; };
@@ -64,11 +68,9 @@
 		CE25C8602AF5249F0056382E /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				CE25C8702AF525BF0056382E /* AnalyticsVC.swift */,
-				CE9EEFB12AFAE3E40089187B /* AnalyticsModel.swift */,
-				CEECC8572AFB7A6100B730DE /* ChartCell.swift */,
-				CEECC85B2AFC32CE00B730DE /* BLChartView.swift */,
-				CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */,
+				CEBA586D2AFEC52B00FE3BD1 /* uikit */,
+				CEBA586E2AFEC57D00FE3BD1 /* Task.swift */,
+				CEBA58702AFEC64900FE3BD1 /* ChartGridView.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -179,6 +181,18 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		CEBA586D2AFEC52B00FE3BD1 /* uikit */ = {
+			isa = PBXGroup;
+			children = (
+				CE25C8702AF525BF0056382E /* AnalyticsVC.swift */,
+				CE9EEFB12AFAE3E40089187B /* AnalyticsModel.swift */,
+				CEECC8572AFB7A6100B730DE /* ChartCell.swift */,
+				CEECC85B2AFC32CE00B730DE /* BLChartView.swift */,
+				CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */,
+			);
+			path = uikit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -254,9 +268,11 @@
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
 				CEECC85C2AFC32CE00B730DE /* BLChartView.swift in Sources */,
 				CE9EEFB42AFAF10D0089187B /* UIHelper.swift in Sources */,
+				CEBA58712AFEC64900FE3BD1 /* ChartGridView.swift in Sources */,
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
 				CE9EEFB22AFAE3E40089187B /* AnalyticsModel.swift in Sources */,
 				CEECC85E2AFC33C200B730DE /* MiniBLChartView.swift in Sources */,
+				CEBA586F2AFEC57D00FE3BD1 /* Task.swift in Sources */,
 				CE25C8752AF5287A0056382E /* UIView+Ext.swift in Sources */,
 				CE25C8712AF525BF0056382E /* AnalyticsVC.swift in Sources */,
 				CE25C8782AF529370056382E /* TasksVC.swift in Sources */,
