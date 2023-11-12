@@ -15,7 +15,6 @@
 		CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */; };
 		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
 		CE7FAAE82AECF312000E3209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */; };
-		CE9EEFB42AFAF10D0089187B /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EEFB32AFAF10D0089187B /* UIHelper.swift */; };
 		CEBA586F2AFEC57D00FE3BD1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA586E2AFEC57D00FE3BD1 /* Task.swift */; };
 		CEBA58712AFEC64900FE3BD1 /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA58702AFEC64900FE3BD1 /* ChartGridView.swift */; };
 		CEBA58732AFF7B8D00FE3BD1 /* ChartDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA58722AFF7B8D00FE3BD1 /* ChartDetailView.swift */; };
@@ -33,7 +32,6 @@
 		CE7FAAE42AECF312000E3209 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7FAAE72AECF312000E3209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7FAAE92AECF312000E3209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE9EEFB32AFAF10D0089187B /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		CEBA586E2AFEC57D00FE3BD1 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		CEBA58702AFEC64900FE3BD1 /* ChartGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
 		CEBA58722AFF7B8D00FE3BD1 /* ChartDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDetailView.swift; sourceTree = "<group>"; };
@@ -107,10 +105,7 @@
 			children = (
 				CE84B8FA2AF0590C00B1E795 /* Screens */,
 				CE84B8FB2AF0592100B1E795 /* CustomViews */,
-				CE84B8FF2AF0599500B1E795 /* Managers */,
-				CE84B9012AF05A4B00B1E795 /* Utilities */,
 				CE84B9002AF05A0F00B1E795 /* Extensions */,
-				CE84B8FE2AF0598A00B1E795 /* Model */,
 				CE84B8F92AF058E000B1E795 /* Support */,
 				CE7FAAE92AECF312000E3209 /* Info.plist */,
 			);
@@ -146,34 +141,12 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		CE84B8FE2AF0598A00B1E795 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CE84B8FF2AF0599500B1E795 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
 		CE84B9002AF05A0F00B1E795 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CE25C8742AF5287A0056382E /* UIView+Ext.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		CE84B9012AF05A4B00B1E795 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				CE9EEFB32AFAF10D0089187B /* UIHelper.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +221,6 @@
 			files = (
 				CE25C85E2AF5245E0056382E /* EDTabBarController.swift in Sources */,
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
-				CE9EEFB42AFAF10D0089187B /* UIHelper.swift in Sources */,
 				CEBA58712AFEC64900FE3BD1 /* ChartGridView.swift in Sources */,
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
 				CEBA58752AFFF19400FE3BD1 /* ChartGridViewModel.swift in Sources */,
