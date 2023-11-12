@@ -22,7 +22,6 @@
 		CEBA58712AFEC64900FE3BD1 /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA58702AFEC64900FE3BD1 /* ChartGridView.swift */; };
 		CEBA58732AFF7B8D00FE3BD1 /* ChartDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA58722AFF7B8D00FE3BD1 /* ChartDetailView.swift */; };
 		CEBA58752AFFF19400FE3BD1 /* ChartGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA58742AFFF19400FE3BD1 /* ChartGridViewModel.swift */; };
-		CEBA58772B00FEEF00FE3BD1 /* tmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA58762B00FEEF00FE3BD1 /* tmp.swift */; };
 		CEECC8582AFB7A6100B730DE /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC8572AFB7A6100B730DE /* ChartCell.swift */; };
 		CEECC85C2AFC32CE00B730DE /* BLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC85B2AFC32CE00B730DE /* BLChartView.swift */; };
 		CEECC85E2AFC33C200B730DE /* MiniBLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */; };
@@ -46,7 +45,6 @@
 		CEBA58702AFEC64900FE3BD1 /* ChartGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
 		CEBA58722AFF7B8D00FE3BD1 /* ChartDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDetailView.swift; sourceTree = "<group>"; };
 		CEBA58742AFFF19400FE3BD1 /* ChartGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridViewModel.swift; sourceTree = "<group>"; };
-		CEBA58762B00FEEF00FE3BD1 /* tmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tmp.swift; sourceTree = "<group>"; };
 		CEECC8572AFB7A6100B730DE /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		CEECC85B2AFC32CE00B730DE /* BLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLChartView.swift; sourceTree = "<group>"; };
 		CEECC85D2AFC33C200B730DE /* MiniBLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniBLChartView.swift; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 				CEBA58702AFEC64900FE3BD1 /* ChartGridView.swift */,
 				CEBA58722AFF7B8D00FE3BD1 /* ChartDetailView.swift */,
 				CEBA58742AFFF19400FE3BD1 /* ChartGridViewModel.swift */,
-				CEBA58762B00FEEF00FE3BD1 /* tmp.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -277,7 +274,6 @@
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
 				CEECC85C2AFC32CE00B730DE /* BLChartView.swift in Sources */,
 				CE9EEFB42AFAF10D0089187B /* UIHelper.swift in Sources */,
-				CEBA58772B00FEEF00FE3BD1 /* tmp.swift in Sources */,
 				CEBA58712AFEC64900FE3BD1 /* ChartGridView.swift in Sources */,
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
 				CEBA58752AFFF19400FE3BD1 /* ChartGridViewModel.swift in Sources */,
