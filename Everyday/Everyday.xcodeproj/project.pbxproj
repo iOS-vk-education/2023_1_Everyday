@@ -33,7 +33,6 @@
 		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
 		CE7FAAE82AECF312000E3209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */; };
 		CE84B9032AF1394600B1E795 /* TasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9022AF1394600B1E795 /* TasksVC.swift */; };
-		CE84B9052AF1397600B1E795 /* AnalyticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */; };
 		CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9062AF1398B00B1E795 /* SettingsVC.swift */; };
 		CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9082AF139E500B1E795 /* LoginVC.swift */; };
 		CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B90A2AF139F800B1E795 /* SignUpVC.swift */; };
@@ -57,7 +56,6 @@
 		CE7FAAE72AECF312000E3209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7FAAE92AECF312000E3209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE84B9022AF1394600B1E795 /* TasksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksVC.swift; sourceTree = "<group>"; };
-		CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsVC.swift; sourceTree = "<group>"; };
 		CE84B9062AF1398B00B1E795 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		CE84B9082AF139E500B1E795 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CE84B90A2AF139F800B1E795 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -107,9 +105,8 @@
 			children = (
 				9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */,
 			);
-			name = Extensions;
-			path = "/Users/mk126/Desktop/Технопарк 12/2023_1_Everyday/Everyday/Everyday/Extensions";
-			sourceTree = "<absolute>";
+			path = Extensions;
+			sourceTree = "<group>";
 		};
 		9E97DB382AFD5A7300491C98 /* Tasks */ = {
 			isa = PBXGroup;
@@ -122,7 +119,6 @@
 		9E97DB392AFD5A7E00491C98 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -355,7 +351,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE84B9052AF1397600B1E795 /* AnalyticsVC.swift in Sources */,
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
 				CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */,
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
