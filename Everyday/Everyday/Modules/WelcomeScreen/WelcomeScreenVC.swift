@@ -31,6 +31,13 @@ final class WelcomeScreenVC: UIViewController {
         
         setupConstraints()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.hidesBackButton = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
     // MARK: - Setup
     
     private func setupUI() {
@@ -58,10 +65,11 @@ final class WelcomeScreenVC: UIViewController {
     private func setupActiveButtons() {
         logInButton.backgroundColor = UIColor(named: "EverydayOrange")
         logInButton.setTitle("Войти", for: .normal)
+        logInButton.addTarget(self, action: #selector(didTapLogInButton), for: .touchUpInside)
         
         signUpButton.backgroundColor = .white
         signUpButton.setTitle("Создать аккаунт", for: .normal)
-        signUpButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(didTapSignUpButton), for: .touchUpInside)
         
         [logInButton, signUpButton].forEach { button in
             button.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
@@ -102,6 +110,18 @@ final class WelcomeScreenVC: UIViewController {
     // MARK: - Actions
     
     @objc
-    private func didTapRegButton() {
+    private func didTapSignUpButton() {
+        let signupVC = SignUpVC()
+        
+        signupVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(signupVC, animated: true)
+    }
+    
+    @objc
+    private func didTapLogInButton() {
+        let loginVC = LoginVC()
+        
+        loginVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(loginVC, animated: true)
     }
 }
