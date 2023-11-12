@@ -8,61 +8,34 @@
 import SwiftUI
 import Charts
 
-// TODO: figure out how GeometryReader works
-
 struct ChartGridView: View {
+    
+    @StateObject var viewModel = ChartGridViewModel()
     
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
-    let viewMonth: [[ViewMonth]] = [
-        [.init(date: Date.from(year: 2023, month: 1, day: 1), viewCount: 5, priority: .high),
-        .init(date: Date.from(year: 2023, month: 2, day: 1), viewCount: 6, priority: .high),
-        .init(date: Date.from(year: 2023, month: 3, day: 1), viewCount: 2, priority: .high),
-        .init(date: Date.from(year: 2023, month: 4, day: 1), viewCount: 11, priority: .high),
-        .init(date: Date.from(year: 2023, month: 5, day: 1), viewCount: 3, priority: .high),
-        .init(date: Date.from(year: 2023, month: 6, day: 1), viewCount: 5, priority: .high),
-        .init(date: Date.from(year: 2023, month: 7, day: 1), viewCount: 10, priority: .high),],
-        
-        [.init(date: Date.from(year: 2023, month: 1, day: 1), viewCount: 1, priority: .medium),
-        .init(date: Date.from(year: 2023, month: 2, day: 1), viewCount: 2, priority: .medium),
-        .init(date: Date.from(year: 2023, month: 3, day: 1), viewCount: 3, priority: .medium),
-        .init(date: Date.from(year: 2023, month: 4, day: 1), viewCount: 4, priority: .medium),
-        .init(date: Date.from(year: 2023, month: 5, day: 1), viewCount: 5, priority: .medium),
-        .init(date: Date.from(year: 2023, month: 6, day: 1), viewCount: 6, priority: .medium),
-        .init(date: Date.from(year: 2023, month: 7, day: 1), viewCount: 7, priority: .medium),],
-        
-        [.init(date: Date.from(year: 2023, month: 1, day: 1), viewCount: 7, priority: .low),
-        .init(date: Date.from(year: 2023, month: 2, day: 1), viewCount: 6, priority: .low),
-        .init(date: Date.from(year: 2023, month: 3, day: 1), viewCount: 5, priority: .low),
-        .init(date: Date.from(year: 2023, month: 4, day: 1), viewCount: 4, priority: .low),
-        .init(date: Date.from(year: 2023, month: 5, day: 1), viewCount: 3, priority: .low),
-        .init(date: Date.from(year: 2023, month: 6, day: 1), viewCount: 2, priority: .low),
-        .init(date: Date.from(year: 2023, month: 7, day: 1), viewCount: 1, priority: .low),],
-        
-        [.init(date: Date.from(year: 2023, month: 1, day: 1), viewCount: 5, priority: .none),
-        .init(date: Date.from(year: 2023, month: 2, day: 1), viewCount: 6, priority: .none),
-        .init(date: Date.from(year: 2023, month: 3, day: 1), viewCount: 2, priority: .none),
-        .init(date: Date.from(year: 2023, month: 4, day: 1), viewCount: 11, priority: .none),
-        .init(date: Date.from(year: 2023, month: 5, day: 1), viewCount: 3, priority: .none),
-        .init(date: Date.from(year: 2023, month: 6, day: 1), viewCount: 5, priority: .none),
-        .init(date: Date.from(year: 2023, month: 7, day: 1), viewCount: 10, priority: .none),],
-    ]
+    let viewMonth: [[ViewMonth]]
     
     var body: some View {
         NavigationView {
             LazyVGrid(columns: columns) {
                 ForEach(viewMonth, id: \.self) { data in
-                    ChartTitleView(name: "Priority", chartType: .bar, viewMonth: data)
+                    ChartTitleView(name: viewModel.chartTypes[viewMonth.firstIndex(of: data) ?? 0].name, chartType: viewModel.chartTypes[viewMonth.firstIndex(of: data) ?? 0].chartType, viewMonth: data)
+                        .onTapGesture {
+                            viewModel.selectedChart = Priority(rawValue: (viewMonth.firstIndex(of: data) ?? 0))
+                        }
                 }
             }
-            .navigationTitle("Analytics")
+            .sheet(isPresented: $viewModel.isShowingDetailView) {
+                ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0, viewMonth: viewMonth[viewModel.selectedChart?.rawValue ?? 0], viewModel: viewModel)
+            }
         }
     }
 }
 
 struct ChartGridView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartGridView()
+        ChartGridView(viewMonth: MockData.viewMonth)
     }
 }
 
@@ -72,7 +45,6 @@ struct ChartTitleView: View {
     let viewMonth: [ViewMonth]
     
     var body: some View {
-//        GeometryReader { geometry in
             VStack {
                 Text(name)
                     .font(.title2)
@@ -115,16 +87,9 @@ struct ChartTitleView: View {
                     }
                 }
             }
-            .frame(height: 300)
+            .frame(height: UIScreen.main.bounds.height / 3)
             .padding()
             .background(Color.mint)
             .cornerRadius(10.0)
-//        }
     }
-}
-
-enum ChartType {
-    case bar
-    case line
-//    case pie
 }
