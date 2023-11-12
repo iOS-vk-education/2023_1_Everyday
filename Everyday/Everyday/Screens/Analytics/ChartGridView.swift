@@ -14,7 +14,7 @@ struct ChartGridView: View {
     
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
-    let viewMonth: [[ViewMonth]]
+    let viewMonth: [[ViewMonth]] = MockData.viewMonth
     
     var body: some View {
         NavigationView {
@@ -35,7 +35,7 @@ struct ChartGridView: View {
 
 struct ChartGridView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartGridView(viewMonth: MockData.viewMonth)
+        ChartGridView()
     }
 }
 

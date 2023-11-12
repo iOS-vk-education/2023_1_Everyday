@@ -25,7 +25,7 @@ class EDTabBarController: UITabBarController {
     }
 
     func createAnalyticsNC() -> UINavigationController {
-        let analyticsVC = UIHostingController(rootView: ChartGridView(viewMonth: MockData.viewMonth))
+        let analyticsVC = UIHostingController(rootView: ChartGridView())
         analyticsVC.title = "Analytics"
         return UINavigationController(rootViewController: analyticsVC)
     }
