@@ -28,6 +28,10 @@
 		9E3F69782AF2DE2400638BC2 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */; };
 		9E97DB352AFC1D6D00491C98 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */; };
 		9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */; };
+		CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45252B016412001F426E /* ChartDetailView.swift */; };
+		CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45262B016412001F426E /* ChartGridViewModel.swift */; };
+		CE1A452B2B016413001F426E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45272B016413001F426E /* Task.swift */; };
+		CE1A452C2B016413001F426E /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45282B016413001F426E /* ChartGridView.swift */; };
 		CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */; };
 		CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */; };
 		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
@@ -49,6 +53,10 @@
 		9E3F695A2AF2D80300638BC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVC.swift; sourceTree = "<group>"; };
+		CE1A45252B016412001F426E /* ChartDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDetailView.swift; sourceTree = "<group>"; };
+		CE1A45262B016412001F426E /* ChartGridViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGridViewModel.swift; sourceTree = "<group>"; };
+		CE1A45272B016413001F426E /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CE1A45282B016413001F426E /* ChartGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
 		CE7FAAD82AECF30B000E3209 /* Everyday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everyday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +127,10 @@
 		9E97DB392AFD5A7E00491C98 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				CE1A45252B016412001F426E /* ChartDetailView.swift */,
+				CE1A45282B016413001F426E /* ChartGridView.swift */,
+				CE1A45262B016412001F426E /* ChartGridViewModel.swift */,
+				CE1A45272B016413001F426E /* Task.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -353,14 +365,18 @@
 			files = (
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
 				CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */,
+				CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */,
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				9E97DB352AFC1D6D00491C98 /* UIView+Extensions.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
 				CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */,
+				CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */,
 				CE84B9032AF1394600B1E795 /* TasksVC.swift in Sources */,
 				CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */,
+				CE1A452C2B016413001F426E /* ChartGridView.swift in Sources */,
+				CE1A452B2B016413001F426E /* Task.swift in Sources */,
 				9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
