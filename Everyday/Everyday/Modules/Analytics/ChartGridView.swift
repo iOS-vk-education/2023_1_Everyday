@@ -20,14 +20,17 @@ struct ChartGridView: View {
         NavigationView {
             LazyVGrid(columns: columns) {
                 ForEach(viewMonth, id: \.self) { data in
-                    ChartTitleView(name: viewModel.chartTypes[viewMonth.firstIndex(of: data) ?? 0].name, chartType: viewModel.chartTypes[viewMonth.firstIndex(of: data) ?? 0].chartType, viewMonth: data)
+                    ChartTitleView(name: viewModel.chartTypes[viewMonth.firstIndex(of: data) ?? 0].name,
+                                   chartType: viewModel.chartTypes[viewMonth.firstIndex(of: data) ?? 0].chartType, viewMonth: data)
                         .onTapGesture {
                             viewModel.selectedChart = Priority(rawValue: (viewMonth.firstIndex(of: data) ?? 0))
                         }
                 }
             }
             .sheet(isPresented: $viewModel.isShowingDetailView) {
-                ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0, viewMonth: viewMonth[viewModel.selectedChart?.rawValue ?? 0], viewModel: viewModel)
+                ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
+                                viewMonth: viewMonth[viewModel.selectedChart?.rawValue ?? 0],
+                                viewModel: viewModel)
             }
         }
     }
@@ -77,12 +80,12 @@ struct ChartTitleView: View {
                     }
                 }
                 .chartXAxis {
-                    AxisMarks(values: viewMonth.map { $0.date }) { date in
+                    AxisMarks(values: viewMonth.map { $0.date }) { _ in
                         // so there are no labels
                     }
                 }
                 .chartYAxis {
-                    AxisMarks { mark in
+                    AxisMarks { _ in
                         // so there are no labels
                     }
                 }
