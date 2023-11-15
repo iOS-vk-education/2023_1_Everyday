@@ -98,7 +98,7 @@ class ForgotPasswordVC: UIViewController {
     
     private func setupButtons() {
         signUpButton.backgroundColor = UIColor(named: "EverydayOrange")
-        signUpButton.setTitle("Создать аккаунт", for: .normal)
+        signUpButton.setTitle("Восстановить", for: .normal)
         signUpButton.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.layer.cornerRadius = 5
