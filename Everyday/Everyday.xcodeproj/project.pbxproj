@@ -107,9 +107,8 @@
 			children = (
 				9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */,
 			);
-			name = Extensions;
-			path = "/Users/mk126/Desktop/Технопарк 12/2023_1_Everyday/Everyday/Everyday/Extensions";
-			sourceTree = "<absolute>";
+			path = Extensions;
+			sourceTree = "<group>";
 		};
 		9E97DB382AFD5A7300491C98 /* Tasks */ = {
 			isa = PBXGroup;
