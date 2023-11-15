@@ -189,6 +189,31 @@ final class LoginVC: UIViewController {
     
     @objc
     private func didTapLogInButton() {
+        let loginRequest = LoginRequest(
+            email: self.emailOrUsernameField.text ?? "",
+            password: self.passwordField.text ?? ""
+        )
+        
+        if !Validator.isValidEmail(for: loginRequest.email) {
+            AlertManager.showInvalidEmailAlert(on: self)
+            return
+        }
+        
+        if !Validator.isPasswordValid(for: loginRequest.password) {
+            AlertManager.showInvalidPasswordAlert(on: self)
+            return
+        }
+        
+        AuthService.shared.logIn(with: loginRequest) { error in
+            if let error = error {
+                AlertManager.showSignInErrorAlert(on: self, with: error)
+                return
+            }
+            
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            }
+        }
     }
     
     @objc
@@ -204,6 +229,8 @@ final class LoginVC: UIViewController {
     
     @objc
     private func didTapForgotPasswordButton() {
+        let forgotPasswordVC = ForgotPasswordVC()
+        navigationController?.pushViewController(forgotPasswordVC, animated: true)
     }
     
     // MARK: - Keyboard Actions

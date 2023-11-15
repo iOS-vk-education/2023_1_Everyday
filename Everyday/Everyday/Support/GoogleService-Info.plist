@@ -15,16 +15,16 @@
 	<key>STORAGE_BUCKET</key>
 	<string>everyday-423e1.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:744881928007:ios:3f4c61ac956fd644a07e62</string>
+	<string>1:744881928007:ios:ab51e52c5f680e6ea07e62</string>
 </dict>
 </plist>
