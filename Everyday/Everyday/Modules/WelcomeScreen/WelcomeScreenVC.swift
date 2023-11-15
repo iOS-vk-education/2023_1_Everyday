@@ -17,7 +17,6 @@ final class WelcomeScreenVC: UIViewController {
     private let signUpButton = UIButton()
     private let logInButton = UIButton()
     private var textStackView = UIStackView()
-    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
@@ -112,16 +111,12 @@ final class WelcomeScreenVC: UIViewController {
     @objc
     private func didTapSignUpButton() {
         let signupVC = SignUpVC()
-        
-        signupVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(signupVC, animated: true)
     }
     
     @objc
     private func didTapLogInButton() {
         let loginVC = LoginVC()
-        
-        loginVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(loginVC, animated: true)
     }
 }

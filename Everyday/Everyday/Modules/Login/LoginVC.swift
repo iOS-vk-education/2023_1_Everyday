@@ -199,8 +199,6 @@ final class LoginVC: UIViewController {
     @objc
     private func didTapsignUpButton() {
         let signupVC = SignUpVC()
-        
-        signupVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(signupVC, animated: true)
     }
     
