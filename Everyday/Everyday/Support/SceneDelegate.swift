@@ -17,7 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = EDTabBarController()
+        let navigationController = UINavigationController(rootViewController: WelcomeScreenVC())
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }
