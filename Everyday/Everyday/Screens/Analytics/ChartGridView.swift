@@ -26,16 +26,13 @@ struct ChartGridView: View {
                         }
                 }
             }
+            .onAppear() {
+                viewModel.retrievePreferences()
+            }
             .sheet(isPresented: $viewModel.isShowingDetailView) {
                 ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0, viewMonth: viewMonth[viewModel.selectedChart?.rawValue ?? 0], viewModel: viewModel)
             }
         }
-    }
-}
-
-struct ChartGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChartGridView()
     }
 }
 
