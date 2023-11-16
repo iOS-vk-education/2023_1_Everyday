@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class EDTabBarController: UITabBarController {
     
@@ -25,7 +26,7 @@ final class EDTabBarController: UITabBarController {
     }
     
     func createAnalyticsNC() -> UINavigationController {
-        let analyticsVC = AnalyticsVC()
+        let analyticsVC = UIHostingController(rootView: ChartGridView())
         analyticsVC.title = "Analytics"
         return UINavigationController(rootViewController: analyticsVC)
     }

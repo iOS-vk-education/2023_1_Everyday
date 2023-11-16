@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         let window = UIWindow(windowScene: windowScene)
         
+
         self.window = window
         self.window?.makeKeyAndVisible()
     }

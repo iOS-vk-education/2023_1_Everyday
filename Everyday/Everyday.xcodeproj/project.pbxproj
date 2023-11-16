@@ -20,7 +20,6 @@
 		9E3F69722AF2DE2400638BC2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69712AF2DE2400638BC2 /* FirebaseFirestoreSwift */; };
 		9E3F69762AF2DE2400638BC2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69752AF2DE2400638BC2 /* FirebaseStorage */; };
 		9E3F69782AF2DE2400638BC2 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */; };
-		9E97DB352AFC1D6D00491C98 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */; };
 		9E97DB422B04FCAC00491C98 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */; };
 		9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB442B04FF8F00491C98 /* AuthService.swift */; };
 		9E97DB472B05004500491C98 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB462B05004500491C98 /* SignUpRequest.swift */; };
@@ -32,18 +31,23 @@
 		9E97DB5B2B0533FD00491C98 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB5A2B0533FD00491C98 /* User.swift */; };
 		9E97DB5D2B0535EA00491C98 /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB5C2B0535EA00491C98 /* TaskService.swift */; };
 		9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */; };
+		CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45252B016412001F426E /* ChartDetailView.swift */; };
+		CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45262B016412001F426E /* ChartGridViewModel.swift */; };
+		CE1A452B2B016413001F426E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45272B016413001F426E /* Task.swift */; };
+		CE1A452C2B016413001F426E /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45282B016413001F426E /* ChartGridView.swift */; };
 		CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */; };
 		CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */; };
 		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
 		CE7FAAE82AECF312000E3209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */; };
 		CE84B9032AF1394600B1E795 /* TasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9022AF1394600B1E795 /* TasksVC.swift */; };
-		CE84B9052AF1397600B1E795 /* AnalyticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */; };
 		CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9062AF1398B00B1E795 /* SettingsVC.swift */; };
 		CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9082AF139E500B1E795 /* LoginVC.swift */; };
 		CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B90A2AF139F800B1E795 /* SignUpVC.swift */; };
 		CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */; };
 		CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */; };
 		CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */; };
+		CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */; };
+		CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +55,6 @@
 		9E22B11D2AF9477B0002A1EC /* Coves Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Light.otf"; sourceTree = "<group>"; };
 		9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E97DB442B04FF8F00491C98 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9E97DB462B05004500491C98 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
@@ -63,6 +66,10 @@
 		9E97DB5A2B0533FD00491C98 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9E97DB5C2B0535EA00491C98 /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
 		9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVC.swift; sourceTree = "<group>"; };
+		CE1A45252B016412001F426E /* ChartDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDetailView.swift; sourceTree = "<group>"; };
+		CE1A45262B016412001F426E /* ChartGridViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGridViewModel.swift; sourceTree = "<group>"; };
+		CE1A45272B016413001F426E /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CE1A45282B016413001F426E /* ChartGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
 		CE7FAAD82AECF30B000E3209 /* Everyday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everyday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,13 +77,14 @@
 		CE7FAAE72AECF312000E3209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7FAAE92AECF312000E3209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE84B9022AF1394600B1E795 /* TasksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksVC.swift; sourceTree = "<group>"; };
-		CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsVC.swift; sourceTree = "<group>"; };
 		CE84B9062AF1398B00B1E795 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		CE84B9082AF139E500B1E795 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CE84B90A2AF139F800B1E795 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskVC.swift; sourceTree = "<group>"; };
 		CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDTabBarController.swift; sourceTree = "<group>"; };
+		CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,14 +118,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		9E97DB332AFC1D5800491C98 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				9E97DB342AFC1D6D00491C98 /* UIView+Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		9E97DB382AFD5A7300491C98 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +131,10 @@
 		9E97DB392AFD5A7E00491C98 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				CE84B9042AF1397600B1E795 /* AnalyticsVC.swift */,
+				CE1A45252B016412001F426E /* ChartDetailView.swift */,
+				CE1A45282B016413001F426E /* ChartGridView.swift */,
+				CE1A45262B016412001F426E /* ChartGridViewModel.swift */,
+				CE1A45272B016413001F426E /* Task.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -236,7 +239,7 @@
 		CE7FAADA2AECF30B000E3209 /* Everyday */ = {
 			isa = PBXGroup;
 			children = (
-				9E97DB332AFC1D5800491C98 /* Extensions */,
+				CEEEDEE82B01715200DA6A45 /* Extensions */,
 				CE84B8FA2AF0590C00B1E795 /* Modules */,
 				CE84B8F92AF058E000B1E795 /* Support */,
 				CE7FAAE92AECF312000E3209 /* Info.plist */,
@@ -269,6 +272,15 @@
 				9E97DB382AFD5A7300491C98 /* Tasks */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		CEEEDEE82B01715200DA6A45 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */,
+				CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,25 +394,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				9E97DB4B2B051FE100491C98 /* AlertManager.swift in Sources */,
 				CE84B9052AF1397600B1E795 /* AnalyticsVC.swift in Sources */,
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
 				CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */,
 				9E97DB5D2B0535EA00491C98 /* TaskService.swift in Sources */,
 				9E97DB492B05117A00491C98 /* LoginRequest.swift in Sources */,
+				CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */,
+				CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */,
+				CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */,
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
 				9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */,
 				9E97DB5B2B0533FD00491C98 /* User.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
-				9E97DB352AFC1D6D00491C98 /* UIView+Extensions.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
 				9E97DB472B05004500491C98 /* SignUpRequest.swift in Sources */,
 				9E97DB532B05277C00491C98 /* Validator.swift in Sources */,
 				CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */,
+				CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */,
 				CE84B9032AF1394600B1E795 /* TasksVC.swift in Sources */,
 				CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */,
+				CE1A452C2B016413001F426E /* ChartGridView.swift in Sources */,
+				CE1A452B2B016413001F426E /* Task.swift in Sources */,
 				9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */,
 				9E97DB512B0522C100491C98 /* WelcomeScreenView.swift in Sources */,
 			);
@@ -558,10 +576,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-Xlinker",
-					"-no_warn_duplicate_libraries",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ed-Everyday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
