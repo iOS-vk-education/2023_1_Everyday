@@ -19,10 +19,10 @@ struct ChartGridView: View {
     var body: some View {
         NavigationView {
             LazyVGrid(columns: columns) {
-                ForEach(viewMonth, id: \.self) { data in
-                    ChartTitleView(name: viewModel.chartTypes[viewMonth.firstIndex(of: data) ?? 0].name, chartType: viewModel.chartTypes[viewMonth.firstIndex(of: data) ?? 0].chartType, viewMonth: data)
+                ForEach(viewMonth.indices, id: \.self) { index in
+                    ChartTitleView(name: viewModel.chartTypes[index].name, chartType: viewModel.chartTypes[index].chartType, viewMonth: viewMonth[index])
                         .onTapGesture {
-                            viewModel.selectedChart = Priority(rawValue: (viewMonth.firstIndex(of: data) ?? 0))
+                            viewModel.selectedChart = Priority(rawValue: index)
                         }
                 }
             }
