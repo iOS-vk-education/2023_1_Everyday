@@ -24,6 +24,9 @@ class AuthService {
         let username = userRequest.username
         let email = userRequest.email
         let password = userRequest.password
+        let task = userRequest.task
+        let event = userRequest.event
+        let doneTask = userRequest.doneTask
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
@@ -41,7 +44,10 @@ class AuthService {
                 .document(resultUser.uid)
                 .setData([
                     "username": username,
-                    "email": email
+                    "email": email,
+                    "task_id": task,
+                    "event_id": event,
+                    "done_task": doneTask
                 ]) { error in
                      if let error = error {
                         completion(false, error)
