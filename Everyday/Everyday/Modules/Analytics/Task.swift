@@ -21,6 +21,12 @@ enum ChartType: String, CaseIterable, Identifiable {
     }
 }
 
+struct TaskData: Codable, Identifiable, Hashable {
+    var id = UUID()
+    let date: Date
+    let priority: [Int]
+}
+
 struct ViewMonth: Identifiable, Hashable {
     let id = UUID()
     var date: Date
@@ -29,6 +35,16 @@ struct ViewMonth: Identifiable, Hashable {
 }
 
 struct MockData {
+    
+    static let newExample: [TaskData] = [
+        .init(date: Date.from(year: 2023, month: 1, day: 1), priority: [5, 1, 7, 5]),
+        .init(date: Date.from(year: 2023, month: 2, day: 1), priority: [6, 2, 6, 6]),
+        .init(date: Date.from(year: 2023, month: 3, day: 1), priority: [2, 3, 5, 2]),
+        .init(date: Date.from(year: 2023, month: 4, day: 1), priority: [11, 4, 4, 11]),
+        .init(date: Date.from(year: 2023, month: 5, day: 1), priority: [3, 5, 3, 3]),
+        .init(date: Date.from(year: 2023, month: 6, day: 1), priority: [5, 6, 2, 5]),
+        .init(date: Date.from(year: 2023, month: 7, day: 1), priority: [10, 7, 1, 10])
+    ]
     
     static let example = [ViewMonth(date: Date.from(year: 2023, month: 1, day: 1), viewCount: 5, priority: .high),
                           ViewMonth(date: Date.from(year: 2023, month: 2, day: 1), viewCount: 6, priority: .high),
