@@ -109,6 +109,8 @@ class ForgotPasswordVC: UIViewController {
     
     private func setupTextFieldsView() {
         emailField.attributedPlaceholder = NSAttributedString(string: "Email")
+        emailField.autocorrectionType = .no
+        emailField.autocapitalizationType = .none
         emailField.backgroundColor = .white
         emailField.font = UIFont(name: "Montserrat-SemiBold", size: 14)
         emailField.textColor = .black

@@ -136,6 +136,8 @@ final class SignUpVC: UIViewController {
         repPasswordField.isSecureTextEntry = true
         
         [emailField, usernameField, passwordField, repPasswordField].forEach { field in
+            field.autocorrectionType = .no
+            field.autocapitalizationType = .none
             field.backgroundColor = .white
             field.font = UIFont(name: "Montserrat-SemiBold", size: 14)
             field.textColor = .black
