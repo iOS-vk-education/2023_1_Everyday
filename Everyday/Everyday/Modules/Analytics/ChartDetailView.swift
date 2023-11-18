@@ -30,6 +30,9 @@ struct ChartDetailView: View {
                             Text(chartType.rawValue).tag(chartType)
                         }
                     }
+                    .onChange(of: viewModel.chartTypes[index].chartType) { newChartType in
+                        viewModel.saveChanges()
+                    }
                     .pickerStyle(.segmented)
                 }
                 

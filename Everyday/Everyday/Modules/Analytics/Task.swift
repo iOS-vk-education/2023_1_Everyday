@@ -1,8 +1,8 @@
 import Foundation
 
-struct GridCell: Identifiable {
-    let id = UUID()
-    let name: String
+struct GridCell: Identifiable, Codable {
+    var id = UUID()
+    var name: String
     var chartType: ChartType
 }
 
@@ -13,7 +13,7 @@ enum Priority: Int {
     case none   = 3  // "Unnecessary"
 }
 
-enum ChartType: String, CaseIterable, Identifiable {
+enum ChartType: String, CaseIterable, Identifiable, Codable {
     case bar    = "Bar"
     case line   = "Line"
     var id: String {
