@@ -12,7 +12,7 @@ import Charts
 struct ChartDetailView: View {
     
     let index: Int
-    let viewMonth: [ViewMonth]
+    let taskDatas: [TaskData]
     @ObservedObject var viewModel: ChartGridViewModel
     
     var body: some View {
@@ -30,7 +30,7 @@ struct ChartDetailView: View {
                             Text(chartType.rawValue).tag(chartType)
                         }
                     }
-                    .onChange(of: viewModel.chartTypes[index].chartType) { newChartType in
+                    .onChange(of: viewModel.chartTypes[index].chartType) { _ in
                         viewModel.saveChanges()
                     }
                     .pickerStyle(.segmented)
@@ -46,18 +46,18 @@ struct ChartDetailView: View {
                                 .foregroundColor(.pink)
                         }
                     
-                    ForEach(viewMonth) { viewMonth in
+                    ForEach(taskDatas) { taskData in
                         switch viewModel.chartTypes[index].chartType {
                         case .line:
                             LineMark(
-                                x: .value("Month", viewMonth.date, unit: .month),
-                                y: .value("Views", viewMonth.viewCount)
+                                x: .value("Month", taskData.date, unit: .month),
+                                y: .value("Tasks", taskData.priority[index])
                             )
                             .foregroundStyle(Color.pink.gradient)
                         case .bar:
                             BarMark(
-                                x: .value("Month", viewMonth.date, unit: .month),
-                                y: .value("Views", viewMonth.viewCount)
+                                x: .value("Month", taskData.date, unit: .month),
+                                y: .value("Tasks", taskData.priority[index])
                             )
                             .foregroundStyle(Color.pink.gradient)
                         }

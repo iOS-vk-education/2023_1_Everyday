@@ -19,8 +19,11 @@ struct ChartGridView: View {
     var body: some View {
         NavigationView {
             LazyVGrid(columns: columns) {
-                ForEach(viewMonth.indices, id: \.self) { index in
-                    ChartTitleView(name: viewModel.chartTypes[index].name, chartType: viewModel.chartTypes[index].chartType, viewMonth: viewMonth[index])
+                ForEach(viewModel.chartTypes.indices, id: \.self) { index in
+                    ChartTitleView(name: viewModel.chartTypes[index].name,
+                                   index: index,
+                                   chartType: viewModel.chartTypes[index].chartType,
+                                   taskDatas: taskData)
                         .onTapGesture {
                             viewModel.selectedChart = Priority(rawValue: index)
                         }
@@ -31,7 +34,7 @@ struct ChartGridView: View {
             }
             .sheet(isPresented: $viewModel.isShowingDetailView) {
                 ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
-                                viewMonth: viewMonth[viewModel.selectedChart?.rawValue ?? 0],
+                                taskDatas: taskData,
                                 viewModel: viewModel)
             }
         }
@@ -39,9 +42,11 @@ struct ChartGridView: View {
 }
 
 struct ChartTitleView: View {
+    
     let name: String
+    let index: Int
     let chartType: ChartType
-    let viewMonth: [ViewMonth]
+    let taskDatas: [TaskData]
     
     var body: some View {
             VStack {
@@ -58,25 +63,25 @@ struct ChartTitleView: View {
                                 .foregroundColor(.pink)
                         }
                     
-                    ForEach(viewMonth) { viewMonth in
+                    ForEach(taskDatas) { taskData in
                         switch chartType {
                         case .line:
                             LineMark(
-                                x: .value("Month", viewMonth.date, unit: .month),
-                                y: .value("Views", viewMonth.viewCount)
+                                x: .value("Month", taskData.date, unit: .month),
+                                y: .value("Tasks", taskData.priority[index])
                             )
                             .foregroundStyle(Color.pink.gradient)
                         case .bar:
                             BarMark(
-                                x: .value("Month", viewMonth.date, unit: .month),
-                                y: .value("Views", viewMonth.viewCount)
+                                x: .value("Month", taskData.date, unit: .month),
+                                y: .value("Tasks", taskData.priority[index])
                             )
                             .foregroundStyle(Color.pink.gradient)
                         }
                     }
                 }
                 .chartXAxis {
-                    AxisMarks(values: viewMonth.map { $0.date }) { _ in
+                    AxisMarks(values: taskDatas.map { $0.date }) { _ in
                         // so there are no labels
                     }
                 }

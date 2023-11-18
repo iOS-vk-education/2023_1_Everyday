@@ -30,7 +30,9 @@ final class ChartGridViewModel: ObservableObject {
     }
     
     func retrievePreferences() {
-        guard let chartTypesData = chartTypesData else { return }
+        guard let chartTypesData = chartTypesData else {
+            return
+        }
         
         do {
             chartTypes = try JSONDecoder().decode([GridCell].self, from: chartTypesData)
