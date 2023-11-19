@@ -6,9 +6,13 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
-struct SignUpRequest {
+struct SignUpModel {
     let username: String
     let email: String
     let password: String
+    let task: [DocumentReference] = []
+    let doneTask: [DocumentReference] = []
+    let event: [DocumentReference] = []
 }

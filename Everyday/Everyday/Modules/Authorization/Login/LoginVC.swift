@@ -15,6 +15,7 @@ final class LoginVC: UIViewController {
     private let signUpLabel = UILabel()
     private let signUpButton = UIButton(type: .custom)
     private let logInButton = UIButton()
+    private let showPasswordButton = UIButton(type: .custom)
     private let forgotPasswordButton = UIButton(type: .custom)
     private let emailOrUsernameField = UITextField()
     private let passwordField = UITextField()
@@ -62,6 +63,7 @@ final class LoginVC: UIViewController {
         self.navigationItem.hidesBackButton = true
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
+    
     // MARK: - Setup
     private func setupUI() {
         setupScrollView()
@@ -81,7 +83,7 @@ final class LoginVC: UIViewController {
     
     private func setupContentView() {
         contentView.addSubviews(logInLabel, emailOrUsernameField, passwordField,
-                                logInButton, forgotPasswordButton, signUpLabelButtonStackView)
+                                logInButton, forgotPasswordButton, signUpLabelButtonStackView, showPasswordButton)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -104,28 +106,38 @@ final class LoginVC: UIViewController {
         logInButton.setTitleColor(.black, for: .normal)
         logInButton.layer.cornerRadius = 5
         logInButton.addTarget(self, action: #selector(didTapLogInButton), for: .touchUpInside)
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
         
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor(named: "EverydayOrange") ?? .orange,
             .font: UIFont(name: "Montserrat-SemiBold", size: 14.0) ?? .systemFont(ofSize: 14)
         ]
-        
         let signupAttributedString = NSAttributedString(string: "Регистрация", attributes: attributes)
+        
         signUpButton.setAttributedTitle(signupAttributedString, for: .normal)
         signUpButton.addTarget(self, action: #selector(didTapsignUpButton), for: .touchUpInside)
         
         let forgotPasswordAttributesAttributedString = NSAttributedString(string: "Не можешь войти ?", attributes: attributes)
+        
         forgotPasswordButton.setAttributedTitle(forgotPasswordAttributesAttributedString, for: .normal)
         forgotPasswordButton.addTarget(self, action: #selector(didTapForgotPasswordButton), for: .touchUpInside)
         
+        showPasswordButton.contentMode = .scaleAspectFill
+        showPasswordButton.setImage(UIImage(named: "no_eye"), for: .normal)
+        showPasswordButton.setImage(UIImage(named: "eye"), for: .selected)
+        showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        showPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        logInButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupTextFieldsView() {
         emailOrUsernameField.attributedPlaceholder = NSAttributedString(string: "Email или Имя пользователя")
+        
         passwordField.attributedPlaceholder = NSAttributedString(string: "Пароль")
         passwordField.isSecureTextEntry = true
+        passwordField.rightView = showPasswordButton
+        passwordField.rightViewMode = .always
         
         [emailOrUsernameField, passwordField].forEach { field in
             field.backgroundColor = .white
@@ -174,8 +186,13 @@ final class LoginVC: UIViewController {
             forgotPasswordButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             forgotPasswordButton.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 0.77 * view.bounds.height),
             
+            showPasswordButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor, constant: 0.16 * contentView.bounds.width),
+            showPasswordButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor),
+            showPasswordButton.trailingAnchor.constraint(equalTo: passwordField.trailingAnchor, constant: -0.08 * contentView.bounds.width),
+            showPasswordButton.centerYAnchor.constraint(equalTo: passwordField.centerYAnchor),
+            
             signUpLabelButtonStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-             signUpLabelButtonStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            signUpLabelButtonStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
         [emailOrUsernameField, passwordField, logInButton].forEach { element in
@@ -189,18 +206,13 @@ final class LoginVC: UIViewController {
     
     @objc
     private func didTapLogInButton() {
-        let loginRequest = LoginRequest(
+        let loginRequest = LoginModel(
             email: self.emailOrUsernameField.text ?? "",
             password: self.passwordField.text ?? ""
         )
         
         if !Validator.isValidEmail(for: loginRequest.email) {
             AlertManager.showInvalidEmailAlert(on: self)
-            return
-        }
-        
-        if !Validator.isPasswordValid(for: loginRequest.password) {
-            AlertManager.showInvalidPasswordAlert(on: self)
             return
         }
         
@@ -214,6 +226,12 @@ final class LoginVC: UIViewController {
                 sceneDelegate.checkAuthentication()
             }
         }
+    }
+    
+    @objc func togglePasswordVisibility() {
+        passwordField.isSecureTextEntry.toggle()
+        let isOpen = !passwordField.isSecureTextEntry
+        (passwordField.rightView as? UIButton)?.isSelected = isOpen
     }
     
     @objc

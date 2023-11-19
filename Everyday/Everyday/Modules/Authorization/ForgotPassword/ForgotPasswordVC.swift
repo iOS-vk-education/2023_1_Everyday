@@ -47,7 +47,7 @@ class ForgotPasswordVC: UIViewController {
         
         setupUI()
         
-        view.addSubviews(scrollView)
+        view.addSubview(scrollView)
         
         setupConstraints()
     }
@@ -70,17 +70,17 @@ class ForgotPasswordVC: UIViewController {
     }
     
     private func setupScrollView() {
-            scrollView.addSubview(contentView)
+        scrollView.addSubview(contentView)
             
-            scrollView.showsVerticalScrollIndicator = false
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
-        }
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+    }
         
-        private func setupContentView() {
-            contentView.addSubviews(headerLabel, resetLabel, emailField, signUpButton)
+    private func setupContentView() {
+        contentView.addSubviews(headerLabel, resetLabel, emailField, signUpButton)
             
-            contentView.translatesAutoresizingMaskIntoConstraints = false
-        }
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     private func setupLabels() {
         headerLabel.text = "Забыли пароль ?"

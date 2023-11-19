@@ -20,10 +20,13 @@ class AuthService {
     ///   - completion: completion with 2 values
     ///   - Bool: wasRegistered - user was registered and added to firestore correctly
     ///   - Error?: an optional error if firebase provides once
-    public func registerUser(with userRequest: SignUpRequest, completion: @escaping(Bool, Error?) -> Void) {
+    public func registerUser(with userRequest: SignUpModel, completion: @escaping(Bool, Error?) -> Void) {
         let username = userRequest.username
         let email = userRequest.email
         let password = userRequest.password
+        let task = userRequest.task
+        let event = userRequest.event
+        let doneTask = userRequest.doneTask
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
@@ -41,7 +44,10 @@ class AuthService {
                 .document(resultUser.uid)
                 .setData([
                     "username": username,
-                    "email": email
+                    "email": email,
+                    "task_id": task,
+                    "event_id": event,
+                    "done_task": doneTask
                 ]) { error in
                      if let error = error {
                         completion(false, error)
@@ -53,7 +59,7 @@ class AuthService {
         }
     }
     
-    public func logIn(with userRequest: LoginRequest, completion: @escaping (Error?) -> Void) {
+    public func logIn(with userRequest: LoginModel, completion: @escaping (Error?) -> Void) {
         Auth.auth().signIn(
             withEmail: userRequest.email,
             password: userRequest.password
