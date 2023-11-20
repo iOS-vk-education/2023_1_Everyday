@@ -48,6 +48,7 @@
 		CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */; };
 		CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */; };
 		CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */; };
+		E4AD3D2B2B0BE8D6008324AD /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD3D2A2B0BE8D6008324AD /* TasksTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDTabBarController.swift; sourceTree = "<group>"; };
 		CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		E4AD3D2A2B0BE8D6008324AD /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				9E97DB5A2B0533FD00491C98 /* User.swift */,
 				CE84B9022AF1394600B1E795 /* TasksVC.swift */,
+				E4AD3D2A2B0BE8D6008324AD /* TasksTableViewCell.swift */,
 				9E97DB5C2B0535EA00491C98 /* TaskService.swift */,
 			);
 			path = Tasks;
@@ -406,6 +409,7 @@
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
 				9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */,
 				9E97DB5B2B0533FD00491C98 /* User.swift in Sources */,
+				E4AD3D2B2B0BE8D6008324AD /* TasksTableViewCell.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
