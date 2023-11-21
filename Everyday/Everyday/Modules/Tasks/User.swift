@@ -12,5 +12,5 @@ struct User {
     let username: String
     let email: String
     let userUID: String
-    let doneTaskIds: [DocumentReference]?
+    let doneTaskIds: [DocumentReference] = []
 }

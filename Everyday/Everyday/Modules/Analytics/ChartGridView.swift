@@ -29,7 +29,7 @@ struct ChartGridView: View {
                         }
                 }
             }
-            .onAppear() {
+            .onAppear {
                 viewModel.retrievePreferences()
             }
             .sheet(isPresented: $viewModel.isShowingDetailView) {
