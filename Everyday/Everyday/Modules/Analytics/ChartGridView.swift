@@ -15,7 +15,6 @@ struct ChartGridView: View {
     
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
-    //    let taskData: [TaskData] = MockData.newExample
     @State var taskData: [TaskData] = []
     
     var body: some View {
@@ -46,26 +45,30 @@ struct ChartGridView: View {
     
     func getTaskData() {
         TaskService.shared.fetchUser { user, error in
-            if error != nil {
-                print("Error Fetching User")
-                return
-            }
             DispatchQueue.main.async {
+                if error != nil {
+                    // ERROR
+                    print("Error Fetching User")
+                    return
+                }
+                // ERROR no data
                 for taskReference in user?.doneTaskIds ?? [] {
                     taskReference.getDocument { document, error in
                         if error != nil {
+                            // ERROR
                             print("Error Fetching Document")
                         } else if let document = document {
                             if let taskData = document.data(),
                                let timestamp = taskData["date"] as? Timestamp,
                                let priorityArray = taskData["priority"] as? NSArray {
-
+                                
                                 let date = timestamp.dateValue()
                                 let priority = priorityArray.compactMap { $0 as? Int }
-
+                                
                                 self.taskData.append(.init(date: date, priority: priority))
                                 self.taskData.sort { $0.date < $1.date }
                             } else {
+                                // ERROR
                                 print("Error decoding Document: Incorrect types or missing values")
                             }
                         }

@@ -25,6 +25,7 @@ final class ChartGridViewModel: ObservableObject {
             chartTypesData = data
             print("Successfully saved preferences in UserDefaults")
         } catch {
+            // ERROR
             print("Something went wrong with saving preferences in UserDefaults")
         }
     }
@@ -38,6 +39,7 @@ final class ChartGridViewModel: ObservableObject {
             chartTypes = try JSONDecoder().decode([GridCell].self, from: chartTypesData)
             print("Successfully retrieved preferences from UserDefaults")
         } catch {
+            // ERROR
             print("Something went wrong with retrieving preferences from UserDefaults")
         }
     }
