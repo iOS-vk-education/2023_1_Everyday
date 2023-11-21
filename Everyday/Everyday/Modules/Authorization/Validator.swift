@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct PasswordValidationError {
+    static let length = "Пароль должен содержать от 6 до 32 символов."
+    static let lowercase = "Пароль должен содержать строчные буквы."
+    static let uppercase = "Пароль должен содержать заглавные буквы."
+    static let digit = "Пароль должен содержать цифры."
+    static let specialCharacter = "Пароль должен содержать специальные символы: $@$#!%*?&."
+}
+
 class Validator {
     
     static func isValidEmail(for email: String) -> Bool {
@@ -23,10 +31,29 @@ class Validator {
         return usernamePred.evaluate(with: username)
     }
     
-    static func isPasswordValid(for password: String) -> Bool {
-        let password = password.trimmingCharacters(in: .whitespacesAndNewlines)
-        let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$#!%*?&]).{6,32}$"
-        let passwordPred = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
-        return passwordPred.evaluate(with: password)
+    static func validatePassword(for password: String) -> [String] {
+        var errors: [String] = []
+
+        if password.count < 6 || password.count > 32 {
+            errors.append(PasswordValidationError.length)
+        }
+
+        if !password.contains(where: { $0.isLowercase }) {
+            errors.append(PasswordValidationError.lowercase)
+        }
+
+        if !password.contains(where: { $0.isUppercase }) {
+            errors.append(PasswordValidationError.uppercase)
+        }
+
+        if !password.contains(where: { $0.isNumber }) {
+            errors.append(PasswordValidationError.digit)
+        }
+
+        if !password.contains(where: { "!@#$%^&*?".contains($0) }) {
+            errors.append(PasswordValidationError.specialCharacter)
+        }
+
+        return errors
     }
 }

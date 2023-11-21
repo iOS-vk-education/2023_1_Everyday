@@ -22,8 +22,8 @@
 		9E3F69782AF2DE2400638BC2 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */; };
 		9E97DB422B04FCAC00491C98 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */; };
 		9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB442B04FF8F00491C98 /* AuthService.swift */; };
-		9E97DB472B05004500491C98 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB462B05004500491C98 /* SignUpRequest.swift */; };
-		9E97DB492B05117A00491C98 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB482B05117A00491C98 /* LoginRequest.swift */; };
+		9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB462B05004500491C98 /* SignUpModel.swift */; };
+		9E97DB492B05117A00491C98 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB482B05117A00491C98 /* LoginModel.swift */; };
 		9E97DB4B2B051FE100491C98 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB4A2B051FE100491C98 /* AlertManager.swift */; };
 		9E97DB512B0522C100491C98 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB502B0522C100491C98 /* WelcomeScreenView.swift */; };
 		9E97DB532B05277C00491C98 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB522B05277C00491C98 /* Validator.swift */; };
@@ -57,8 +57,8 @@
 		9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E97DB442B04FF8F00491C98 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		9E97DB462B05004500491C98 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
-		9E97DB482B05117A00491C98 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		9E97DB462B05004500491C98 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		9E97DB482B05117A00491C98 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		9E97DB4A2B051FE100491C98 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		9E97DB502B0522C100491C98 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		9E97DB522B05277C00491C98 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -150,8 +150,8 @@
 		9E97DB3B2AFD5A8D00491C98 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				9E97DB482B05117A00491C98 /* LoginModel.swift */,
 				CE84B9082AF139E500B1E795 /* LoginVC.swift */,
-				9E97DB482B05117A00491C98 /* LoginRequest.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -160,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				CE84B90A2AF139F800B1E795 /* SignUpVC.swift */,
-				9E97DB462B05004500491C98 /* SignUpRequest.swift */,
+				9E97DB462B05004500491C98 /* SignUpModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -394,13 +394,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				9E97DB4B2B051FE100491C98 /* AlertManager.swift in Sources */,
-				CE84B9052AF1397600B1E795 /* AnalyticsVC.swift in Sources */,
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
 				CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */,
 				9E97DB5D2B0535EA00491C98 /* TaskService.swift in Sources */,
-				9E97DB492B05117A00491C98 /* LoginRequest.swift in Sources */,
+				9E97DB492B05117A00491C98 /* LoginModel.swift in Sources */,
 				CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */,
 				CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */,
 				CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */,
@@ -411,7 +409,7 @@
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
-				9E97DB472B05004500491C98 /* SignUpRequest.swift in Sources */,
+				9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */,
 				9E97DB532B05277C00491C98 /* Validator.swift in Sources */,
 				CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */,
 				CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */,

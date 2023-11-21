@@ -14,10 +14,10 @@ final class SignUpVC: UIViewController {
     private let logInLabel = UILabel()
     private let signUpButton = UIButton()
     private let logInButton = UIButton(type: .custom)
+    private let showPasswordButton = UIButton(type: .custom)
     private let emailField = UITextField()
     private let usernameField = UITextField()
     private let passwordField = UITextField()
-    private let repPasswordField = UITextField()
     private let logInLabelButtonStackView = UIStackView()
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -80,9 +80,9 @@ final class SignUpVC: UIViewController {
             scrollView.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        private func setupContentView() {
+    private func setupContentView() {
             contentView.addSubviews(signUpLabel, emailField, usernameField, passwordField,
-                                    repPasswordField, signUpButton, logInLabelButtonStackView)
+                                    signUpButton, logInLabelButtonStackView, showPasswordButton)
             
             contentView.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -115,7 +115,14 @@ final class SignUpVC: UIViewController {
         signUpButton.layer.cornerRadius = 5
         signUpButton.addTarget(self, action: #selector(didTapsignUpButtonButton), for: .touchUpInside)
         
+        showPasswordButton.contentMode = .scaleAspectFill
+
+        showPasswordButton.setImage(UIImage(named: "no_eye"), for: .normal)
+        showPasswordButton.setImage(UIImage(named: "eye"), for: .selected)
+        showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
+        showPasswordButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupStackView() {
@@ -129,13 +136,16 @@ final class SignUpVC: UIViewController {
     private func setupTextFieldsView() {
         emailField.attributedPlaceholder = NSAttributedString(string: "Email")
         usernameField.attributedPlaceholder = NSAttributedString(string: "Имя пользователя")
+        
         passwordField.attributedPlaceholder = NSAttributedString(string: "Пароль")
-        repPasswordField.attributedPlaceholder = NSAttributedString(string: "Повторите пароль")
-        
         passwordField.isSecureTextEntry = true
-        repPasswordField.isSecureTextEntry = true
+        passwordField.rightView = showPasswordButton
+        passwordField.rightViewMode = .always
         
-        [emailField, usernameField, passwordField, repPasswordField].forEach { field in
+        let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.left
+        
+        [emailField, usernameField, passwordField].forEach { field in
             field.autocorrectionType = .no
             field.autocapitalizationType = .none
             field.backgroundColor = .white
@@ -144,7 +154,8 @@ final class SignUpVC: UIViewController {
             field.layer.cornerRadius = 5
             field.attributedPlaceholder = NSAttributedString(
                     string: field.placeholder ?? "",
-                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray,
+                                 NSAttributedString.Key.paragraphStyle: paragraphStyle]
                 )
             field.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -171,15 +182,19 @@ final class SignUpVC: UIViewController {
             emailField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0.23 * view.bounds.height),
             usernameField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0.31 * view.bounds.height),
             passwordField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0.39 * view.bounds.height),
-            repPasswordField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0.47 * view.bounds.height),
                        
-            signUpButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0.55 * view.bounds.height),
-                       
+            signUpButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0.47 * view.bounds.height),
+            
+            showPasswordButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor, constant: 0.16 * contentView.bounds.width),
+            showPasswordButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor),
+            showPasswordButton.trailingAnchor.constraint(equalTo: passwordField.trailingAnchor, constant: -0.08 * contentView.bounds.width),
+            showPasswordButton.centerYAnchor.constraint(equalTo: passwordField.centerYAnchor),
+
             logInLabelButtonStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logInLabelButtonStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
                    
-        [emailField, usernameField, passwordField, repPasswordField, signUpButton].forEach { element in
+        [emailField, usernameField, passwordField, signUpButton].forEach { element in
          element.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
          element.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05).isActive = true
          element.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -193,9 +208,15 @@ final class SignUpVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func togglePasswordVisibility() {
+        passwordField.isSecureTextEntry.toggle()
+        let isOpen = !passwordField.isSecureTextEntry
+        (passwordField.rightView as? UIButton)?.isSelected = isOpen
+    }
+    
     @objc
     private func didTapsignUpButtonButton() {
-        let registerUserRequest = SignUpRequest(
+        let registerUserRequest = SignUpModel(
             username: self.usernameField.text ?? "",
             email: self.emailField.text ?? "",
             password: self.passwordField.text ?? ""
@@ -211,8 +232,10 @@ final class SignUpVC: UIViewController {
             return
         }
         
-        if !Validator.isPasswordValid(for: registerUserRequest.password) {
-            AlertManager.showInvalidPasswordAlert(on: self)
+        let validationErrors = Validator.validatePassword(for: registerUserRequest.password)
+        if !validationErrors.isEmpty {
+            let errorMessage = validationErrors.joined(separator: "\n")
+            AlertManager.showInvalidPasswordAlert(on: self, message: errorMessage)
             return
         }
         
@@ -243,6 +266,7 @@ final class SignUpVC: UIViewController {
     }
     
     // MARK: - Keyboard Actions
+    
     @objc
     func keyboardWillShow(notification: Notification) {
         guard
@@ -267,6 +291,7 @@ final class SignUpVC: UIViewController {
     }
     
     // MARK: - Swipe Actions
+    
     @objc
     func swipeFunc(gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .right {
