@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 final class ChartGridViewModel: ObservableObject {
     
     @Published var isShowingDetailView = false
+    @Published var alertItem: AlertItem?
     
+    @Published var taskData: [TaskData] = []
     @AppStorage("chartTypes") private var chartTypesData: Data?
     @Published var chartTypes: [GridCell] = [
         GridCell(name: "Important", chartType: .bar),
@@ -19,14 +22,49 @@ final class ChartGridViewModel: ObservableObject {
         GridCell(name: "Unnecessary", chartType: .bar)
     ]
     
+    func getTaskData() {
+        TaskService.shared.fetchUser { [self] user, error in
+            DispatchQueue.main.async { [self] in
+                guard error == nil else {
+                    alertItem = AlertContext.invalidResponse
+                    return
+                }
+                guard let doneTaskIds = user?.doneTaskIds else {
+                    alertItem = AlertContext.noData
+                    return
+                }
+                
+                for taskReference in doneTaskIds {
+                    taskReference.getDocument { [self] document, error in
+                        guard error == nil else {
+                            alertItem = AlertContext.invalidResponse
+                            return
+                        }
+                        guard let document = document,
+                              let taskData = document.data(),
+                              let timestamp = taskData["date"] as? Timestamp,
+                              let priorityArray = taskData["priority"] as? NSArray else {
+                            alertItem = AlertContext.invalidData
+                            return
+                        }
+                        
+                        let date = timestamp.dateValue()
+                        let priority = priorityArray.compactMap { $0 as? Int }
+                        
+                        self.taskData.append(.init(date: date, priority: priority))
+                        self.taskData.sort { $0.date < $1.date }
+                    }
+                }
+            }
+        }
+    }
+    
     func saveChanges() {
         do {
             let data = try JSONEncoder().encode(chartTypes)
             chartTypesData = data
-            print("Successfully saved preferences in UserDefaults")
         } catch {
-            // ERROR
-            print("Something went wrong with saving preferences in UserDefaults")
+            alertItem = AlertContext.localStorageIssue
         }
     }
     
@@ -37,10 +75,8 @@ final class ChartGridViewModel: ObservableObject {
         
         do {
             chartTypes = try JSONDecoder().decode([GridCell].self, from: chartTypesData)
-            print("Successfully retrieved preferences from UserDefaults")
         } catch {
-            // ERROR
-            print("Something went wrong with retrieving preferences from UserDefaults")
+            alertItem = AlertContext.localStorageIssue
         }
     }
     

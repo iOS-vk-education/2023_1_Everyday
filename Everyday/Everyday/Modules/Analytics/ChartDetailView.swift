@@ -12,7 +12,6 @@ import Charts
 struct ChartDetailView: View {
     
     let index: Int
-    let taskDatas: [TaskData]
     @ObservedObject var viewModel: ChartGridViewModel
     
     var body: some View {
@@ -46,7 +45,7 @@ struct ChartDetailView: View {
                                 .foregroundColor(.pink)
                         }
                     
-                    ForEach(taskDatas) { taskData in
+                    ForEach(viewModel.taskData) { taskData in
                         switch viewModel.chartTypes[index].chartType {
                         case .line:
                             LineMark(

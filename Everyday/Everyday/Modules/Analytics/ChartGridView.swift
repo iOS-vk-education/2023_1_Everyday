@@ -15,7 +15,6 @@ struct ChartGridView: View {
     
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
-    @State var taskData: [TaskData] = []
     
     var body: some View {
         NavigationView {
@@ -24,56 +23,26 @@ struct ChartGridView: View {
                     ChartTitleView(name: viewModel.chartTypes[index].name,
                                    index: index,
                                    chartType: viewModel.chartTypes[index].chartType,
-                                   taskDatas: taskData)
+                                   viewModel: viewModel)
                     .onTapGesture {
                         viewModel.selectedChart = Priority(rawValue: index)
                     }
                 }
             }
             .onAppear {
-                getTaskData()
+                viewModel.taskData.removeAll(keepingCapacity: true)
+                viewModel.getTaskData()
                 
                 viewModel.retrievePreferences()
             }
+            .alert(item: $viewModel.alertItem) { alertItem in
+                Alert(title: alertItem.title,
+                      message: alertItem.message,
+                      dismissButton: alertItem.dismissButton)
+            }
             .sheet(isPresented: $viewModel.isShowingDetailView) {
                 ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
-                                taskDatas: taskData,
                                 viewModel: viewModel)
-            }
-        }
-    }
-    
-    func getTaskData() {
-        TaskService.shared.fetchUser { user, error in
-            DispatchQueue.main.async {
-                if error != nil {
-                    // ERROR
-                    print("Error Fetching User")
-                    return
-                }
-                // ERROR no data
-                for taskReference in user?.doneTaskIds ?? [] {
-                    taskReference.getDocument { document, error in
-                        if error != nil {
-                            // ERROR
-                            print("Error Fetching Document")
-                        } else if let document = document {
-                            if let taskData = document.data(),
-                               let timestamp = taskData["date"] as? Timestamp,
-                               let priorityArray = taskData["priority"] as? NSArray {
-                                
-                                let date = timestamp.dateValue()
-                                let priority = priorityArray.compactMap { $0 as? Int }
-                                
-                                self.taskData.append(.init(date: date, priority: priority))
-                                self.taskData.sort { $0.date < $1.date }
-                            } else {
-                                // ERROR
-                                print("Error decoding Document: Incorrect types or missing values")
-                            }
-                        }
-                    }
-                }
             }
         }
     }
@@ -84,7 +53,7 @@ struct ChartTitleView: View {
     let name: String
     let index: Int
     let chartType: ChartType
-    let taskDatas: [TaskData]
+    @ObservedObject var viewModel: ChartGridViewModel
     
     var body: some View {
         VStack {
@@ -101,7 +70,7 @@ struct ChartTitleView: View {
                             .foregroundColor(.pink)
                     }
                 
-                ForEach(taskDatas) { taskData in
+                ForEach(viewModel.taskData) { taskData in
                     switch chartType {
                     case .line:
                         LineMark(
@@ -119,7 +88,7 @@ struct ChartTitleView: View {
                 }
             }
             .chartXAxis {
-                AxisMarks(values: taskDatas.map { $0.date }) { _ in
+                AxisMarks(values: viewModel.taskData.map { $0.date }) { _ in
                     // so there are no labels
                 }
             }
