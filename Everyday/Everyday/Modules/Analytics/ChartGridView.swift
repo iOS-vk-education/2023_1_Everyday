@@ -17,33 +17,39 @@ struct ChartGridView: View {
                                GridItem(.flexible())]
     
     var body: some View {
-        NavigationView {
-            LazyVGrid(columns: columns) {
-                ForEach(viewModel.chartTypes.indices, id: \.self) { index in
-                    ChartTitleView(name: viewModel.chartTypes[index].name,
-                                   index: index,
-                                   chartType: viewModel.chartTypes[index].chartType,
-                                   viewModel: viewModel)
-                    .onTapGesture {
-                        viewModel.selectedChart = Priority(rawValue: index)
+        ZStack {
+            NavigationView {
+                LazyVGrid(columns: columns) {
+                    ForEach(viewModel.chartTypes.indices, id: \.self) { index in
+                        ChartTitleView(name: viewModel.chartTypes[index].name,
+                                       index: index,
+                                       chartType: viewModel.chartTypes[index].chartType,
+                                       viewModel: viewModel)
+                        .onTapGesture {
+                            viewModel.selectedChart = Priority(rawValue: index)
+                        }
                     }
                 }
+                .onAppear {
+                    viewModel.taskData.removeAll(keepingCapacity: true)
+                    viewModel.getTaskData()
+                    
+                    viewModel.retrievePreferences()
+                }
+                .sheet(isPresented: $viewModel.isShowingDetailView) {
+                    ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
+                                    viewModel: viewModel)
+                }
             }
-            .onAppear {
-                viewModel.taskData.removeAll(keepingCapacity: true)
-                viewModel.getTaskData()
-                
-                viewModel.retrievePreferences()
+            
+            if viewModel.isLoading {
+                LoadingView()
             }
-            .alert(item: $viewModel.alertItem) { alertItem in
-                Alert(title: alertItem.title,
-                      message: alertItem.message,
-                      dismissButton: alertItem.dismissButton)
-            }
-            .sheet(isPresented: $viewModel.isShowingDetailView) {
-                ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
-                                viewModel: viewModel)
-            }
+        }
+        .alert(item: $viewModel.alertItem) { alertItem in
+            Alert(title: alertItem.title,
+                  message: alertItem.message,
+                  dismissButton: alertItem.dismissButton)
         }
     }
 }

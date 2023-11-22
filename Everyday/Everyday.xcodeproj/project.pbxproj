@@ -48,6 +48,8 @@
 		CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */; };
 		CEA465392B0D475600EC52AE /* AnalyticsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA465382B0D475600EC52AE /* AnalyticsError.swift */; };
 		CEA4653B2B0D48A300EC52AE /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4653A2B0D48A300EC52AE /* Alert.swift */; };
+		CEA4653D2B0E04E600EC52AE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4653C2B0E04E600EC52AE /* LoadingView.swift */; };
+		CEA4653F2B0E05C500EC52AE /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4653E2B0E05C500EC52AE /* Color+Ext.swift */; };
 		CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */; };
 		CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +89,8 @@
 		CE84B9112AF13ABE00B1E795 /* EDTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDTabBarController.swift; sourceTree = "<group>"; };
 		CEA465382B0D475600EC52AE /* AnalyticsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsError.swift; sourceTree = "<group>"; };
 		CEA4653A2B0D48A300EC52AE /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		CEA4653C2B0E04E600EC52AE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CEA4653E2B0E05C500EC52AE /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +145,7 @@
 				CE1A45272B016413001F426E /* Task.swift */,
 				CEA465382B0D475600EC52AE /* AnalyticsError.swift */,
 				CEA4653A2B0D48A300EC52AE /* Alert.swift */,
+				CEA4653C2B0E04E600EC52AE /* LoadingView.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			children = (
 				CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */,
 				CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */,
+				CEA4653E2B0E05C500EC52AE /* Color+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 				CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */,
 				9E97DB5D2B0535EA00491C98 /* TaskService.swift in Sources */,
 				9E97DB492B05117A00491C98 /* LoginModel.swift in Sources */,
+				CEA4653D2B0E04E600EC52AE /* LoadingView.swift in Sources */,
 				CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */,
 				CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */,
 				CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */,
@@ -421,6 +428,7 @@
 				9E97DB532B05277C00491C98 /* Validator.swift in Sources */,
 				CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */,
 				CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */,
+				CEA4653F2B0E05C500EC52AE /* Color+Ext.swift in Sources */,
 				CE84B9032AF1394600B1E795 /* TasksVC.swift in Sources */,
 				CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */,
 				CE1A452C2B016413001F426E /* ChartGridView.swift in Sources */,

@@ -12,6 +12,7 @@ final class ChartGridViewModel: ObservableObject {
     
     @Published var isShowingDetailView = false
     @Published var alertItem: AlertItem?
+    @Published var isLoading = false
     
     @Published var taskData: [TaskData] = []
     @AppStorage("chartTypes") private var chartTypesData: Data?
@@ -23,8 +24,10 @@ final class ChartGridViewModel: ObservableObject {
     ]
     
     func getTaskData() {
+        isLoading = true
         TaskService.shared.fetchUser { [self] user, error in
             DispatchQueue.main.async { [self] in
+                isLoading = false
                 guard error == nil else {
                     alertItem = AlertContext.invalidResponse
                     return
