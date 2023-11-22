@@ -14,8 +14,17 @@ enum Priority: Int {
 }
 
 enum ChartType: String, CaseIterable, Identifiable, Codable {
-    case bar    = "Bar"
-    case line   = "Line"
+    case bar = "Bar"
+    case line = "Line"
+    var id: String {
+        self.rawValue
+    }
+}
+
+enum BarUnit: String, CaseIterable, Identifiable, Codable {
+    case day = "Day"
+    case week = "Week"
+    case month = "Month"
     var id: String {
         self.rawValue
     }

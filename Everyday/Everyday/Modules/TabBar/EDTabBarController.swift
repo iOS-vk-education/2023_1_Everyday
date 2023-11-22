@@ -27,7 +27,9 @@ final class EDTabBarController: UITabBarController {
     
     func createAnalyticsNC() -> UINavigationController {
         let analyticsVC = UIHostingController(rootView: ChartGridView())
-        analyticsVC.title = "Analytics"
+//        analyticsVC.title = "Analytics"
+//        analyticsVC.tabBarItem.image = UIImage(systemName: "chart.pie.fill")
+//        analyticsVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         return UINavigationController(rootViewController: analyticsVC)
     }
     

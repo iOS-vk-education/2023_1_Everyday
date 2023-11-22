@@ -16,6 +16,9 @@ struct ChartGridView: View {
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
     
+    @State private var selectedBarUnit: BarUnit = .day
+    @State private var isPopoverPresented = false
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -40,6 +43,31 @@ struct ChartGridView: View {
                     ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
                                     viewModel: viewModel)
                 }
+//                .toolbar {
+//                    Button {
+//                        self.isPopoverPresented = true
+//                    } label: {
+//                        Label("Bar unit", systemImage: "chart.bar.fill")
+//                            .tint(.brandSecondary)
+//                    }
+//                    .popover(isPresented: $isPopoverPresented) {
+//                        List {
+//                            ForEach(BarUnit.allCases, id: \.self) { unit in
+//                                HStack {
+//                                    Text(unit.rawValue)
+//                                    Spacer()
+//                                    if unit == selectedBarUnit {
+//                                        Image(systemName: "checkmark")
+//                                    }
+//                                }
+//                                .onTapGesture {
+//                                    self.selectedBarUnit = unit
+//                                    self.isPopoverPresented = false
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
             }
             
             if viewModel.isLoading {
