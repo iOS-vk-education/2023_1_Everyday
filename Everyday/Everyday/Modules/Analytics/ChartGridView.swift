@@ -22,32 +22,13 @@ struct ChartGridView: View {
     var body: some View {
         ZStack {
             NavigationView {
-                LazyVGrid(columns: columns) {
-                    ForEach(viewModel.chartTypes.indices, id: \.self) { index in
-                        ChartTitleView(name: viewModel.chartTypes[index].name,
-                                       index: index,
-                                       chartType: viewModel.chartTypes[index].chartType,
-                                       viewModel: viewModel)
-                        .onTapGesture {
-                            viewModel.selectedChart = Priority(rawValue: index)
-                        }
-                    }
-                }
-                .onAppear {
-                    viewModel.taskData.removeAll(keepingCapacity: true)
-                    viewModel.getTaskData()
-                    
-                    viewModel.retrievePreferences()
-                }
-                .sheet(isPresented: $viewModel.isShowingDetailView) {
-                    ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
-                                    viewModel: viewModel)
-                }
-//                .toolbar {
+//                HStack {
+//                    Spacer()
+//
 //                    Button {
 //                        self.isPopoverPresented = true
 //                    } label: {
-//                        Label("Bar unit", systemImage: "chart.bar.fill")
+//                        Image(systemName: "chart.bar.fill")
 //                            .tint(.brandSecondary)
 //                    }
 //                    .popover(isPresented: $isPopoverPresented) {
@@ -68,6 +49,59 @@ struct ChartGridView: View {
 //                        }
 //                    }
 //                }
+//                .edgesIgnoringSafeArea(.all)
+//                .padding(EdgeInsets(top: 1, leading: 0, bottom: 20, trailing: 20))
+                
+                VStack {
+                    LazyVGrid(columns: columns) {
+                        ForEach(viewModel.chartTypes.indices, id: \.self) { index in
+                            ChartTitleView(name: viewModel.chartTypes[index].name,
+                                           index: index,
+                                           chartType: viewModel.chartTypes[index].chartType,
+                                           viewModel: viewModel)
+                            .onTapGesture {
+                                viewModel.selectedChart = Priority(rawValue: index)
+                            }
+                        }
+                    }
+                    .onAppear {
+                        viewModel.taskData.removeAll(keepingCapacity: true)
+                        viewModel.getTaskData()
+                        
+                        viewModel.retrievePreferences()
+                    }
+                    .sheet(isPresented: $viewModel.isShowingDetailView) {
+                        ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
+                                        viewModel: viewModel)
+                    }
+                }
+                
+                .toolbar {
+                    Button {
+                        self.isPopoverPresented = true
+                        print(String(describing: Calendar.Component.month))
+                    } label: {
+                        Label("Bar unit", systemImage: "chart.bar.fill")
+                            .tint(.brandSecondary)
+                    }
+                    .popover(isPresented: $isPopoverPresented, attachmentAnchor: .point(.bottomLeading), arrowEdge: .bottom) {
+                        List {
+                            ForEach(BarUnit.allCases, id: \.self) { unit in
+                                HStack {
+                                    Text(unit.rawValue)
+                                    Spacer()
+                                    if unit == selectedBarUnit {
+                                        Image(systemName: "checkmark")
+                                    }
+                                }
+                                .onTapGesture {
+                                    self.selectedBarUnit = unit
+                                    self.isPopoverPresented = false
+                                }
+                            }
+                        }
+                    }
+                }
             }
             
             if viewModel.isLoading {

@@ -30,7 +30,9 @@ final class EDTabBarController: UITabBarController {
 //        analyticsVC.title = "Analytics"
 //        analyticsVC.tabBarItem.image = UIImage(systemName: "chart.pie.fill")
 //        analyticsVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-        return UINavigationController(rootViewController: analyticsVC)
+        let analyticsNC = UINavigationController(rootViewController: analyticsVC)
+        analyticsNC.setNavigationBarHidden(true, animated: false)
+        return analyticsNC
     }
     
     func createSettingsNC() -> UINavigationController {
