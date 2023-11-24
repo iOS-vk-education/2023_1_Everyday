@@ -16,6 +16,19 @@ struct ChartDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Spacer()
+                
+                Button {
+                    viewModel.isShowingDetailView = false
+                } label: {
+                    Image(systemName: "multiply.circle.fill")
+                        .tint(.brandPrimaryLight)
+                }
+                .font(.system(size: 32))
+            }
+            .padding(EdgeInsets(top: 16, leading: 0, bottom: -16, trailing: 16))
+            
             Text(viewModel.chartTypes[index].name)
                 .padding()
                 .font(.title)
