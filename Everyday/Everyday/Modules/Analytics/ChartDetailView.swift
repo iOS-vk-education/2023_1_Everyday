@@ -49,13 +49,13 @@ struct ChartDetailView: View {
                         switch viewModel.chartTypes[index].chartType {
                         case .line:
                             LineMark(
-                                x: .value("Month", taskData.date, unit: .month),
+                                x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
                                 y: .value("Tasks", taskData.priority[index])
                             )
                             .foregroundStyle(Color.pink.gradient)
                         case .bar:
                             BarMark(
-                                x: .value("Month", taskData.date, unit: .month),
+                                x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
                                 y: .value("Tasks", taskData.priority[index])
                             )
                             .foregroundStyle(Color.pink.gradient)

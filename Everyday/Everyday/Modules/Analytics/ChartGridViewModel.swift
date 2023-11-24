@@ -17,10 +17,10 @@ final class ChartGridViewModel: ObservableObject {
     @Published var taskData: [TaskData] = []
     @AppStorage("chartTypes") private var chartTypesData: Data?
     @Published var chartTypes: [GridCell] = [
-        GridCell(name: "Срочно", chartType: .bar),
-        GridCell(name: "Важно", chartType: .bar),
-        GridCell(name: "Не важно", chartType: .bar),
-        GridCell(name: "Без приоритета", chartType: .bar)
+        GridCell(name: "Срочно", chartType: .bar, barUnit: .day),
+        GridCell(name: "Важно", chartType: .bar, barUnit: .day),
+        GridCell(name: "Не важно", chartType: .bar, barUnit: .day),
+        GridCell(name: "Без приоритета", chartType: .bar, barUnit: .day)
     ]
     
     func getTaskData() {

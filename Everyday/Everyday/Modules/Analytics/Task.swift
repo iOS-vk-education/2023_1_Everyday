@@ -4,6 +4,7 @@ struct GridCell: Identifiable, Codable {
     var id = UUID()
     var name: String
     var chartType: ChartType
+    var barUnit: BarUnit
 }
 
 enum Priority: Int {

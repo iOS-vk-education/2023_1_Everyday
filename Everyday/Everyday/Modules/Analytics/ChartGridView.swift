@@ -75,31 +75,19 @@ struct ChartGridView: View {
                                         viewModel: viewModel)
                     }
                 }
-                
                 .toolbar {
-                    Button {
-                        self.isPopoverPresented = true
-                        print(String(describing: Calendar.Component.month))
+                    Menu {
+                        Picker(selection: $selectedBarUnit, label: Text("Bar units")) {
+                            ForEach(BarUnit.allCases, id: \.self) { unit in
+                                    Text(unit.rawValue)
+                            }
+                        }
                     } label: {
                         Label("Bar unit", systemImage: "chart.bar.fill")
                             .tint(.brandSecondary)
                     }
-                    .popover(isPresented: $isPopoverPresented, attachmentAnchor: .point(.bottomLeading), arrowEdge: .bottom) {
-                        List {
-                            ForEach(BarUnit.allCases, id: \.self) { unit in
-                                HStack {
-                                    Text(unit.rawValue)
-                                    Spacer()
-                                    if unit == selectedBarUnit {
-                                        Image(systemName: "checkmark")
-                                    }
-                                }
-                                .onTapGesture {
-                                    self.selectedBarUnit = unit
-                                    self.isPopoverPresented = false
-                                }
-                            }
-                        }
+                    .onChange(of: selectedBarUnit) { newBarUnit in
+                        print(newBarUnit.id)
                     }
                 }
             }
@@ -142,13 +130,13 @@ struct ChartTitleView: View {
                     switch chartType {
                     case .line:
                         LineMark(
-                            x: .value("Month", taskData.date, unit: .month),
+                            x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
                             y: .value("Tasks", taskData.priority[index])
                         )
                         .foregroundStyle(Color.pink.gradient)
                     case .bar:
                         BarMark(
-                            x: .value("Month", taskData.date, unit: .month),
+                            x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
                             y: .value("Tasks", taskData.priority[index])
                         )
                         .foregroundStyle(Color.pink.gradient)
