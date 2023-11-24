@@ -13,6 +13,6 @@ extension Color {
 }
 
 extension UIColor {
-    static let brandPrimary = UIColor(named: "EverydayBlue")
-    static let brandSecondary = UIColor(named: "EverydayOrange")
+    static let brandPrimary = UIColor(named: "EverydayBlue") ?? UIColor.systemBlue
+    static let brandSecondary = UIColor(named: "EverydayOrange") ?? UIColor.systemOrange
 }

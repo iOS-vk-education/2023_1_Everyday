@@ -37,12 +37,12 @@ struct ChartDetailView: View {
                 
                 Chart {
                     RuleMark(y: .value("Goal", 8))
-                        .foregroundStyle(.pink.gradient)
+                        .foregroundStyle(Color.brandSecondary)
                         .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                         .annotation(alignment: .leading) {
                             Text("Goal")
                                 .font(.caption)
-                                .foregroundColor(.pink)
+                                .foregroundColor(Color.brandSecondary)
                         }
                     
                     ForEach(viewModel.taskData) { taskData in
@@ -58,12 +58,16 @@ struct ChartDetailView: View {
                                 x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
                                 y: .value("Tasks", taskData.priority[index])
                             )
-                            .foregroundStyle(Color.pink.gradient)
+                            .foregroundStyle(Color.brandSecondary)
                         }
                     }
+                }
+                .chartBackground { _ in
+                    Color.brandPrimary.opacity(0.1)
                 }
             }
             .padding()
         }
+        .background(Color.brandPrimary)
     }
 }

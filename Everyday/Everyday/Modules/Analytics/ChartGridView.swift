@@ -22,36 +22,6 @@ struct ChartGridView: View {
     var body: some View {
         ZStack {
             NavigationView {
-//                HStack {
-//                    Spacer()
-//
-//                    Button {
-//                        self.isPopoverPresented = true
-//                    } label: {
-//                        Image(systemName: "chart.bar.fill")
-//                            .tint(.brandSecondary)
-//                    }
-//                    .popover(isPresented: $isPopoverPresented) {
-//                        List {
-//                            ForEach(BarUnit.allCases, id: \.self) { unit in
-//                                HStack {
-//                                    Text(unit.rawValue)
-//                                    Spacer()
-//                                    if unit == selectedBarUnit {
-//                                        Image(systemName: "checkmark")
-//                                    }
-//                                }
-//                                .onTapGesture {
-//                                    self.selectedBarUnit = unit
-//                                    self.isPopoverPresented = false
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                .edgesIgnoringSafeArea(.all)
-//                .padding(EdgeInsets(top: 1, leading: 0, bottom: 20, trailing: 20))
-                
                 VStack {
                     LazyVGrid(columns: columns) {
                         ForEach(viewModel.chartTypes.indices, id: \.self) { index in
@@ -76,6 +46,8 @@ struct ChartGridView: View {
                                         viewModel: viewModel)
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.brandPrimary)
                 .toolbar {
                     Menu {
                         Picker(selection: $selectedBarUnit, label: Text("Bar units")) {
