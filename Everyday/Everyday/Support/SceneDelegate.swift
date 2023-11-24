@@ -42,6 +42,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             } completion: { [weak self] _ in
                 
                 let nav = UINavigationController(rootViewController: viewController)
+                if viewController is EDTabBarController {
+                    nav.setNavigationBarHidden(true, animated: false)
+                }
                 nav.modalPresentationStyle = .fullScreen
                 self?.window?.rootViewController = nav
                 
