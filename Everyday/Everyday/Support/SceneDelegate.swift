@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self?.window?.layer.opacity = 0
             } completion: { [weak self] _ in
                 
-                let nav = UINavigationController(rootViewController: viewController)  // idk if i could touch that, but it's the only way for me to get rid of navigation bar
+                let nav = UINavigationController(rootViewController: viewController)
                 nav.modalPresentationStyle = .fullScreen
                 self?.window?.rootViewController = nav
                 

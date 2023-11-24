@@ -69,6 +69,7 @@ struct ChartGridView: View {
                         viewModel.getTaskData()
                         
                         viewModel.retrievePreferences()
+                        selectedBarUnit = viewModel.chartTypes[0].barUnit
                     }
                     .sheet(isPresented: $viewModel.isShowingDetailView) {
                         ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
@@ -87,7 +88,9 @@ struct ChartGridView: View {
                             .tint(.brandSecondary)
                     }
                     .onChange(of: selectedBarUnit) { newBarUnit in
-                        print(newBarUnit.id)
+                        for i in 0..<4 {
+                            viewModel.chartTypes[i].barUnit = newBarUnit
+                        }
                     }
                 }
             }
