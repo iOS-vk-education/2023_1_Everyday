@@ -113,12 +113,22 @@ struct ChartTitleView: View {
                             y: .value("Tasks", taskData.animate ? taskData.priority[index] : 0)
                         )
                         .foregroundStyle(Color.brandSecondary)
+                        .interpolationMethod(.catmullRom)
                     case .bar:
                         BarMark(
                             x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
                             y: .value("Tasks", taskData.animate ? taskData.priority[index] : 0)
                         )
                         .foregroundStyle(Color.brandSecondary)
+                    }
+                    
+                    if chartType == .line {
+                        AreaMark(
+                            x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
+                            y: .value("Tasks", taskData.animate ? taskData.priority[index] : 0)
+                        )
+                        .foregroundStyle(Color.brandSecondary.opacity(0.1))
+                        .interpolationMethod(.catmullRom)
                     }
                 }
             }
