@@ -12,7 +12,7 @@ final class ChartGridViewModel: ObservableObject {
     
     @Published var isShowingDetailView = false
     @Published var alertItem: AlertItem?
-    @Published var isLoading = false
+//    @Published var isLoading = false
     
     @Published var taskData: [TaskData] = []
     @AppStorage("chartTypes") private var chartTypesData: Data?
@@ -24,10 +24,11 @@ final class ChartGridViewModel: ObservableObject {
     ]
     
     func getTaskData() {
-        isLoading = true
+//        isLoading = true
+        var tasksProcessed = 0
         TaskService.shared.fetchUser { [self] user, error in
             DispatchQueue.main.async { [self] in
-                isLoading = false
+//                isLoading = false
                 guard error == nil else {
                     alertItem = AlertContext.invalidResponse
                     return
@@ -44,9 +45,9 @@ final class ChartGridViewModel: ObservableObject {
                             return
                         }
                         guard let document = document,
-                              let taskData = document.data(),
-                              let timestamp = taskData["date"] as? Timestamp,
-                              let priorityArray = taskData["priority"] as? NSArray else {
+                              let taskDocumentData = document.data(),
+                              let timestamp = taskDocumentData["date"] as? Timestamp,
+                              let priorityArray = taskDocumentData["priority"] as? NSArray else {
                             alertItem = AlertContext.invalidData
                             return
                         }
@@ -55,8 +56,23 @@ final class ChartGridViewModel: ObservableObject {
                         let priority = priorityArray.compactMap { $0 as? Int }
                         
                         self.taskData.append(.init(date: date, priority: priority))
-                        self.taskData.sort { $0.date < $1.date }
+                        tasksProcessed += 1
+                        
+                        if tasksProcessed == doneTaskIds.count {
+                            self.taskData.sort { $0.date < $1.date }
+                            animateGraph()
+                        }
                     }
+                }
+            }
+        }
+    }
+    
+    func animateGraph() {
+        for index in self.taskData.indices {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.05) {
+                withAnimation(.interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 0.8)) {
+                    self.taskData[index].animate = true
                 }
             }
         }

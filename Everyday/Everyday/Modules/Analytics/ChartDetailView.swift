@@ -62,9 +62,6 @@ struct ChartDetailView: View {
                         }
                     }
                 }
-                .chartBackground { _ in
-                    Color.brandPrimary.opacity(0.1)
-                }
             }
             .padding()
         }

@@ -63,13 +63,17 @@ struct ChartGridView: View {
                         for i in 0..<4 {
                             viewModel.chartTypes[i].barUnit = newBarUnit
                         }
+                        for i in 0..<viewModel.taskData.count {
+                            viewModel.taskData[i].animate = false
+                        }
+                        viewModel.animateGraph()
                     }
                 }
             }
             
-            if viewModel.isLoading {
-                LoadingView()
-            }
+//            if viewModel.isLoading {
+//                LoadingView()
+//            }
         }
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,
@@ -93,12 +97,12 @@ struct ChartTitleView: View {
                 .fontWeight(.semibold)
             Chart {
                 RuleMark(y: .value("Goal", 8))
-                    .foregroundStyle(.pink.gradient)
+                    .foregroundStyle(Color.brandSecondary)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                     .annotation(alignment: .leading) {
                         Text("Goal")
                             .font(.caption)
-                            .foregroundColor(.pink)
+                            .foregroundColor(.brandSecondary)
                     }
                 
                 ForEach(viewModel.taskData) { taskData in
@@ -106,15 +110,15 @@ struct ChartTitleView: View {
                     case .line:
                         LineMark(
                             x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
-                            y: .value("Tasks", taskData.priority[index])
+                            y: .value("Tasks", taskData.animate ? taskData.priority[index] : 0)
                         )
-                        .foregroundStyle(Color.pink.gradient)
+                        .foregroundStyle(Color.brandSecondary)
                     case .bar:
                         BarMark(
                             x: .value("Month", taskData.date, unit: Calendar.Component.fromString(viewModel.chartTypes[index].barUnit.rawValue)),
-                            y: .value("Tasks", taskData.priority[index])
+                            y: .value("Tasks", taskData.animate ? taskData.priority[index] : 0)
                         )
-                        .foregroundStyle(Color.pink.gradient)
+                        .foregroundStyle(Color.brandSecondary)
                     }
                 }
             }
@@ -131,7 +135,7 @@ struct ChartTitleView: View {
         }
         .frame(height: UIScreen.main.bounds.height / 3)
         .padding()
-        .background(Color.mint)
+        .background(Color.brandPrimaryLight)
         .cornerRadius(10.0)
     }
 }

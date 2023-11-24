@@ -35,6 +35,7 @@ struct TaskData: Codable, Identifiable, Hashable {
     var id = UUID()
     let date: Date
     let priority: [Int]
+    var animate: Bool = false
 }
 
 struct ViewMonth: Identifiable, Hashable {
