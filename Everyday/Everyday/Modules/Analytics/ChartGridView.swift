@@ -16,7 +16,7 @@ struct ChartGridView: View {
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
     
-    @State private var selectedBarUnit: BarUnit = .day
+    @State private var selectedBarUnit: BarUnit = .month
     @State private var isPopoverPresented = false
     
     var body: some View {
