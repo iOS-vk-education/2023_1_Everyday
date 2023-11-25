@@ -75,7 +75,6 @@ struct ChartDetailView: View {
                 .chartXAxis {
                     AxisMarks(values: viewModel.taskData.map { $0.date }) { _ in
                         AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)
-                        // modify for days and weeks to work, remove hardcode horizontalSpacing
                     }
                 }
                 .chartYAxis {

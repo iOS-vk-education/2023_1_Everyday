@@ -60,7 +60,7 @@ struct ChartGridView: View {
                             .tint(.brandSecondary)
                     }
                     .onChange(of: selectedBarUnit) { newBarUnit in
-                        for i in 0..<4 {
+                        for i in 0..<viewModel.chartTypes.count {
                             viewModel.chartTypes[i].barUnit = newBarUnit
                         }
                         for i in 0..<viewModel.taskData.count {
@@ -70,10 +70,6 @@ struct ChartGridView: View {
                     }
                 }
             }
-            
-//            if viewModel.isLoading {
-//                LoadingView()
-//            }
         }
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,

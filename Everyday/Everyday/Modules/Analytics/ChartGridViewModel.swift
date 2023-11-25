@@ -12,7 +12,6 @@ final class ChartGridViewModel: ObservableObject {
     
     @Published var isShowingDetailView = false
     @Published var alertItem: AlertItem?
-//    @Published var isLoading = false
     
     @Published var taskData: [TaskData] = []
     @AppStorage("chartTypes") private var chartTypesData: Data?
@@ -24,11 +23,8 @@ final class ChartGridViewModel: ObservableObject {
     ]
     
     func getTaskData() {
-//        isLoading = true
-        var tasksProcessed = 0
+        let group = DispatchGroup()
         TaskService.shared.fetchUser { [self] user, error in
-            DispatchQueue.main.async { [self] in
-//                isLoading = false
                 guard error == nil else {
                     alertItem = AlertContext.invalidResponse
                     return
@@ -39,7 +35,12 @@ final class ChartGridViewModel: ObservableObject {
                 }
                 
                 for taskReference in doneTaskIds {
+                    group.enter()
                     taskReference.getDocument { [self] document, error in
+                        defer {
+                            group.leave()
+                        }
+                        
                         guard error == nil else {
                             alertItem = AlertContext.invalidResponse
                             return
@@ -56,14 +57,11 @@ final class ChartGridViewModel: ObservableObject {
                         let priority = priorityArray.compactMap { $0 as? Int }
                         
                         self.taskData.append(.init(date: date, priority: priority))
-                        tasksProcessed += 1
-                        
-                        if tasksProcessed == doneTaskIds.count {
-                            self.taskData.sort { $0.date < $1.date }
-                            animateGraph()
-                        }
                     }
                 }
+            group.notify(queue: .main) {
+                self.taskData.sort { $0.date < $1.date }
+                self.animateGraph()
             }
         }
     }
@@ -103,13 +101,5 @@ final class ChartGridViewModel: ObservableObject {
         didSet {
             isShowingDetailView = true
         }
-    }
-    
-    func getMaxValue(index: Int) -> Int {
-        var maxValue = 0
-        for i in self.taskData.indices {
-            maxValue = max(self.taskData[i].priority[index], maxValue)
-        }
-        return maxValue
     }
 }
