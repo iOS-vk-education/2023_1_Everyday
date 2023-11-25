@@ -132,16 +132,8 @@ struct ChartTitleView: View {
                     }
                 }
             }
-            .chartXAxis {
-                AxisMarks(values: viewModel.taskData.map { $0.date }) { _ in
-                    // so there are no labels
-                }
-            }
-            .chartYAxis {
-                AxisMarks { _ in
-                    // so there are no labels
-                }
-            }
+            .chartXAxis(.hidden)
+            .chartYAxis(.hidden)
         }
         .frame(height: UIScreen.main.bounds.height / 3)
         .padding()

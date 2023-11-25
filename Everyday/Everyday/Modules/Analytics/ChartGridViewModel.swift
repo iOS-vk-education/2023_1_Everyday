@@ -104,4 +104,12 @@ final class ChartGridViewModel: ObservableObject {
             isShowingDetailView = true
         }
     }
+    
+    func getMaxValue(index: Int) -> Int {
+        var maxValue = 0
+        for i in self.taskData.indices {
+            maxValue = max(self.taskData[i].priority[index], maxValue)
+        }
+        return maxValue
+    }
 }

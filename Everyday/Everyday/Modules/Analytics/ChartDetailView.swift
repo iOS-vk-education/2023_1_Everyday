@@ -31,26 +31,9 @@ struct ChartDetailView: View {
             
             Text(viewModel.chartTypes[index].name)
                 .padding()
-                .font(.title)
+                .font(.largeTitle)
             
             VStack {
-                HStack {
-                    Text("Chart type")
-                    
-                    Picker("", selection: $viewModel.chartTypes[index].chartType) {
-                        ForEach(ChartType.allCases, id: \.self) { chartType in
-                            Text(chartType.rawValue).tag(chartType)
-                        }
-                    }
-                    .onChange(of: viewModel.chartTypes[index].chartType) { _ in
-                        viewModel.saveChanges()
-                        for i in 0..<viewModel.taskData.count {
-                            viewModel.taskData[i].animate = false
-                        }
-                        viewModel.animateGraph()
-                    }
-                    .pickerStyle(.segmented)
-                }
                 
                 Chart {
                     RuleMark(y: .value("Goal", 8))
@@ -89,6 +72,39 @@ struct ChartDetailView: View {
                         }
                     }
                 }
+                .chartXAxis {
+                    AxisMarks(values: viewModel.taskData.map { $0.date }) { _ in
+                        AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)
+                        // modify for days and weeks to work, remove hardcode horizontalSpacing
+                    }
+                }
+                .chartYAxis {
+                    AxisMarks { _ in
+                        AxisValueLabel()
+                        AxisGridLine()
+                    }
+                }
+                .padding()
+                
+                HStack {
+                    Text("Chart type")
+                    
+                    Picker("", selection: $viewModel.chartTypes[index].chartType) {
+                        ForEach(ChartType.allCases, id: \.self) { chartType in
+                            Text(chartType.rawValue).tag(chartType)
+                        }
+                    }
+                    .onChange(of: viewModel.chartTypes[index].chartType) { _ in
+                        viewModel.saveChanges()
+                        for i in 0..<viewModel.taskData.count {
+                            viewModel.taskData[i].animate = false
+                        }
+                        viewModel.animateGraph()
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.leading, 80)
+                }
+                .padding()
             }
             .padding()
         }
