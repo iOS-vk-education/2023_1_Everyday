@@ -17,57 +17,52 @@ struct ChartGridView: View {
                                GridItem(.flexible())]
     
     @State private var selectedBarUnit: BarUnit = .month
-    @State private var isPopoverPresented = false
     
     var body: some View {
-        ZStack {
-            NavigationView {
-                VStack {
-                    LazyVGrid(columns: columns) {
-                        ForEach(viewModel.chartTypes.indices, id: \.self) { index in
-                            ChartTitleView(name: viewModel.chartTypes[index].name,
-                                           index: index,
-                                           chartType: viewModel.chartTypes[index].chartType,
-                                           viewModel: viewModel)
-                            .onTapGesture {
-                                viewModel.selectedChart = Priority(rawValue: index)
-                            }
-                        }
-                    }
-                    .onAppear {
-                        viewModel.taskData.removeAll(keepingCapacity: true)
-                        viewModel.getTaskData()
-                        
-                        viewModel.retrievePreferences()
-                        selectedBarUnit = viewModel.chartTypes[0].barUnit
-                    }
-                    .sheet(isPresented: $viewModel.isShowingDetailView) {
-                        ChartDetailView(index: viewModel.selectedChart?.rawValue ?? 0,
-                                        viewModel: viewModel)
+        NavigationView {
+            LazyVGrid(columns: columns) {
+                ForEach(viewModel.chartTypes.indices, id: \.self) { index in
+                    ChartTitleView(name: viewModel.chartTypes[index].name,
+                                   index: index,
+                                   chartType: viewModel.chartTypes[index].chartType,
+                                   viewModel: viewModel)
+                    .onTapGesture {
+                        viewModel.selectedChartIndex = index
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.brandPrimary)
-                .toolbar {
-                    Menu {
-                        Picker(selection: $selectedBarUnit, label: Text("Bar units")) {
-                            ForEach(BarUnit.allCases, id: \.self) { unit in
-                                    Text(unit.rawValue)
-                            }
+            }
+            .onAppear {
+                viewModel.taskData.removeAll(keepingCapacity: true)
+                viewModel.getTaskData()
+                
+                viewModel.retrievePreferences()
+                selectedBarUnit = viewModel.chartTypes[0].barUnit
+            }
+            .sheet(isPresented: $viewModel.isShowingDetailView) {
+                ChartDetailView(index: viewModel.selectedChartIndex ?? 0,
+                                viewModel: viewModel)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.brandPrimary)
+            .toolbar {
+                Menu {
+                    Picker(selection: $selectedBarUnit, label: Text("Bar units")) {
+                        ForEach(BarUnit.allCases, id: \.self) { unit in
+                            Text(unit.rawValue)
                         }
-                    } label: {
-                        Label("Bar unit", systemImage: "chart.bar.fill")
-                            .tint(.brandSecondary)
                     }
-                    .onChange(of: selectedBarUnit) { newBarUnit in
-                        for i in 0..<viewModel.chartTypes.count {
-                            viewModel.chartTypes[i].barUnit = newBarUnit
-                        }
-                        for i in 0..<viewModel.taskData.count {
-                            viewModel.taskData[i].animate = false
-                        }
-                        viewModel.animateGraph()
+                } label: {
+                    Label("Bar unit", systemImage: "chart.bar.fill")
+                        .tint(.brandSecondary)
+                }
+                .onChange(of: selectedBarUnit) { newBarUnit in
+                    for i in 0..<viewModel.chartTypes.count {
+                        viewModel.chartTypes[i].barUnit = newBarUnit
                     }
+                    for i in 0..<viewModel.taskData.count {
+                        viewModel.taskData[i].animate = false
+                    }
+                    viewModel.animateGraph()
                 }
             }
         }

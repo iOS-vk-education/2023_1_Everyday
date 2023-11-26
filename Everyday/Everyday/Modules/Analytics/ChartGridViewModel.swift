@@ -97,7 +97,7 @@ final class ChartGridViewModel: ObservableObject {
         }
     }
     
-    var selectedChart: Priority? {
+    var selectedChartIndex: Int? {
         didSet {
             isShowingDetailView = true
         }
