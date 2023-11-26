@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         let window = UIWindow(windowScene: windowScene)
+        window.overrideUserInterfaceStyle = .dark
         
         self.window = window
         self.window?.makeKeyAndVisible()
@@ -42,6 +43,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             } completion: { [weak self] _ in
                 
                 let nav = UINavigationController(rootViewController: viewController)
+                if viewController is EDTabBarController {
+                    nav.setNavigationBarHidden(true, animated: false)
+                }
                 nav.modalPresentationStyle = .fullScreen
                 self?.window?.rootViewController = nav
                 

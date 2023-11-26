@@ -10,30 +10,31 @@ import SwiftUI
 
 final class EDTabBarController: UITabBarController {
     
-    let tabBarAppearance = UITabBarAppearance()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarAppearance.configureWithOpaqueBackground()
-        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        self.tabBar.tintColor = UIColor.brandSecondary
         viewControllers = [createAnalyticsNC(), createTasksNC(), createSettingsNC()]
     }
     
     func createTasksNC() -> UINavigationController {
         let tasksVC = TasksVC()
-        tasksVC.title = "Tasks"
+        tasksVC.tabBarItem.image = UIImage(systemName: "list.bullet")
+        tasksVC.tabBarItem.image?.withTintColor(.brandSecondary)
         return UINavigationController(rootViewController: tasksVC)
     }
     
     func createAnalyticsNC() -> UINavigationController {
         let analyticsVC = UIHostingController(rootView: ChartGridView())
-        analyticsVC.title = "Analytics"
-        return UINavigationController(rootViewController: analyticsVC)
+        analyticsVC.tabBarItem.image = UIImage(systemName: "chart.pie.fill")
+        analyticsVC.tabBarItem.image?.withTintColor(.brandSecondary)
+        let analyticsNC = UINavigationController(rootViewController: analyticsVC)
+        analyticsNC.setNavigationBarHidden(true, animated: false)
+        return analyticsNC
     }
     
     func createSettingsNC() -> UINavigationController {
         let settingsVC = SettingsVC()
-        settingsVC.title = "Settings"
+        settingsVC.tabBarItem.image = UIImage(systemName: "gear")
         return UINavigationController(rootViewController: settingsVC)
     }
 }

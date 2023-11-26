@@ -31,9 +31,10 @@ class TaskService {
                 if let snapshot = snapshot,
                    let snapshotData = snapshot.data(),
                    let username = snapshotData["username"] as? String,
-                   let email = snapshotData["email"] as? String {
-                   let user = User(username: username, email: email, userUID: userUID)
-                 completion(user, nil)
+                   let email = snapshotData["email"] as? String,
+                   let doneTaskIds = snapshotData["done_task_id"] as? [DocumentReference] {
+                    let user = User(username: username, email: email, userUID: userUID, doneTaskIds: doneTaskIds)
+                    completion(user, nil)
                 }
             }
     }

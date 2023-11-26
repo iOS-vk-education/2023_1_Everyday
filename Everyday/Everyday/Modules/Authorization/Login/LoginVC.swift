@@ -140,6 +140,8 @@ final class LoginVC: UIViewController {
         passwordField.rightViewMode = .always
         
         [emailOrUsernameField, passwordField].forEach { field in
+            field.autocorrectionType = .no
+            field.autocapitalizationType = .none
             field.backgroundColor = .white
             field.font = UIFont(name: "Montserrat-SemiBold", size: 16)
             field.textColor = .black

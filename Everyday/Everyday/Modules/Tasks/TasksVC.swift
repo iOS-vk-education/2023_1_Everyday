@@ -21,7 +21,7 @@ final class TasksVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = .brandPrimary
         
         TaskService.shared.fetchUser { [weak self] user, error in
             guard let self = self else {

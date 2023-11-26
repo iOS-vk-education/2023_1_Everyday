@@ -93,7 +93,7 @@ final class SignUpVC: UIViewController {
         signUpLabel.textColor = .white
         signUpLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        logInLabel.text = "Уже есть аккаунт ?"
+        logInLabel.text = "Уже есть аккаунт?"
         logInLabel.font = UIFont(name: "Montserrat-SemiBold", size: 14)
         logInLabel.textColor = .gray
     }
@@ -146,6 +146,8 @@ final class SignUpVC: UIViewController {
         paragraphStyle.alignment = NSTextAlignment.left
         
         [emailField, usernameField, passwordField].forEach { field in
+            field.autocorrectionType = .no
+            field.autocapitalizationType = .none
             field.backgroundColor = .white
             field.font = UIFont(name: "Montserrat-SemiBold", size: 14)
             field.textColor = .black

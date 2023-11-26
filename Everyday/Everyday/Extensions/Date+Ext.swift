@@ -13,3 +13,15 @@ extension Date {
         return Calendar.current.date(from: components) ?? Date()
     }
 }
+
+extension Calendar.Component {
+    static func fromString(_ componentString: String) -> Calendar.Component {
+        let componentMapping: [String: Calendar.Component] = [
+            "day": .day,
+            "month": .month,
+            "week": .weekOfYear
+        ]
+
+        return componentMapping[componentString.lowercased()] ?? .day
+    }
+}
