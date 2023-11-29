@@ -222,7 +222,22 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     @objc func addTaskButtonTapped() {
-        let addTaskVC = AddTaskVC()
-        present(AddTaskVC(), animated: true, completion: nil)
-    }
+            let addTaskVC = AddTaskVC()
+           
+            if let sheet = addTaskVC.sheetPresentationController {
+                sheet.detents = [
+                    .custom(identifier: .init("small"), resolver: { _ in
+                        return addTaskVC.height()
+                    })
+                ]
+                sheet.prefersGrabberVisible = true
+                sheet.preferredCornerRadius = 20
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+                
+                sheet.largestUndimmedDetentIdentifier = .medium
+                sheet.prefersEdgeAttachedInCompactHeight = true
+            }
+            
+            present(addTaskVC, animated: true, completion: nil)
+        }
 }

@@ -57,3 +57,7 @@ file_length:
 cyclomatic_complexity:
     warning: 15
     error: 25
+    
+nesting:
+  type_level:
+    warning: 3 
