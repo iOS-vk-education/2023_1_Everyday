@@ -12,10 +12,10 @@ import FirebaseFirestore
 struct ChartGridView: View {
     
     @StateObject var viewModel = ChartGridViewModel()
+    @State var taskData: [TaskData] = []
     
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
-    
     @State private var selectedBarUnit: BarUnit = .month
     
     var body: some View {
