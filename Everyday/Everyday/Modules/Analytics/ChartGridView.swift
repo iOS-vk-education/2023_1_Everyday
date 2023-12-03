@@ -34,9 +34,10 @@ struct ChartGridView: View {
             .onAppear {
                 viewModel.taskData.removeAll(keepingCapacity: true)
                 viewModel.getTaskData()
-                
                 viewModel.retrievePreferences()
+                
                 selectedBarUnit = viewModel.chartTypes[0].barUnit
+//                taskData = viewModel.filteredData(by: selectedBarUnit)
             }
             .sheet(isPresented: $viewModel.isShowingDetailView) {
                 ChartDetailView(index: viewModel.selectedChartIndex ?? 0,

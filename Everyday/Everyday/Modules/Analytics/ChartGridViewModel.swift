@@ -11,6 +11,12 @@ import FirebaseFirestore
 final class ChartGridViewModel: ObservableObject {
     
     @Published var isShowingDetailView = false
+    var selectedChartIndex: Int? {
+        didSet {
+            isShowingDetailView = true
+        }
+    }
+    
     @Published var alertItem: AlertItem?
     
     @Published var taskData: [TaskData] = []
@@ -66,6 +72,31 @@ final class ChartGridViewModel: ObservableObject {
         }
     }
     
+    func filteredData(by unit: BarUnit) -> [TaskData] {
+        var filteredTaskData: [TaskData] = []
+        
+        let currentDate = Date()
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        
+        switch unit {
+        case .day:
+            dateComponents.day = -7
+        case .week:
+            dateComponents.weekOfYear = -7
+        case .month:
+            dateComponents.month = -7
+        }
+        
+        guard let timeAgo = calendar.date(byAdding: dateComponents, to: currentDate) else {
+            alertItem = AlertContext.localStorageIssue  // change
+            return []
+        }
+        filteredTaskData = self.taskData.filter { $0.date >= timeAgo }
+        
+        return filteredTaskData
+    }
+    
     func animateGraph() {
         for index in self.taskData.indices {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.05) {
@@ -94,12 +125,6 @@ final class ChartGridViewModel: ObservableObject {
             chartTypes = try JSONDecoder().decode([GridCell].self, from: chartTypesData)
         } catch {
             alertItem = AlertContext.localStorageIssue
-        }
-    }
-    
-    var selectedChartIndex: Int? {
-        didSet {
-            isShowingDetailView = true
         }
     }
 }
