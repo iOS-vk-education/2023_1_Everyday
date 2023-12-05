@@ -33,8 +33,8 @@ enum BarUnit: String, CaseIterable, Identifiable, Codable {
 
 struct TaskData: Codable, Identifiable, Hashable {
     var id = UUID()
-    let date: Date
-    let priority: [Int]
+    var date: Date
+    var priority: [Int]
     var animate: Bool = false
 }
 

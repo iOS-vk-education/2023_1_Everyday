@@ -45,7 +45,9 @@ struct ChartDetailView: View {
                                 .foregroundColor(Color.brandSecondary)
                         }
                     
-                    ForEach(viewModel.taskData) { taskData in
+//                    ForEach(viewModel.filteredData(by: viewModel.chartTypes[index].barUnit)) { taskData in
+                    ForEach(viewModel.groupData(taskData: viewModel.filteredData(by: viewModel.chartTypes[index].barUnit),
+                                                by: viewModel.chartTypes[index].barUnit)) { taskData in
                         switch viewModel.chartTypes[index].chartType {
                         case .line:
                             LineMark(
@@ -73,8 +75,16 @@ struct ChartDetailView: View {
                     }
                 }
                 .chartXAxis {
-                    AxisMarks(values: viewModel.taskData.map { $0.date }) { _ in
-                        AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)
+                    AxisMarks(values: viewModel.groupData(taskData: viewModel.filteredData(by: viewModel.chartTypes[index].barUnit),
+                                                          by: viewModel.chartTypes[index].barUnit).map { $0.date }) { _ in
+                        switch viewModel.chartTypes[index].barUnit {
+                        case .day:
+                            AxisValueLabel(format: .dateTime.day(.defaultDigits), horizontalSpacing: 20)  // change
+                        case .week:
+                            AxisValueLabel(format: .dateTime.week(.weekOfMonth), horizontalSpacing: 20)  // change
+                        case .month:
+                            AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)  // change
+                        }
                     }
                 }
                 .chartYAxis {

@@ -97,6 +97,44 @@ final class ChartGridViewModel: ObservableObject {
         return filteredTaskData
     }
     
+    func groupData(taskData: [TaskData], by unit: BarUnit) -> [TaskData] {
+        var groupedTaskData: [TaskData] = []
+        
+        for i in taskData {
+            var newTaskData = TaskData(date: i.date, priority: [], animate: true)
+            switch unit {
+            case .day:
+                newTaskData.date = i.date
+            case .month:
+                newTaskData.date = firstDayOfMonth(date: i.date)
+            case .week:
+                newTaskData.date = firstDayOfWeek(date: i.date)
+            }
+            newTaskData.priority = i.priority
+            if let index = groupedTaskData.firstIndex(where: { $0.date == newTaskData.date }) {
+                for j in groupedTaskData[index].priority.indices {
+                    groupedTaskData[index].priority[j] += newTaskData.priority[j]
+                }
+            } else {
+                groupedTaskData.append(newTaskData)
+            }
+        }
+        
+        return groupedTaskData
+    }
+    
+    func firstDayOfMonth(date: Date) -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month], from: date)
+        return calendar.date(from: components) ?? Date()
+    }
+    
+    func firstDayOfWeek(date: Date) -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+        return calendar.date(from: components) ?? Date()
+    }
+    
     func animateGraph() {
         for index in self.taskData.indices {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.05) {

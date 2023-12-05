@@ -12,7 +12,6 @@ import FirebaseFirestore
 struct ChartGridView: View {
     
     @StateObject var viewModel = ChartGridViewModel()
-    @State var taskData: [TaskData] = []
     
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
@@ -37,7 +36,6 @@ struct ChartGridView: View {
                 viewModel.retrievePreferences()
                 
                 selectedBarUnit = viewModel.chartTypes[0].barUnit
-//                taskData = viewModel.filteredData(by: selectedBarUnit)
             }
             .sheet(isPresented: $viewModel.isShowingDetailView) {
                 ChartDetailView(index: viewModel.selectedChartIndex ?? 0,
@@ -97,7 +95,9 @@ struct ChartTitleView: View {
                             .foregroundColor(.brandSecondary)
                     }
                 
-                ForEach(viewModel.taskData) { taskData in
+//                ForEach(viewModel.filteredData(by: viewModel.chartTypes[index].barUnit)) { taskData in
+                ForEach(viewModel.groupData(taskData: viewModel.filteredData(by: viewModel.chartTypes[index].barUnit),
+                                            by: viewModel.chartTypes[index].barUnit)) { taskData in
                     switch chartType {
                     case .line:
                         LineMark(
