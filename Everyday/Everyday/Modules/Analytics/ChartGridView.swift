@@ -92,7 +92,7 @@ struct ChartTitleView: View {
                     .foregroundStyle(Color.brandSecondary)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                     .annotation(alignment: .leading) {
-                        Text("Goal")
+                        Text("Цель")
                             .font(.caption)
                             .foregroundColor(.brandSecondary)
                     }

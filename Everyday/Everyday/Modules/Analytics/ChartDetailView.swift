@@ -40,7 +40,7 @@ struct ChartDetailView: View {
                         .foregroundStyle(Color.brandSecondary)
                         .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                         .annotation(alignment: .leading) {
-                            Text("Goal")
+                            Text("Цель")
                                 .font(.caption)
                                 .foregroundColor(Color.brandSecondary)
                         }
@@ -76,9 +76,9 @@ struct ChartDetailView: View {
                     AxisMarks(values: viewModel.taskDataToShow.map { $0.date }) { _ in
                         switch viewModel.chartTypes[index].barUnit {
                         case .day:
-                            AxisValueLabel(format: .dateTime.day(.defaultDigits), horizontalSpacing: 20)  // change
+                            AxisValueLabel(format: .dateTime.weekday(.narrow), horizontalSpacing: 20)  // change
                         case .week:
-                            AxisValueLabel(format: .dateTime.week(.weekOfMonth), horizontalSpacing: 20)  // change
+                            AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)  // change
                         case .month:
                             AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)  // change
                         }
@@ -93,7 +93,7 @@ struct ChartDetailView: View {
                 .padding()
                 
                 HStack {
-                    Text("Chart type")
+                    Text("Тип диаграммы")
                     
                     Picker("", selection: $viewModel.chartTypes[index].chartType) {
                         ForEach(ChartType.allCases, id: \.self) { chartType in
@@ -108,7 +108,7 @@ struct ChartDetailView: View {
                         viewModel.animateGraph()
                     }
                     .pickerStyle(.segmented)
-                    .padding(.leading, 80)
+                    .padding(.leading, 20)
                 }
                 .padding()
             }
