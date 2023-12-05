@@ -58,8 +58,10 @@ struct ChartGridView: View {
                     for i in 0..<viewModel.chartTypes.count {
                         viewModel.chartTypes[i].barUnit = newBarUnit
                     }
-                    for i in 0..<viewModel.taskData.count {
-                        viewModel.taskData[i].animate = false
+                    viewModel.saveChanges()
+                    viewModel.updateShownData()
+                    for i in 0..<viewModel.taskDataToShow.count {
+                        viewModel.taskDataToShow[i].animate = false
                     }
                     viewModel.animateGraph()
                 }
@@ -95,9 +97,7 @@ struct ChartTitleView: View {
                             .foregroundColor(.brandSecondary)
                     }
                 
-//                ForEach(viewModel.filteredData(by: viewModel.chartTypes[index].barUnit)) { taskData in
-                ForEach(viewModel.groupData(taskData: viewModel.filteredData(by: viewModel.chartTypes[index].barUnit),
-                                            by: viewModel.chartTypes[index].barUnit)) { taskData in
+                ForEach(viewModel.taskDataToShow) { taskData in
                     switch chartType {
                     case .line:
                         LineMark(

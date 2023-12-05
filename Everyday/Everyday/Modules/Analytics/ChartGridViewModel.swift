@@ -16,10 +16,12 @@ final class ChartGridViewModel: ObservableObject {
             isShowingDetailView = true
         }
     }
+//    @Published var selectedBarUnit: BarUnit = .day
     
     @Published var alertItem: AlertItem?
     
     @Published var taskData: [TaskData] = []
+    @Published var taskDataToShow: [TaskData] = []
     @AppStorage("chartTypes") private var chartTypesData: Data?
     @Published var chartTypes: [GridCell] = [
         GridCell(name: "Срочно", chartType: .bar, barUnit: .day),
@@ -67,9 +69,14 @@ final class ChartGridViewModel: ObservableObject {
                 }
             group.notify(queue: .main) {
                 self.taskData.sort { $0.date < $1.date }
+                self.updateShownData()
                 self.animateGraph()
             }
         }
+    }
+    
+    func updateShownData() {
+        self.taskDataToShow = self.groupData(taskData: self.filteredData(by: self.chartTypes[0].barUnit), by: self.chartTypes[0].barUnit)
     }
     
     func filteredData(by unit: BarUnit) -> [TaskData] {
@@ -101,7 +108,7 @@ final class ChartGridViewModel: ObservableObject {
         var groupedTaskData: [TaskData] = []
         
         for i in taskData {
-            var newTaskData = TaskData(date: i.date, priority: [], animate: true)
+            var newTaskData = TaskData(date: i.date, priority: [])
             switch unit {
             case .day:
                 newTaskData.date = i.date
@@ -136,10 +143,10 @@ final class ChartGridViewModel: ObservableObject {
     }
     
     func animateGraph() {
-        for index in self.taskData.indices {
+        for index in self.taskDataToShow.indices {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.05) {
                 withAnimation(.interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 0.8)) {
-                    self.taskData[index].animate = true
+                    self.taskDataToShow[index].animate = true
                 }
             }
         }
