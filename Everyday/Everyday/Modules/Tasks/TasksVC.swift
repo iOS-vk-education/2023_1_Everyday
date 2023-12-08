@@ -17,19 +17,7 @@ final class TasksVC: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    var tasks: [Task] = [
-        Task(startTime: "09:00", endTime: "10:00", taskName: "Проект IOS", taskTag: "Важно"),
-        Task(startTime: "10:00", endTime: "11:00", taskName: "ДЗ по вебу", taskTag: "Не важно"),
-        Task(startTime: "11:00", endTime: "12:00", taskName: "Cходить в магаз", taskTag: "Срочно"),
-        Task(startTime: "12:00", endTime: "13:00", taskName: "Прес качат", taskTag: "Важно"),
-        Task(startTime: "13:00", endTime: "14:00", taskName: "Бегит", taskTag: "Важно"),
-        Task(startTime: "", endTime: "", taskName: "Сделать дз по дизайну", taskTag: "Не важно"),
-        Task(startTime: "14:00", endTime: "15:00", taskName: "атжуманя", taskTag: "Важно"),
-        Task(startTime: "15:00", endTime: "16:00", taskName: "Посмотреть сериал", taskTag: "Без преоритета"),
-        Task(startTime: "16:00", endTime: "17:00", taskName: "Приготовить ужин", taskTag: ""),
-        Task(startTime: "17:00", endTime: "18:00", taskName: "Накатить stage3 на октаху", taskTag: "Важно"),
-        Task(startTime: "18:00", endTime: "19:00", taskName: "Заскочить в чайхану", taskTag: "Срочно")
-    ]  // mock data
+    var tasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
