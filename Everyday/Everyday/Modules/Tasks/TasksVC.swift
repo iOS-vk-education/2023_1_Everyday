@@ -8,28 +8,7 @@
 import UIKit
 import Firebase
 
-struct Task {
-    let startTime: String
-    let endTime: String
-    let taskName: String
-    let taskTag: String
-}
-
- let dela = [
-    Task(startTime: "09:00", endTime: "10:00", taskName: "Проект IOS", taskTag: "Важно"),
-    Task(startTime: "10:00", endTime: "11:00", taskName: "ДЗ по вебу", taskTag: "Не важно"),
-    Task(startTime: "11:00", endTime: "12:00", taskName: "Cходить в магаз", taskTag: "Срочно"),
-    Task(startTime: "12:00", endTime: "13:00", taskName: "Прес качат", taskTag: "Важно"),
-    Task(startTime: "13:00", endTime: "14:00", taskName: "Бегит", taskTag: "Важно"),
-    Task(startTime: "", endTime: "", taskName: "Сделать дз по дизайну", taskTag: "Не важно"),
-    Task(startTime: "14:00", endTime: "15:00", taskName: "атжуманя", taskTag: "Важно"),
-    Task(startTime: "15:00", endTime: "16:00", taskName: "Посмотреть сериал", taskTag: "Без преоритета"),
-    Task(startTime: "16:00", endTime: "17:00", taskName: "Приготовить ужин", taskTag: ""),
-    Task(startTime: "17:00", endTime: "18:00", taskName: "Накатить stage3 на октаху", taskTag: "Важно"),
-    Task(startTime: "18:00", endTime: "19:00", taskName: "Заскочить в чайхану", taskTag: "Срочно")
- ]
-
-final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate {
+final class TasksVC: UIViewController {
     
     private let container = UIView()
     private let topLabel = UILabel()
@@ -38,7 +17,19 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    var tasks: [Task] = []
+    var tasks: [Task] = [
+        Task(startTime: "09:00", endTime: "10:00", taskName: "Проект IOS", taskTag: "Важно"),
+        Task(startTime: "10:00", endTime: "11:00", taskName: "ДЗ по вебу", taskTag: "Не важно"),
+        Task(startTime: "11:00", endTime: "12:00", taskName: "Cходить в магаз", taskTag: "Срочно"),
+        Task(startTime: "12:00", endTime: "13:00", taskName: "Прес качат", taskTag: "Важно"),
+        Task(startTime: "13:00", endTime: "14:00", taskName: "Бегит", taskTag: "Важно"),
+        Task(startTime: "", endTime: "", taskName: "Сделать дз по дизайну", taskTag: "Не важно"),
+        Task(startTime: "14:00", endTime: "15:00", taskName: "атжуманя", taskTag: "Важно"),
+        Task(startTime: "15:00", endTime: "16:00", taskName: "Посмотреть сериал", taskTag: "Без преоритета"),
+        Task(startTime: "16:00", endTime: "17:00", taskName: "Приготовить ужин", taskTag: ""),
+        Task(startTime: "17:00", endTime: "18:00", taskName: "Накатить stage3 на октаху", taskTag: "Важно"),
+        Task(startTime: "18:00", endTime: "19:00", taskName: "Заскочить в чайхану", taskTag: "Срочно")
+    ]  // mock data
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +40,6 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.delegate = self
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(TasksTableViewCell.self, forCellReuseIdentifier: "CustomCell")
-
         let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         searchButton.tintColor = UIColor(named: "EverydayOrange")
         
@@ -60,10 +47,7 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
         let moreButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonTapped))
         moreButton.tintColor = UIColor(named: "EverydayOrange")
         
-//        let moreButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(moreButtonTapped))
-        
         navigationItem.rightBarButtonItems = [moreButton, searchButton]
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: topLabel)
         navigationItem.title = ""
         navigationItem.searchController = searchController
@@ -74,71 +58,6 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
         view.addSubview(addTaskButton)
         
         setupConstraints()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dela.count * 2
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row % 2 == 1 {
-            return 10
-        } else {
-            return 70
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 1 {
-            let defaultCell = UITableViewCell()
-            defaultCell.backgroundColor = UIColor(named: "EverydayBlue")
-            return defaultCell
-        } else {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? TasksTableViewCell {
-                
-                cell.startTimeLabel.text = nil
-                cell.endTimeLabel.text = nil
-                cell.taskNameLabel.text = nil
-                cell.taskTagLabel.text = nil
-
-                let task = dela[indexPath.row / 2]
-                
-                cell.startTimeLabel.text = task.startTime
-                cell.endTimeLabel.text = task.endTime
-                cell.taskNameLabel.text = task.taskName
-                cell.taskTagLabel.text = task.taskTag
-                
-                cell.backgroundColor = UIColor(named: "EverydayLightBlue")
-                cell.layer.cornerRadius = 10
-                return cell
-            } else {
-                let defaultCell = UITableViewCell()
-                return defaultCell
-            }
-        }
-    }
-
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if indexPath.row % 2 == 0 {
-            let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, comletion in
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                comletion(true)
-            }
-            return UISwipeActionsConfiguration(actions: [action])
-        }
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if indexPath.row % 2 == 0 {
-            let action = UIContextualAction(style: .normal, title: "Done") { _, _, comletion in
-                
-                comletion(true)
-            }
-            action.backgroundColor = .systemGreen
-            return UISwipeActionsConfiguration(actions: [action])
-        }
-        return nil
     }
     
     private func setupUI() {
@@ -160,8 +79,8 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     private func setupButtons() {
         let config = UIImage.SymbolConfiguration(pointSize: 60)
         let image = UIImage(systemName: "plus.circle.fill", withConfiguration: config)
+        
         addTaskButton.setImage(image, for: .normal)
-        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
         addTaskButton.tintColor = UIColor(named: "EverydayOrange")
         addTaskButton.backgroundColor = .white
@@ -169,21 +88,23 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     private func setupTable() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.isScrollEnabled = true
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(TasksTableViewCell.self, forCellReuseIdentifier: "CustomCell")
+        
         tableView.backgroundColor = UIColor(named: "EverydayBlue")
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchController.isActive = false
+        tableView.showsVerticalScrollIndicator = false
     }
     
     private func setupConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
             addTaskButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             addTaskButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
@@ -191,7 +112,7 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
             addTaskButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
-
+    
     @objc func searchButtonTapped() {
         searchController.isActive = true
         searchController.searchBar.becomeFirstResponder()
@@ -222,22 +143,89 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     @objc func addTaskButtonTapped() {
-            let addTaskVC = AddTaskVC()
-           
-            if let sheet = addTaskVC.sheetPresentationController {
-                sheet.detents = [
-                    .custom(identifier: .init("small"), resolver: { _ in
-                        return addTaskVC.height()
-                    })
-                ]
-                sheet.prefersGrabberVisible = true
-                sheet.preferredCornerRadius = 20
-                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-                
-                sheet.largestUndimmedDetentIdentifier = .medium
-                sheet.prefersEdgeAttachedInCompactHeight = true
-            }
+        let addTaskVC = AddTaskVC()
+        
+        if let sheet = addTaskVC.sheetPresentationController {
+            sheet.detents = [
+                .custom(identifier: .init("small"), resolver: { _ in
+                    return addTaskVC.height()
+                })
+            ]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
             
-            present(addTaskVC, animated: true, completion: nil)
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.prefersEdgeAttachedInCompactHeight = true
         }
+        
+        present(addTaskVC, animated: true, completion: nil)
+    }
+}
+
+extension TasksVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Done") { _, _, comletion in
+            comletion(true)
+        }
+        action.backgroundColor = .systemGreen
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, comletion in
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            comletion(true)
+        }
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let spacerView = UIView()
+        spacerView.backgroundColor = UIColor.clear
+        return spacerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tasks.count
+    }
+}
+
+extension TasksVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? TasksTableViewCell else {
+            return UITableViewCell()
+        }
+        let task = tasks[indexPath.section]
+        
+        cell.startTimeLabel.text = task.startTime
+        cell.endTimeLabel.text = task.endTime
+        cell.taskNameLabel.text = task.taskName
+        cell.taskTagLabel.text = task.taskTag
+        cell.backgroundColor = UIColor(named: "EverydayLightBlue")
+        cell.layer.cornerRadius = 10
+        
+        return cell
+    }
+}
+
+extension TasksVC: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.isActive = false
+    }
 }

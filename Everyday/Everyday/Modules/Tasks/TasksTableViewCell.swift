@@ -25,8 +25,9 @@ class TasksTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
        super.layoutSubviews()
-       let bottomSpace: CGFloat = 5
-       self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: bottomSpace, left: 0, bottom: bottomSpace, right: 0))
+        
+       let spacing: CGFloat = 5
+       self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: spacing, left: 0, bottom: spacing, right: 0))
     }
 
     private func setupLabels() {
