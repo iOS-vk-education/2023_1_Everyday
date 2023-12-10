@@ -14,8 +14,7 @@ final class TasksVC: UIViewController {
     private let topLabel = UILabel()
     private let addTaskButton = UIButton(type: .system)
     private let tableView = UITableView()
-    
-    let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
     
     var tasks: [Task] = []
     
@@ -224,7 +223,7 @@ extension TasksVC: UITableViewDelegate {
 }
 
 extension TasksVC: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? TasksTableViewCell else {
             return UITableViewCell()
