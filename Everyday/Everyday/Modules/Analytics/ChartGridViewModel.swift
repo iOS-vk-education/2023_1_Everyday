@@ -25,40 +25,40 @@ final class ChartGridViewModel: ObservableObject {
     func getTaskData() {
         let group = DispatchGroup()
         DoneTaskService.shared.fetchUser { [self] user, error in
-                guard error == nil else {
-                    alertItem = AlertContext.invalidResponse
-                    return
-                }
-                guard let doneTaskIds = user?.doneTaskIds else {
-                    alertItem = AlertContext.noData
-                    return
-                }
-                
-                for taskReference in doneTaskIds {
-                    group.enter()
-                    taskReference.getDocument { [self] document, error in
-                        defer {
-                            group.leave()
-                        }
-                        
-                        guard error == nil else {
-                            alertItem = AlertContext.invalidResponse
-                            return
-                        }
-                        guard let document = document,
-                              let taskDocumentData = document.data(),
-                              let timestamp = taskDocumentData["date"] as? Timestamp,
-                              let priorityArray = taskDocumentData["priority"] as? NSArray else {
-                            alertItem = AlertContext.invalidData
-                            return
-                        }
-                        
-                        let date = timestamp.dateValue()
-                        let priority = priorityArray.compactMap { $0 as? Int }
-                        
-                        self.taskData.append(.init(date: date, priority: priority))
+            guard error == nil else {
+                alertItem = AlertContext.invalidResponse
+                return
+            }
+            guard let doneTaskIds = user?.doneTaskIds else {
+                alertItem = AlertContext.noData
+                return
+            }
+            
+            for taskReference in doneTaskIds {
+                group.enter()
+                taskReference.getDocument { [self] document, error in
+                    defer {
+                        group.leave()
                     }
+                    
+                    guard error == nil else {
+                        alertItem = AlertContext.invalidResponse
+                        return
+                    }
+                    guard let document = document,
+                          let taskDocumentData = document.data(),
+                          let timestamp = taskDocumentData["date"] as? Timestamp,
+                          let priorityArray = taskDocumentData["priority"] as? NSArray else {
+                        alertItem = AlertContext.invalidData
+                        return
+                    }
+                    
+                    let date = timestamp.dateValue()
+                    let priority = priorityArray.compactMap { $0 as? Int }
+                    
+                    self.taskData.append(.init(date: date, priority: priority))
                 }
+            }
             group.notify(queue: .main) {
                 self.taskData.sort { $0.date < $1.date }
                 self.animateGraph()

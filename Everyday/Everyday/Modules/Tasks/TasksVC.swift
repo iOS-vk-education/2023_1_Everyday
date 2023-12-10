@@ -48,6 +48,50 @@ final class TasksVC: UIViewController {
         setupConstraints()
     }
     
+    func getTasks() {
+        let group = DispatchGroup()
+        TaskService.shared.fetchUser { [weak self] user, error in
+            guard error == nil else {
+                // add alert
+                return
+            }
+            guard let taskIds = user?.taskUID else {
+                // add alert
+                return
+            }
+            
+            for taskReference in taskIds {
+                group.enter()
+                taskReference.getDocument { [self] document, error in
+                    defer {
+                        group.leave()
+                    }
+                    
+                    guard error == nil else {
+                        // add alert
+                        return
+                    }
+                    guard let document = document,
+                          let taskDocumentData = document.data(),
+                          let timestamp = taskDocumentData["date"] as? Timestamp,
+                          let priorityArray = taskDocumentData["priority"] as? NSArray else {
+                        alertItem = AlertContext.invalidData
+                        return
+                    }
+                    
+                    let date = timestamp.dateValue()
+                    let priority = priorityArray.compactMap { $0 as? Int }
+                    
+                    self.taskData.append(.init(date: date, priority: priority))
+                }
+            }
+            group.notify(queue: .main) {
+                self.taskData.sort { $0.date < $1.date }
+                self.animateGraph()
+            }
+        }
+    }
+    
     private func setupUI() {
         setupCurrentDate()
         setupButtons()
@@ -182,14 +226,6 @@ extension TasksVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return tasks.count
-    }
 }
 
 extension TasksVC: UITableViewDataSource {
@@ -204,10 +240,19 @@ extension TasksVC: UITableViewDataSource {
         cell.endTimeLabel.text = task.endTime
         cell.taskNameLabel.text = task.taskName
         cell.taskTagLabel.text = task.taskTag
+        
         cell.backgroundColor = UIColor(named: "EverydayLightBlue")
         cell.layer.cornerRadius = 10
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tasks.count
     }
 }
 
