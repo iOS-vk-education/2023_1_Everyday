@@ -27,7 +27,11 @@ struct AlertContext {
                                   message: Text("You have no data to show."),
                                   dismissButton: .default(Text("OK")))
     
-    static let localStorageIssue = AlertItem(title: Text("Device Error"),
-                                             message: Text("Something is wrong with your device. Please contact support."),
-                                             dismissButton: .default(Text("OK")))
+    static let localIssue = AlertItem(title: Text("Device Error"),
+                                      message: Text("Something is wrong with your device. Please contact support."),
+                                      dismissButton: .default(Text("OK")))
+    
+    static let firstTime = AlertItem(title: Text("First time using analytics feature?"),
+                                     message: Text("If you are not using analytics for the first time, please contact support."),
+                                     dismissButton: .default(Text("OK")))
 }

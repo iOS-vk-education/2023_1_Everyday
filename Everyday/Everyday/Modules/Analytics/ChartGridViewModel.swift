@@ -16,7 +16,6 @@ final class ChartGridViewModel: ObservableObject {
             isShowingDetailView = true
         }
     }
-//    @Published var selectedBarUnit: BarUnit = .day
     
     @Published var alertItem: AlertItem?
     
@@ -96,7 +95,7 @@ final class ChartGridViewModel: ObservableObject {
         }
         
         guard let timeAgo = calendar.date(byAdding: dateComponents, to: currentDate) else {
-            alertItem = AlertContext.localStorageIssue  // change
+            alertItem = AlertContext.localIssue
             return []
         }
         filteredTaskData = self.taskData.filter { $0.date >= timeAgo }
@@ -157,7 +156,7 @@ final class ChartGridViewModel: ObservableObject {
             let data = try JSONEncoder().encode(chartTypes)
             chartTypesData = data
         } catch {
-            alertItem = AlertContext.localStorageIssue
+            alertItem = AlertContext.localIssue
         }
     }
     
@@ -169,7 +168,7 @@ final class ChartGridViewModel: ObservableObject {
         do {
             chartTypes = try JSONDecoder().decode([GridCell].self, from: chartTypesData)
         } catch {
-            alertItem = AlertContext.localStorageIssue
+            alertItem = AlertContext.firstTime
         }
     }
 }

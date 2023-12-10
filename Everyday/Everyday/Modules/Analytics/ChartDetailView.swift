@@ -76,12 +76,13 @@ struct ChartDetailView: View {
                     AxisMarks(values: viewModel.taskDataToShow.map { $0.date }) { _ in
                         switch viewModel.chartTypes[index].barUnit {
                         case .day:
-                            AxisValueLabel(format: .dateTime.weekday(.narrow), horizontalSpacing: 20)  // change
+                            AxisValueLabel(format: .dateTime.weekday(.narrow))  // change
                         case .week:
-                            AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)  // change
+                            AxisValueLabel(format: .dateTime.month(.narrow))  // change
                         case .month:
-                            AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)  // change
+                            AxisValueLabel(format: .dateTime.month(.narrow))  // change
                         }
+                        AxisGridLine()
                     }
                 }
                 .chartYAxis {
