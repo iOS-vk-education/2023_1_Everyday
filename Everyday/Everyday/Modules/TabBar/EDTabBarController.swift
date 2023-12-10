@@ -14,6 +14,7 @@ final class EDTabBarController: UITabBarController {
         super.viewDidLoad()
         self.tabBar.tintColor = UIColor.brandSecondary
         viewControllers = [createAnalyticsNC(), createTasksNC(), createSettingsNC()]
+        selectedIndex = 1
     }
     
     func createTasksNC() -> UINavigationController {
