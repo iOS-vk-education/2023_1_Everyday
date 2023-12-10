@@ -13,7 +13,7 @@ class TaskService {
     public static let shared = TaskService()
     private init() {}
     
-    public func fetchUser(completion: @escaping (User?, Error?) -> Void) {
+    public func fetchUser(completion: @escaping (UserTask?, Error?) -> Void) {
         guard let userUID = Auth.auth().currentUser?.uid else {
             return
         }
@@ -32,9 +32,9 @@ class TaskService {
                    let snapshotData = snapshot.data(),
                    let username = snapshotData["username"] as? String,
                    let email = snapshotData["email"] as? String,
-                   let doneTaskIds = snapshotData["done_task_id"] as? [DocumentReference] {
-                    let user = User(username: username, email: email, userUID: userUID, doneTaskIds: doneTaskIds)
-                    completion(user, nil)
+                   let taskUID = snapshotData["task_id"] as? [String] {
+                   let user = UserTask(username: username, email: email, userUID: userUID, taskUID: taskUID)
+                 completion(user, nil)
                 }
             }
     }
