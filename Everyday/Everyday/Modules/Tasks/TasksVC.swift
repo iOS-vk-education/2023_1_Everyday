@@ -46,6 +46,7 @@ final class TasksVC: UIViewController {
         view.addSubview(addTaskButton)
         
         setupConstraints()
+        getTasks()
     }
     
     func getTasks() {
@@ -62,7 +63,7 @@ final class TasksVC: UIViewController {
             
             for taskReference in taskIds {
                 group.enter()
-                taskReference.getDocument { [self] document, error in
+                taskReference.getDocument { [weak self] document, error in
                     defer {
                         group.leave()
                     }
@@ -73,21 +74,24 @@ final class TasksVC: UIViewController {
                     }
                     guard let document = document,
                           let taskDocumentData = document.data(),
-                          let timestamp = taskDocumentData["date"] as? Timestamp,
-                          let priorityArray = taskDocumentData["priority"] as? NSArray else {
-                        alertItem = AlertContext.invalidData
+                          let startTimestamp = taskDocumentData["date_begin"] as? Timestamp,
+                          let endTimestamp = taskDocumentData["date_end"] as? Timestamp,
+                          let title = taskDocumentData["title"] as? String,
+                          let priority = taskDocumentData["priority"] as? Int else {
+                        // add alert
                         return
                     }
                     
-                    let date = timestamp.dateValue()
-                    let priority = priorityArray.compactMap { $0 as? Int }
+                    let startTime = startTimestamp.dateValue()
+                    let endTime = endTimestamp.dateValue()
+                    let taskName = title
+                    let taskTag = String(describing: Priority(rawValue: priority) ?? Priority.none)
                     
-                    self.taskData.append(.init(date: date, priority: priority))
+                    self?.tasks.append(.init(startTime: startTime, endTime: endTime, taskName: taskName, taskTag: taskTag))
                 }
             }
             group.notify(queue: .main) {
-                self.taskData.sort { $0.date < $1.date }
-                self.animateGraph()
+                self?.tableView.reloadData()
             }
         }
     }
@@ -126,6 +130,7 @@ final class TasksVC: UIViewController {
         
         tableView.backgroundColor = UIColor(named: "EverydayBlue")
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
     }
     
     private func setupConstraints() {
@@ -216,33 +221,26 @@ extension TasksVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let spacerView = UIView()
-        spacerView.backgroundColor = UIColor.clear
-        return spacerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
-    }
 }
 
 extension TasksVC: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? TasksTableViewCell else {
             return UITableViewCell()
         }
         let task = tasks[indexPath.section]
         
-        cell.startTimeLabel.text = task.startTime
-        cell.endTimeLabel.text = task.endTime
+        cell.startTimeLabel.text = task.startTime.convertToHoursMinutesFormat()
+        cell.endTimeLabel.text = task.endTime.convertToHoursMinutesFormat()
         cell.taskNameLabel.text = task.taskName
         cell.taskTagLabel.text = task.taskTag
         
-        cell.backgroundColor = UIColor(named: "EverydayLightBlue")
-        cell.layer.cornerRadius = 10
+        cell.backgroundColor = UIColor.clear
+        
+        let emptyView = UIView()
+        emptyView.backgroundColor = .brandPrimary
+        cell.selectedBackgroundView = emptyView
         
         return cell
     }

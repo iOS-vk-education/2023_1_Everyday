@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Task {
-    let startTime: String
-    let endTime: String
+struct Task: Codable, Identifiable, Hashable {
+    var id = UUID()
+    let startTime: Date
+    let endTime: Date
     let taskName: String
     let taskTag: String
 }

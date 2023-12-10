@@ -32,7 +32,7 @@ class TaskService {
                    let snapshotData = snapshot.data(),
                    let username = snapshotData["username"] as? String,
                    let email = snapshotData["email"] as? String,
-                   let taskUID = snapshotData["task_id"] as? [String] {
+                   let taskUID = snapshotData["task_id"] as? [DocumentReference] {
                    let user = UserTask(username: username, email: email, userUID: userUID, taskUID: taskUID)
                  completion(user, nil)
                 }

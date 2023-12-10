@@ -8,6 +8,7 @@
 import UIKit
 
 class TasksTableViewCell: UITableViewCell {
+    
     let startTimeLabel = UILabel()
     let endTimeLabel = UILabel()
     let taskNameLabel = UILabel()
@@ -24,12 +25,15 @@ class TasksTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-       super.layoutSubviews()
+        super.layoutSubviews()
         
-       let spacing: CGFloat = 5
-       self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: spacing, left: 0, bottom: spacing, right: 0))
+        contentView.backgroundColor = .brandPrimaryLight
+        
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0))
+        contentView.layer.cornerRadius = 10
+        contentView.layer.masksToBounds = true
     }
-
+    
     private func setupLabels() {
         startTimeLabel.font = UIFont.systemFont(ofSize: 16)
         startTimeLabel.textColor = UIColor.white
