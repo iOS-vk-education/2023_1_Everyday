@@ -15,23 +15,23 @@ struct AlertItem: Identifiable {
 }
 
 struct AlertContext {
-    static let invalidResponse = AlertItem(title: Text("Server Error"),
-                                           message: Text("Invalid response from the server. Please try again later or contact support."),
-                                           dismissButton: .default(Text("OK")))
+    static let invalidResponse = AlertItem(title: Text("Ошибка сервера"),
+                                           message: Text("Неверный ответ от сервера. Пожалуйста, повторите попытку позже."),
+                                           dismissButton: .default(Text("ОК")))
     
-    static let invalidData = AlertItem(title: Text("Server Error"),
-                                       message: Text("The data received from the server was invalid. Please contact support."),
-                                       dismissButton: .default(Text("OK")))
+    static let invalidData = AlertItem(title: Text("Ошибка сервера"),
+                                       message: Text("Данные, полученные с сервера, оказались недействительными. Обратитесь в службу поддержки."),
+                                       dismissButton: .default(Text("ОК")))
     
-    static let noData = AlertItem(title: Text("Empty storage"),
-                                  message: Text("You have no data to show."),
-                                  dismissButton: .default(Text("OK")))
+    static let noData = AlertItem(title: Text("Нет данных"),
+                                  message: Text("Отсутствуют данные для отображения."),
+                                  dismissButton: .default(Text("ОК")))
     
-    static let localIssue = AlertItem(title: Text("Device Error"),
-                                      message: Text("Something is wrong with your device. Please contact support."),
-                                      dismissButton: .default(Text("OK")))
+    static let localIssue = AlertItem(title: Text("Ошибка устройства"),
+                                      message: Text("Что-то не так с вашим устройством. Пожалуйста, обратитесь в службу поддержки."),
+                                      dismissButton: .default(Text("ОК")))
     
-    static let firstTime = AlertItem(title: Text("First time using analytics feature?"),
-                                     message: Text("If you are not using analytics for the first time, please contact support."),
-                                     dismissButton: .default(Text("OK")))
+    static let firstTime = AlertItem(title: Text("Впервые зашли в аналитику?"),
+                                     message: Text("Если вы используете аналитику не в первый раз, пожалуйста, обратитесь в службу поддержки."),
+                                     dismissButton: .default(Text("ОК")))
 }
