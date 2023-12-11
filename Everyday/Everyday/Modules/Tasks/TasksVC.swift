@@ -90,6 +90,7 @@ final class TasksVC: UIViewController {
                 }
             }
             group.notify(queue: .main) {
+                self?.tasks.sort { $0.startTime < $1.startTime }
                 self?.tableView.reloadData()
             }
         }
@@ -220,9 +221,23 @@ extension TasksVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor.clear
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        10
+    }
 }
 
 extension TasksVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? TasksTableViewCell else {
@@ -235,10 +250,12 @@ extension TasksVC: UITableViewDataSource {
         cell.taskNameLabel.text = task.taskName
         cell.taskTagLabel.text = task.taskTag
         
-        cell.backgroundColor = UIColor.clear
+        cell.layer.cornerRadius = 10
+        cell.backgroundColor = .brandPrimaryLight
         
         let emptyView = UIView()
-        emptyView.backgroundColor = .brandPrimary
+        emptyView.backgroundColor = .brandSecondary
+        emptyView.layer.cornerRadius = 10
         cell.selectedBackgroundView = emptyView
         
         return cell
