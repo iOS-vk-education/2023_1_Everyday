@@ -109,6 +109,7 @@ final class TasksVC: UIViewController, UITableViewDataSource, UITableViewDelegat
                 cell.taskTagLabel.text = task.taskTag
                 
                 cell.backgroundColor = UIColor(named: "EverydayLightBlue")
+                cell.backgroundColor = .white
                 cell.layer.cornerRadius = 10
                 return cell
             } else {

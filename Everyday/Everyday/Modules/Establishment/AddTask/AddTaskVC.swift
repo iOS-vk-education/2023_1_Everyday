@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import HorizonCalendar
 
 final class AddTaskVC: UIViewController {
     
@@ -140,7 +141,14 @@ final class AddTaskVC: UIViewController {
     
     @objc
     private func didTapCalendarButton() {
-        print("tapped")
+        let dayRangeSelectionDemoVC = SingleDaySelectionVC(monthsLayout: .vertical(
+                                                                    options: VerticalMonthsLayoutOptions(
+                                                                        pinDaysOfWeekToTop: false,
+                                                                        alwaysShowCompleteBoundaryMonths: false,
+                                                                        scrollsToFirstMonthOnStatusBarTap: false)))
+        dayRangeSelectionDemoVC.modalPresentationStyle = .fullScreen
+
+        self.present(dayRangeSelectionDemoVC, animated: true, completion: nil)
     }
     
     @objc
