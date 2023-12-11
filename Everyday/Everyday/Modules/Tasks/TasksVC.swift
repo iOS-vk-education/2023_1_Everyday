@@ -13,7 +13,7 @@ final class TasksVC: UIViewController {
     private let container = UIView()
     private let topLabel = UILabel()
     private let addTaskButton = UIButton(type: .system)
-    private let tableView = UITableView()
+    private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     private let searchController = UISearchController(searchResultsController: nil)
     
     var tasks: [Task] = []
@@ -139,8 +139,8 @@ final class TasksVC: UIViewController {
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             addTaskButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
@@ -227,9 +227,19 @@ extension TasksVC: UITableViewDelegate {
         footerView.backgroundColor = UIColor.clear
         return footerView
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         10
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor.clear
+        return footerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        .leastNormalMagnitude
     }
 }
 
@@ -249,9 +259,6 @@ extension TasksVC: UITableViewDataSource {
         cell.endTimeLabel.text = task.endTime.convertToHoursMinutesFormat()
         cell.taskNameLabel.text = task.taskName
         cell.taskTagLabel.text = task.taskTag
-        
-        cell.layer.cornerRadius = 10
-        cell.backgroundColor = .brandPrimaryLight
         
         let emptyView = UIView()
         emptyView.backgroundColor = .brandSecondary
