@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8CB6EA382B13EEDB00FDAB6D /* DeleteAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6EA372B13EEDB00FDAB6D /* DeleteAccountVC.swift */; };
+		8CB6EA3B2B13EF4000FDAB6D /* ChangeEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6EA3A2B13EF4000FDAB6D /* ChangeEmailVC.swift */; };
+		8CB6EA3E2B13EF8500FDAB6D /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6EA3D2B13EF8500FDAB6D /* ChangePasswordVC.swift */; };
+		8CB6EA402B14D72200FDAB6D /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6EA3F2B14D72200FDAB6D /* SettingsTableViewCell.swift */; };
+		8CB6EA422B152B5400FDAB6D /* ChangeOrExitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6EA412B152B5400FDAB6D /* ChangeOrExitTableViewCell.swift */; };
+		8CC6D97D2B1E2A3B00E64AED /* SettingsTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6D97C2B1E2A3B00E64AED /* SettingsTableViewCellModel.swift */; };
+		8CC6D97F2B1E44CD00E64AED /* ProfileTableViewCellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6D97E2B1E44CD00E64AED /* ProfileTableViewCellModels.swift */; };
+		8CC6D9822B27965C00E64AED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6D9812B27965C00E64AED /* Assets.xcassets */; };
+		8CD020CF2B1559C400458C90 /* UserNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD020CE2B1559C400458C90 /* UserNameTableViewCell.swift */; };
 		9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11B2AF947740002A1EC /* Coves Bold.otf */; };
 		9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11D2AF9477B0002A1EC /* Coves Light.otf */; };
 		9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */; };
@@ -37,7 +46,6 @@
 		CE1A452C2B016413001F426E /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45282B016413001F426E /* ChartGridView.swift */; };
 		CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */; };
 		CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */; };
-		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
 		CE7FAAE82AECF312000E3209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */; };
 		CE84B9032AF1394600B1E795 /* TasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9022AF1394600B1E795 /* TasksVC.swift */; };
 		CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84B9062AF1398B00B1E795 /* SettingsVC.swift */; };
@@ -54,6 +62,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8CB6EA372B13EEDB00FDAB6D /* DeleteAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountVC.swift; sourceTree = "<group>"; };
+		8CB6EA3A2B13EF4000FDAB6D /* ChangeEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailVC.swift; sourceTree = "<group>"; };
+		8CB6EA3D2B13EF8500FDAB6D /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		8CB6EA3F2B14D72200FDAB6D /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		8CB6EA412B152B5400FDAB6D /* ChangeOrExitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeOrExitTableViewCell.swift; sourceTree = "<group>"; };
+		8CC6D97C2B1E2A3B00E64AED /* SettingsTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCellModel.swift; sourceTree = "<group>"; };
+		8CC6D97E2B1E44CD00E64AED /* ProfileTableViewCellModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCellModels.swift; sourceTree = "<group>"; };
+		8CC6D9812B27965C00E64AED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
+		8CC6D9832B27967700E64AED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8CD020CE2B1559C400458C90 /* UserNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameTableViewCell.swift; sourceTree = "<group>"; };
 		9E22B11B2AF947740002A1EC /* Coves Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Bold.otf"; sourceTree = "<group>"; };
 		9E22B11D2AF9477B0002A1EC /* Coves Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Light.otf"; sourceTree = "<group>"; };
 		9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -76,7 +94,6 @@
 		CE7FAAD82AECF30B000E3209 /* Everyday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everyday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE7FAAE42AECF312000E3209 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7FAAE72AECF312000E3209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7FAAE92AECF312000E3209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE84B9022AF1394600B1E795 /* TasksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksVC.swift; sourceTree = "<group>"; };
@@ -113,9 +130,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8CB6EA362B13EEA500FDAB6D /* DeleteAccount */ = {
+			isa = PBXGroup;
+			children = (
+				8CB6EA372B13EEDB00FDAB6D /* DeleteAccountVC.swift */,
+			);
+			path = DeleteAccount;
+			sourceTree = "<group>";
+		};
+		8CB6EA392B13EF1700FDAB6D /* ChangeEmail */ = {
+			isa = PBXGroup;
+			children = (
+				8CB6EA3A2B13EF4000FDAB6D /* ChangeEmailVC.swift */,
+			);
+			path = ChangeEmail;
+			sourceTree = "<group>";
+		};
+		8CB6EA3C2B13EF6000FDAB6D /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				8CB6EA3D2B13EF8500FDAB6D /* ChangePasswordVC.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		8CC6D9802B1E612800E64AED /* SetSettings */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B9062AF1398B00B1E795 /* SettingsVC.swift */,
+				8CC6D97C2B1E2A3B00E64AED /* SettingsTableViewCellModel.swift */,
+				8CB6EA3F2B14D72200FDAB6D /* SettingsTableViewCell.swift */,
+			);
+			path = SetSettings;
+			sourceTree = "<group>";
+		};
 		9E22B11A2AF947360002A1EC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				8CC6D9812B27965C00E64AED /* Assets.xcassets */,
 				9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */,
 				9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */,
 				9E22B11D2AF9477B0002A1EC /* Coves Light.otf */,
@@ -150,7 +202,11 @@
 		9E97DB3A2AFD5A8600491C98 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				CE84B9062AF1398B00B1E795 /* SettingsVC.swift */,
+				8CC6D9802B1E612800E64AED /* SetSettings */,
+				8CB6EA3C2B13EF6000FDAB6D /* ChangePassword */,
+				8CB6EA392B13EF1700FDAB6D /* ChangeEmail */,
+				8CB6EA362B13EEA500FDAB6D /* DeleteAccount */,
+				9E97DB3F2AFD5AFA00491C98 /* Profile */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -194,6 +250,9 @@
 			isa = PBXGroup;
 			children = (
 				CE84B90C2AF13A3B00B1E795 /* ProfileVC.swift */,
+				8CB6EA412B152B5400FDAB6D /* ChangeOrExitTableViewCell.swift */,
+				8CD020CE2B1559C400458C90 /* UserNameTableViewCell.swift */,
+				8CC6D97E2B1E44CD00E64AED /* ProfileTableViewCellModels.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -258,11 +317,11 @@
 		CE84B8F92AF058E000B1E795 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				8CC6D9832B27967700E64AED /* Assets.xcassets */,
 				9E22B11A2AF947360002A1EC /* Fonts */,
 				CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */,
 				CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */,
 				9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */,
-				CE7FAAE42AECF312000E3209 /* Assets.xcassets */,
 				CE7FAAE62AECF312000E3209 /* LaunchScreen.storyboard */,
 			);
 			path = Support;
@@ -273,7 +332,6 @@
 			children = (
 				9E97DB432B04FF6100491C98 /* Authorization */,
 				9E97DB402AFD5B4000491C98 /* TabBar */,
-				9E97DB3F2AFD5AFA00491C98 /* Profile */,
 				9E97DB3E2AFD5AEE00491C98 /* AddTask */,
 				9E97DB3A2AFD5A8600491C98 /* Settings */,
 				9E97DB392AFD5A7E00491C98 /* Analytics */,
@@ -369,7 +427,7 @@
 				9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */,
 				9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */,
 				9E22B1222AF94A800002A1EC /* Montserrat-Bold.ttf in Resources */,
-				CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */,
+				8CC6D9822B27965C00E64AED /* Assets.xcassets in Resources */,
 				9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */,
 				9E97DB422B04FCAC00491C98 /* GoogleService-Info.plist in Resources */,
 			);
@@ -403,21 +461,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CB6EA3B2B13EF4000FDAB6D /* ChangeEmailVC.swift in Sources */,
 				9E97DB4B2B051FE100491C98 /* AlertManager.swift in Sources */,
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
+				8CC6D97D2B1E2A3B00E64AED /* SettingsTableViewCellModel.swift in Sources */,
 				CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */,
+				8CB6EA3E2B13EF8500FDAB6D /* ChangePasswordVC.swift in Sources */,
 				9E97DB5D2B0535EA00491C98 /* TaskService.swift in Sources */,
+				8CC6D97F2B1E44CD00E64AED /* ProfileTableViewCellModels.swift in Sources */,
 				9E97DB492B05117A00491C98 /* LoginModel.swift in Sources */,
 				CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */,
 				CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */,
 				CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */,
+				8CB6EA422B152B5400FDAB6D /* ChangeOrExitTableViewCell.swift in Sources */,
+				8CB6EA402B14D72200FDAB6D /* SettingsTableViewCell.swift in Sources */,
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
 				CEA4653B2B0D48A300EC52AE /* Alert.swift in Sources */,
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
+				8CD020CF2B1559C400458C90 /* UserNameTableViewCell.swift in Sources */,
 				9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */,
 				9E97DB5B2B0533FD00491C98 /* User.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				CEA465392B0D475600EC52AE /* AnalyticsError.swift in Sources */,
+				8CB6EA382B13EEDB00FDAB6D /* DeleteAccountVC.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
 				9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */,
@@ -570,9 +636,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_WARNINGS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 72F47Y7J7T;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Everyday/Info.plist;
@@ -588,6 +655,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ed-Everyday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -600,9 +668,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_WARNINGS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 72F47Y7J7T;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Everyday/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Everyday;
@@ -617,6 +686,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ed-Everyday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
