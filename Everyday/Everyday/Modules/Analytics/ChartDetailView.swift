@@ -40,12 +40,12 @@ struct ChartDetailView: View {
                         .foregroundStyle(Color.brandSecondary)
                         .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                         .annotation(alignment: .leading) {
-                            Text("Goal")
+                            Text("Цель")
                                 .font(.caption)
                                 .foregroundColor(Color.brandSecondary)
                         }
                     
-                    ForEach(viewModel.taskData) { taskData in
+                    ForEach(viewModel.taskDataToShow) { taskData in
                         switch viewModel.chartTypes[index].chartType {
                         case .line:
                             LineMark(
@@ -73,8 +73,16 @@ struct ChartDetailView: View {
                     }
                 }
                 .chartXAxis {
-                    AxisMarks(values: viewModel.taskData.map { $0.date }) { _ in
-                        AxisValueLabel(format: .dateTime.month(.narrow), horizontalSpacing: 20)
+                    AxisMarks(values: viewModel.taskDataToShow.map { $0.date }) { _ in
+                        switch viewModel.chartTypes[index].barUnit {
+                        case .day:
+                            AxisValueLabel(format: .dateTime.weekday(.narrow))
+                        case .week:
+                            AxisValueLabel(format: .dateTime.month(.narrow))
+                        case .month:
+                            AxisValueLabel(format: .dateTime.month(.narrow))
+                        }
+                        AxisGridLine()
                     }
                 }
                 .chartYAxis {
@@ -86,7 +94,7 @@ struct ChartDetailView: View {
                 .padding()
                 
                 HStack {
-                    Text("Chart type")
+                    Text("Тип диаграммы")
                     
                     Picker("", selection: $viewModel.chartTypes[index].chartType) {
                         ForEach(ChartType.allCases, id: \.self) { chartType in
@@ -95,13 +103,13 @@ struct ChartDetailView: View {
                     }
                     .onChange(of: viewModel.chartTypes[index].chartType) { _ in
                         viewModel.saveChanges()
-                        for i in 0..<viewModel.taskData.count {
-                            viewModel.taskData[i].animate = false
+                        for i in 0..<viewModel.taskDataToShow.count {
+                            viewModel.taskDataToShow[i].animate = false
                         }
                         viewModel.animateGraph()
                     }
                     .pickerStyle(.segmented)
-                    .padding(.leading, 80)
+                    .padding(.leading, 20)
                 }
                 .padding()
             }

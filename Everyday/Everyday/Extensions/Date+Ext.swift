@@ -27,9 +27,9 @@ extension Calendar.Component {
     
     static func fromString(_ componentString: String) -> Calendar.Component {
         let componentMapping: [String: Calendar.Component] = [
-            "day": .day,
-            "month": .month,
-            "week": .weekOfYear
+            "день": .day,
+            "месяц": .month,
+            "неделя": .weekOfYear
         ]
 
         return componentMapping[componentString.lowercased()] ?? .day
