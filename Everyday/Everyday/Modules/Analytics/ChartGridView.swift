@@ -15,7 +15,6 @@ struct ChartGridView: View {
     
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
-    
     @State private var selectedBarUnit: BarUnit = .month
     
     var body: some View {
@@ -34,8 +33,8 @@ struct ChartGridView: View {
             .onAppear {
                 viewModel.taskData.removeAll(keepingCapacity: true)
                 viewModel.getTaskData()
-                
                 viewModel.retrievePreferences()
+                
                 selectedBarUnit = viewModel.chartTypes[0].barUnit
             }
             .sheet(isPresented: $viewModel.isShowingDetailView) {
@@ -59,8 +58,10 @@ struct ChartGridView: View {
                     for i in 0..<viewModel.chartTypes.count {
                         viewModel.chartTypes[i].barUnit = newBarUnit
                     }
-                    for i in 0..<viewModel.taskData.count {
-                        viewModel.taskData[i].animate = false
+                    viewModel.saveChanges()
+                    viewModel.updateShownData()
+                    for i in 0..<viewModel.taskDataToShow.count {
+                        viewModel.taskDataToShow[i].animate = false
                     }
                     viewModel.animateGraph()
                 }
@@ -91,12 +92,12 @@ struct ChartTitleView: View {
                     .foregroundStyle(Color.brandSecondary)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                     .annotation(alignment: .leading) {
-                        Text("Goal")
+                        Text("Цель")
                             .font(.caption)
                             .foregroundColor(.brandSecondary)
                     }
                 
-                ForEach(viewModel.taskData) { taskData in
+                ForEach(viewModel.taskDataToShow) { taskData in
                     switch chartType {
                     case .line:
                         LineMark(
