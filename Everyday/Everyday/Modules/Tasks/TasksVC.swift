@@ -16,11 +16,57 @@ final class TasksVC: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     private let searchController = UISearchController(searchResultsController: nil)
     
+    var mainMenu = UIMenu()
+    var sortMenu = UIMenu()
+    var filterMenu = UIMenu()
+    var sortingCategoryMenu = UIMenu()
+    var filterCategoryMenu = UIMenu()
+    var sortByMenu = UIMenu()
+    var filterByMenu = UIMenu()
+    
+    enum SortingCategory: String, CaseIterable {
+        case time = "По умолчанию (время начала)"
+        case status = "Статус"
+        case priority = "Приоритет"
+    }
+    
+    enum SortByStatus: String, CaseIterable {
+        case doneFirst = "Сначала выполненные"
+        case notDoneFirst = "Сначала невыполненные"
+        case overdueFirst = "Сначала просроченные"
+    }
+    
+    enum SortByPriority: String, CaseIterable {
+        case ascending = "По возрастанию"
+        case descending = "По убыванию"
+    }
+    
+    enum FilterCategory: String, CaseIterable {
+        case none = "По умолчанию (выключено)"
+        case status = "Статус"
+        case priority = "Приоритет"
+    }
+    
+    enum FilterByStatus: String, CaseIterable {
+        case doneFirst = "Только выполненные"
+        case notDoneFirst = "Только невыполненные"
+        case overdueFirst = "Только просроченные"
+    }
+    
+    enum FilterByPriority: String, CaseIterable {
+        case high = "Только важные"
+        case medium = "Только срочные"
+        case low = "Только не важные"
+        case none = "Только без приоритета"
+    }
+    
     var tasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "EverydayBlue")
+        
+        setupUI()
         
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
@@ -31,7 +77,7 @@ final class TasksVC: UIViewController {
         searchButton.tintColor = UIColor(named: "EverydayOrange")
         
         let image = UIImage(named: "ellipsis")?.withTintColor(UIColor(named: "everydayOrange") ?? .black)
-        let moreButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonTapped))
+        let moreButton = UIBarButtonItem(image: image, menu: pickerMenu2)
         moreButton.tintColor = UIColor(named: "EverydayOrange")
         
         navigationItem.rightBarButtonItems = [moreButton, searchButton]
@@ -39,7 +85,7 @@ final class TasksVC: UIViewController {
         navigationItem.title = ""
         navigationItem.searchController = searchController
         
-        setupUI()
+//        setupUI()
         
         view.addSubview(tableView)
         view.addSubview(addTaskButton)
@@ -84,7 +130,7 @@ final class TasksVC: UIViewController {
                     let startTime = startTimestamp.dateValue()
                     let endTime = endTimestamp.dateValue()
                     let taskName = title
-                    let taskTag = String(describing: Priority(rawValue: priority) ?? Priority.none)
+                    let taskTag = priority
                     
                     self?.tasks.append(.init(startTime: startTime, endTime: endTime, taskName: taskName, taskTag: taskTag))
                 }
@@ -100,6 +146,7 @@ final class TasksVC: UIViewController {
         setupCurrentDate()
         setupButtons()
         setupTable()
+        setupMenu()
     }
     
     private func setupCurrentDate() {
@@ -156,27 +203,53 @@ final class TasksVC: UIViewController {
     }
     
     @objc func moreButtonTapped() {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//
+//        let showCompletedTasksAction = UIAlertAction(title: "Показать выполненные задачи", style: .default) { _ in
+//            return
+//        }
+//        alertController.addAction(showCompletedTasksAction)
+//
+//        let showOverdueTasksAction = UIAlertAction(title: "Показать просроченные задачи", style: .default) { _ in
+//            return
+//        }
+//        alertController.addAction(showOverdueTasksAction)
+//
+//        let showTasksInOrderAction = UIAlertAction(title: "Показать задачи", style: .default) { _ in
+//            return
+//        }
+//        alertController.addAction(showTasksInOrderAction)
+//
+//        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+//        alertController.addAction(cancelAction)
+//
+//        present(alertController, animated: true, completion: nil)
         
-        let showCompletedTasksAction = UIAlertAction(title: "Показать выполненные задачи", style: .default) { _ in
-            return
+//        pickerMenu = UIMenu(title: "Select Item", options: .displayInline, children: [
+//                    UIAction(title: "Select Item", image: nil, identifier: nil, handler: { _ in
+//                        // Handle the selected item
+//                        let selectedItem = self.pickerView.selectedRow(inComponent: 0)
+//                        print("Selected Item: \(selectedItem)")
+//                    })
+//                ])
+    }
+    
+    func setupMenu() {
+        let menuItems: [UIMenuElement] = SortBy.allCases.map { enumCase in
+            UIAction(title: enumCase.rawValue, image: nil, identifier: nil, handler: { _ in
+                // Handle the selected item
+                print("Selected Item: \(enumCase)")
+            })
         }
-        alertController.addAction(showCompletedTasksAction)
         
-        let showOverdueTasksAction = UIAlertAction(title: "Показать просроченные задачи", style: .default) { _ in
-            return
-        }
-        alertController.addAction(showOverdueTasksAction)
+        pickerMenu = UIMenu(title: "Select Item", options: .singleSelection, children: menuItems)
         
-        let showTasksInOrderAction = UIAlertAction(title: "Показать задачи", style: .default) { _ in
-            return
-        }
-        alertController.addAction(showTasksInOrderAction)
-        
-        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
+        pickerMenu2 = UIMenu(title: "Select Item", options: .displayInline, children: [
+            pickerMenu,
+            UIAction(title: "no", handler: { _ in
+                print("no")
+            })
+        ])
     }
     
     @objc func addTaskButtonTapped() {
@@ -258,7 +331,12 @@ extension TasksVC: UITableViewDataSource {
         cell.startTimeLabel.text = task.startTime.convertToHoursMinutesFormat()
         cell.endTimeLabel.text = task.endTime.convertToHoursMinutesFormat()
         cell.taskNameLabel.text = task.taskName
-        cell.taskTagLabel.text = task.taskTag
+        
+        let priority = Priority(rawValue: task.taskTag) ?? Priority.none
+        
+//        cell.taskTagLabel.text = priority.convertToString()
+//        cell.taskTagLabel.textColor = priority.convertToUIColor()
+        cell.layer.borderColor = priority.convertToUIColor().cgColor
         
         let emptyView = UIView()
         emptyView.backgroundColor = .brandSecondary

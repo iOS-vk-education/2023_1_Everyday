@@ -29,27 +29,28 @@ class TasksTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         layer.cornerRadius = 10
+        layer.borderWidth = 2
         backgroundColor = .brandPrimaryLight
     }
     
     private func setupLabels() {
         startTimeLabel.font = UIFont.systemFont(ofSize: 16)
-        startTimeLabel.textColor = UIColor.white
+//        startTimeLabel.textColor = UIColor.white
         startTimeLabel.textAlignment = .left
         startTimeLabel.numberOfLines = 0
         
         endTimeLabel.font = UIFont.systemFont(ofSize: 16)
-        endTimeLabel.textColor = UIColor.white
+//        endTimeLabel.textColor = UIColor.white
         endTimeLabel.textAlignment = .left
         endTimeLabel.numberOfLines = 0
         
         taskNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        taskNameLabel.textColor = UIColor.white
+//        taskNameLabel.textColor = UIColor.white
         taskNameLabel.textAlignment = .left
         taskNameLabel.numberOfLines = 0
         
         taskTagLabel.font = UIFont.systemFont(ofSize: 14)
-        taskTagLabel.textColor = UIColor.white
+//        taskTagLabel.textColor = UIColor.white
         taskTagLabel.textAlignment = .left
         taskTagLabel.numberOfLines = 0
     }
