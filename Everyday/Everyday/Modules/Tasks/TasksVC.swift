@@ -10,57 +10,25 @@ import Firebase
 
 final class TasksVC: UIViewController {
     
+    // MARK: - Private Properties
+    
     private let container = UIView()
     private let topLabel = UILabel()
     private let addTaskButton = UIButton(type: .system)
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     private let searchController = UISearchController(searchResultsController: nil)
     
-    var mainMenu = UIMenu()
-    var sortMenu = UIMenu()
-    var filterMenu = UIMenu()
-    var sortingCategoryMenu = UIMenu()
-    var filterCategoryMenu = UIMenu()
-    var sortByMenu = UIMenu()
-    var filterByMenu = UIMenu()
-    
-    enum SortingCategory: String, CaseIterable {
-        case time = "По умолчанию (время начала)"
-        case status = "Статус"
-        case priority = "Приоритет"
-    }
-    
-    enum SortByStatus: String, CaseIterable {
-        case doneFirst = "Сначала выполненные"
-        case notDoneFirst = "Сначала невыполненные"
-        case overdueFirst = "Сначала просроченные"
-    }
-    
-    enum SortByPriority: String, CaseIterable {
-        case ascending = "По возрастанию"
-        case descending = "По убыванию"
-    }
-    
-    enum FilterCategory: String, CaseIterable {
-        case none = "По умолчанию (выключено)"
-        case status = "Статус"
-        case priority = "Приоритет"
-    }
-    
-    enum FilterByStatus: String, CaseIterable {
-        case doneFirst = "Только выполненные"
-        case notDoneFirst = "Только невыполненные"
-        case overdueFirst = "Только просроченные"
-    }
-    
-    enum FilterByPriority: String, CaseIterable {
-        case high = "Только важные"
-        case medium = "Только срочные"
-        case low = "Только не важные"
-        case none = "Только без приоритета"
-    }
+    private var mainMenu = UIMenu()
+    private var sortMenu = UIMenu()
+    private var filterMenu = UIMenu()
+    private var sortingCategoryMenu = UIMenu()
+    private var filterCategoryMenu = UIMenu()
+    private var sortByMenu = UIMenu()
+    private var filterByMenu = UIMenu()
     
     var tasks: [Task] = []
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,25 +42,22 @@ final class TasksVC: UIViewController {
         searchController.searchBar.delegate = self
         
         let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-        searchButton.tintColor = UIColor(named: "EverydayOrange")
-        
-        let image = UIImage(named: "ellipsis")?.withTintColor(UIColor(named: "everydayOrange") ?? .black)
-        let moreButton = UIBarButtonItem(image: image, menu: mainMenu)
-        moreButton.tintColor = UIColor(named: "EverydayOrange")
+        searchButton.tintColor = .brandSecondary
+
+        let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: mainMenu)
+        moreButton.tintColor = .brandSecondary
         
         navigationItem.rightBarButtonItems = [moreButton, searchButton]
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: topLabel)
-        navigationItem.title = ""
         navigationItem.searchController = searchController
         
-//        setupUI()
-        
-        view.addSubview(tableView)
-        view.addSubview(addTaskButton)
+        view.addSubviews(tableView, addTaskButton)
         
         setupConstraints()
         getTasks()
     }
+    
+    // MARK: - Network
     
     func getTasks() {
         let group = DispatchGroup()
@@ -142,6 +107,8 @@ final class TasksVC: UIViewController {
         }
     }
     
+    // MARK: - Setup
+    
     private func setupUI() {
         setupCurrentDate()
         setupButtons()
@@ -156,16 +123,16 @@ final class TasksVC: UIViewController {
         let currentDate = dateFormatter.string(from: Date())
         topLabel.text = currentDate.capitalized
         topLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
-        topLabel.textColor = UIColor(named: "EverydayOrange")
+        topLabel.textColor = .brandSecondary
     }
     
     private func setupButtons() {
-        let config = UIImage.SymbolConfiguration(pointSize: 60)
+        let config = UIImage.SymbolConfiguration(pointSize: 60)  // wtf?
         let image = UIImage(systemName: "plus.circle.fill", withConfiguration: config)
         
         addTaskButton.setImage(image, for: .normal)
         addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
-        addTaskButton.tintColor = UIColor(named: "EverydayOrange")
+        addTaskButton.tintColor = .brandSecondary
         addTaskButton.backgroundColor = .white
         addTaskButton.layer.cornerRadius = 55
     }
@@ -173,12 +140,14 @@ final class TasksVC: UIViewController {
     private func setupTable() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(TasksTableViewCell.self, forCellReuseIdentifier: "CustomCell")
+        tableView.register(TasksTableViewCell.self, forCellReuseIdentifier: TasksTableViewCell.reuseID)
         
-        tableView.backgroundColor = UIColor(named: "EverydayBlue")
+        tableView.backgroundColor = .brandPrimary
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
     }
+    
+    // MARK: - Layout
     
     private func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -197,10 +166,7 @@ final class TasksVC: UIViewController {
         ])
     }
     
-    @objc func searchButtonTapped() {
-        searchController.isActive = true
-        searchController.searchBar.becomeFirstResponder()
-    }
+    // MARK: - Menu
     
     func setupMainMenu() {
         setupSortingCategoryMenu()
@@ -256,7 +222,16 @@ final class TasksVC: UIViewController {
         filterByMenu = UIMenu(options: .displayInline, children: menuItems)
     }
     
-    @objc func addTaskButtonTapped() {
+    // MARK: - Button Actions
+    
+    @objc
+    private func searchButtonTapped() {
+        searchController.isActive = true
+        searchController.searchBar.becomeFirstResponder()
+    }
+    
+    @objc
+    private func addTaskButtonTapped() {
         let addTaskVC = AddTaskVC()
         
         if let sheet = addTaskVC.sheetPresentationController {
@@ -277,20 +252,22 @@ final class TasksVC: UIViewController {
     }
 }
 
+// MARK: - Extensions
+
 extension TasksVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "Done") { _, _, comletion in
-            comletion(true)
+        let action = UIContextualAction(style: .normal, title: "Done") { _, _, completion in
+            completion(true)
         }
         action.backgroundColor = .systemGreen
         return UISwipeActionsConfiguration(actions: [action])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, comletion in
+        let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            comletion(true)
+            completion(true)
         }
         return UISwipeActionsConfiguration(actions: [action])
     }
@@ -327,7 +304,7 @@ extension TasksVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? TasksTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TasksTableViewCell.reuseID, for: indexPath) as? TasksTableViewCell else {
             return UITableViewCell()
         }
         let task = tasks[indexPath.section]
@@ -337,9 +314,6 @@ extension TasksVC: UITableViewDataSource {
         cell.taskNameLabel.text = task.taskName
         
         let priority = Priority(rawValue: task.taskTag) ?? Priority.none
-        
-//        cell.taskTagLabel.text = priority.convertToString()
-//        cell.taskTagLabel.textColor = priority.convertToUIColor()
         cell.layer.borderColor = priority.convertToUIColor().cgColor
         
         let emptyView = UIView()
