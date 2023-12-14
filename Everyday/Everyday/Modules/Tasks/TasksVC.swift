@@ -77,7 +77,7 @@ final class TasksVC: UIViewController {
         searchButton.tintColor = UIColor(named: "EverydayOrange")
         
         let image = UIImage(named: "ellipsis")?.withTintColor(UIColor(named: "everydayOrange") ?? .black)
-        let moreButton = UIBarButtonItem(image: image, menu: pickerMenu2)
+        let moreButton = UIBarButtonItem(image: image, menu: mainMenu)
         moreButton.tintColor = UIColor(named: "EverydayOrange")
         
         navigationItem.rightBarButtonItems = [moreButton, searchButton]
@@ -146,7 +146,7 @@ final class TasksVC: UIViewController {
         setupCurrentDate()
         setupButtons()
         setupTable()
-        setupMenu()
+        setupMainMenu()
     }
     
     private func setupCurrentDate() {
@@ -202,54 +202,58 @@ final class TasksVC: UIViewController {
         searchController.searchBar.becomeFirstResponder()
     }
     
-    @objc func moreButtonTapped() {
-//        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//
-//        let showCompletedTasksAction = UIAlertAction(title: "Показать выполненные задачи", style: .default) { _ in
-//            return
-//        }
-//        alertController.addAction(showCompletedTasksAction)
-//
-//        let showOverdueTasksAction = UIAlertAction(title: "Показать просроченные задачи", style: .default) { _ in
-//            return
-//        }
-//        alertController.addAction(showOverdueTasksAction)
-//
-//        let showTasksInOrderAction = UIAlertAction(title: "Показать задачи", style: .default) { _ in
-//            return
-//        }
-//        alertController.addAction(showTasksInOrderAction)
-//
-//        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
-//        alertController.addAction(cancelAction)
-//
-//        present(alertController, animated: true, completion: nil)
+    func setupMainMenu() {
+        setupSortingCategoryMenu()
+        setupSortByMenu()
+        setupSortMenu()
         
-//        pickerMenu = UIMenu(title: "Select Item", options: .displayInline, children: [
-//                    UIAction(title: "Select Item", image: nil, identifier: nil, handler: { _ in
-//                        // Handle the selected item
-//                        let selectedItem = self.pickerView.selectedRow(inComponent: 0)
-//                        print("Selected Item: \(selectedItem)")
-//                    })
-//                ])
+        setupFilterCategoryMenu()
+        setupFilterByMenu()
+        setupFilterMenu()
+        
+        mainMenu = UIMenu(options: .displayInline, children: [sortMenu, filterMenu])
     }
     
-    func setupMenu() {
-        let menuItems: [UIMenuElement] = SortBy.allCases.map { enumCase in
-            UIAction(title: enumCase.rawValue, image: nil, identifier: nil, handler: { _ in
-                // Handle the selected item
-                print("Selected Item: \(enumCase)")
+    func setupSortMenu() {
+        sortMenu = UIMenu(title: "Сортировка", options: .singleSelection, children: [sortingCategoryMenu, sortByMenu])
+    }
+    
+    func setupSortingCategoryMenu() {
+        let menuItems: [UIMenuElement] = SortingCategory.allCases.map { category in
+            UIAction(title: category.rawValue, image: nil, identifier: nil, handler: { _ in
+                // Handle the selected item (update sortByMenu)
+                print("Selected Item: \(category.rawValue)")
             })
         }
         
-        pickerMenu = UIMenu(title: "Select Item", options: .singleSelection, children: menuItems)
+        sortingCategoryMenu = UIMenu(options: .displayInline, children: menuItems)
+    }
+    
+    func setupSortByMenu() {
+        let menuItems: [UIMenuElement] = []  // its dynamic
         
-        pickerMenu2 = UIMenu(title: "Select Item", options: .displayInline, children: [
-            pickerMenu,
-            UIAction(title: "no", handler: { _ in
-                print("no")
+        sortByMenu = UIMenu(options: .displayInline, children: menuItems)
+    }
+    
+    func setupFilterMenu() {
+        filterMenu = UIMenu(title: "Фильтр", options: .singleSelection, children: [filterCategoryMenu, filterByMenu])
+    }
+    
+    func setupFilterCategoryMenu() {
+        let menuItems: [UIMenuElement] = FilterCategory.allCases.map { category in
+            UIAction(title: category.rawValue, image: nil, identifier: nil, handler: { _ in
+                // Handle the selected item (update sortByMenu)
+                print("Selected Item: \(category.rawValue)")
             })
-        ])
+        }
+        
+        filterCategoryMenu = UIMenu(options: .displayInline, children: menuItems)
+    }
+    
+    func setupFilterByMenu() {
+        let menuItems: [UIMenuElement] = []  // its dynamic
+        
+        filterByMenu = UIMenu(options: .displayInline, children: menuItems)
     }
     
     @objc func addTaskButtonTapped() {
