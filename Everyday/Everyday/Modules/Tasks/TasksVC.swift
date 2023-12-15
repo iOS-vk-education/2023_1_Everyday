@@ -32,14 +32,12 @@ final class TasksVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "EverydayBlue")
+        
+        view.backgroundColor = .brandPrimary
         
         setupUI()
         
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.delegate = self
+        navigationItem.hidesSearchBarWhenScrolling = false
         
         let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         searchButton.tintColor = .brandSecondary
@@ -49,7 +47,6 @@ final class TasksVC: UIViewController {
         
         navigationItem.rightBarButtonItems = [moreButton, searchButton]
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: topLabel)
-        navigationItem.searchController = searchController
         
         view.addSubviews(tableView, addTaskButton)
         
@@ -114,6 +111,14 @@ final class TasksVC: UIViewController {
         setupButtons()
         setupTable()
         setupMainMenu()
+        setupSearchController()
+    }
+    
+    private func setupSearchController() {
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.delegate = self
     }
     
     private func setupCurrentDate() {
@@ -226,8 +231,10 @@ final class TasksVC: UIViewController {
     
     @objc
     private func searchButtonTapped() {
-        searchController.isActive = true
-        searchController.searchBar.becomeFirstResponder()
+        navigationItem.searchController = searchController
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.searchController.searchBar.becomeFirstResponder()
+        }
     }
     
     @objc
@@ -336,6 +343,6 @@ extension TasksVC: UITableViewDataSource {
 extension TasksVC: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchController.isActive = false
+        navigationItem.searchController = nil
     }
 }
