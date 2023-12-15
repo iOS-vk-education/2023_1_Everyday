@@ -10,31 +10,42 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class TaskService {
-    public static let shared = TaskService()
+    
+    static let shared = TaskService()
+    private let db = Firestore.firestore()
+    
     private init() {}
     
-    public func fetchUser(completion: @escaping (UserTask?, Error?) -> Void) {
+    func fetchUserData(completion: @escaping (Result<UserTask, NetworkError>) -> Void) {
         guard let userUID = Auth.auth().currentUser?.uid else {
+            completion(.failure(.invalidUser))
             return
         }
-        
-        let db = Firestore.firestore()
         
         db.collection("user")
             .document(userUID)
             .getDocument { snapshot, error in
-                if let error = error {
-                    completion(nil, error)
+                if error != nil {
+                    completion(.failure(.unableToComplete))
                     return
                 }
                 
-                if let snapshot = snapshot,
-                   let snapshotData = snapshot.data(),
-                   let username = snapshotData["username"] as? String,
+                guard let snapshot = snapshot else {
+                    completion(.failure(.invalidResponse))
+                    return
+                }
+                
+                guard let snapshotData = snapshot.data() else {
+                    completion(.failure(.invalidData))
+                    return
+                }
+                if let username = snapshotData["username"] as? String,
                    let email = snapshotData["email"] as? String,
                    let taskUID = snapshotData["task_id"] as? [DocumentReference] {
                     let user = UserTask(username: username, email: email, userUID: userUID, taskUID: taskUID)
-                    completion(user, nil)
+                    completion(.success(user))
+                } else {
+                    completion(.failure(.invalidData))
                 }
             }
     }
