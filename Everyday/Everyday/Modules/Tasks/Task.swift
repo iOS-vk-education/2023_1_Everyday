@@ -12,7 +12,7 @@ struct Task: Codable, Identifiable, Hashable {
     let startTime: Date
     let endTime: Date
     let taskName: String
-    let taskTag: Int
+    let taskPriority: Int
 }
 
 enum SortingCategory: String, CaseIterable {

@@ -9,8 +9,8 @@ import Foundation
 
 enum NetworkError: String, Error {
     
-    case invalidUser        = "Unable to connect to the server. Log in to save your data on server."
-    case unableToComplete   = "Unable to complete your request. Please check your internet connection."
-    case invalidResponse    = "Invalid response from the server. Please try again."
-    case invalidData        = "The data received from the server was invalid. Try again"
+    case invalidUser        = "Невозможно подключиться к серверу. Войдите в аккаунт."
+    case unableToComplete   = "Невозможно выполнить запрос. Пожалуйста, проверьте подключение к интернету."
+    case invalidResponse    = "Неверный ответ сервера. Пожалуйста, попробуйте ещё раз."
+    case invalidData        = "Данные полученные с сервера неверны. Пожалуйста, попробуйте ещё раз."
 }

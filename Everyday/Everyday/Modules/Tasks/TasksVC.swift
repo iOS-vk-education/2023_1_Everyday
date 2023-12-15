@@ -12,11 +12,9 @@ final class TasksVC: UIViewController {
     
     // MARK: - Private Properties
     
-    private let container = UIView()
-    private let topLabel = UILabel()
-    private let addTaskButton = UIButton(type: .system)
-    private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     private let searchController = UISearchController(searchResultsController: nil)
+    private let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    private let addTaskButton = UIButton(type: .system)
     
     private var mainMenu = UIMenu()
     private var sortMenu = UIMenu()
@@ -33,24 +31,12 @@ final class TasksVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .brandPrimary
-        
-        setupUI()
-        
-        navigationItem.hidesSearchBarWhenScrolling = false
-        
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-        searchButton.tintColor = .brandSecondary
-
-        let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: mainMenu)
-        moreButton.tintColor = .brandSecondary
-        
-        navigationItem.rightBarButtonItems = [moreButton, searchButton]
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: topLabel)
-        
-        view.addSubviews(tableView, addTaskButton)
-        
-        setupConstraints()
+        configureAddTaskButton()
+        configureTableView()
+        setupMainMenu()
+        configureSearchController()
+        configureViewController()
+        layoutUI()
         getTasks()
     }
     
@@ -65,11 +51,6 @@ final class TasksVC: UIViewController {
             
             switch result {
             case .success(let user):
-//                guard let taskIds = user.taskUID else {
-//                    // add alert
-//                    return
-//                }
-                
                 for taskReference in user.taskUID {
                     group.enter()
                     taskReference.getDocument { document, error in
@@ -81,6 +62,7 @@ final class TasksVC: UIViewController {
                             // add alert
                             return
                         }
+                        
                         guard let document = document,
                               let taskDocumentData = document.data(),
                               let startTimestamp = taskDocumentData["date_begin"] as? Timestamp,
@@ -96,7 +78,7 @@ final class TasksVC: UIViewController {
                         let taskName = title
                         let taskTag = priority
                         
-                        self.tasks.append(.init(startTime: startTime, endTime: endTime, taskName: taskName, taskTag: taskTag))
+                        self.tasks.append(.init(startTime: startTime, endTime: endTime, taskName: taskName, taskPriority: taskTag))
                     }
                 }
                 group.notify(queue: .main) {
@@ -110,34 +92,47 @@ final class TasksVC: UIViewController {
         }
     }
     
-    // MARK: - Setup
+    // MARK: - Configure UI Elements
     
-    private func setupUI() {
-        setupCurrentDate()
-        setupButtons()
-        setupTable()
-        setupMainMenu()
-        setupSearchController()
+    private func configureViewController() {
+        view.backgroundColor = .brandPrimary
+        
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+        searchButton.tintColor = .brandSecondary
+
+        let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: mainMenu)
+        moreButton.tintColor = .brandSecondary
+        
+        navigationItem.rightBarButtonItems = [moreButton, searchButton]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel())
+        
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    private func setupSearchController() {
+    private func configureSearchController() {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Введите название задачи"
         searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
     }
     
-    private func setupCurrentDate() {
+    private func dateLabel() -> UILabel {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMM d"
         dateFormatter.locale = Locale(identifier: "ru_RU")
+        
         let currentDate = dateFormatter.string(from: Date())
-        topLabel.text = currentDate.capitalized
-        topLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
-        topLabel.textColor = .brandSecondary
+        
+        let dateLabel = UILabel()
+        dateLabel.text = currentDate.capitalized
+        dateLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
+        dateLabel.textColor = .brandSecondary
+        
+        return dateLabel
     }
     
-    private func setupButtons() {
+    private func configureAddTaskButton() {
         let config = UIImage.SymbolConfiguration(pointSize: 60)  // wtf?
         let image = UIImage(systemName: "plus.circle.fill", withConfiguration: config)
         
@@ -146,24 +141,27 @@ final class TasksVC: UIViewController {
         addTaskButton.tintColor = .brandSecondary
         addTaskButton.backgroundColor = .white
         addTaskButton.layer.cornerRadius = 55
+        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(addTaskButton)
     }
     
-    private func setupTable() {
+    private func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(TasksTableViewCell.self, forCellReuseIdentifier: TasksTableViewCell.reuseID)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.backgroundColor = .brandPrimary
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
+        
+        view.addSubview(tableView)
     }
     
-    // MARK: - Layout
+    // MARK: - Layout UI
     
-    private func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func layoutUI() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -256,7 +254,6 @@ final class TasksVC: UIViewController {
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 20
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-            
             sheet.largestUndimmedDetentIdentifier = .medium
             sheet.prefersEdgeAttachedInCompactHeight = true
         }
@@ -286,7 +283,7 @@ extension TasksVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        70
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -300,9 +297,9 @@ extension TasksVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let footerView = UIView()
-        footerView.backgroundColor = UIColor.clear
-        return footerView
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -326,7 +323,7 @@ extension TasksVC: UITableViewDataSource {
         cell.endTimeLabel.text = task.endTime.convertToHoursMinutesFormat()
         cell.taskNameLabel.text = task.taskName
         
-        let priority = Priority(rawValue: task.taskTag) ?? Priority.none
+        let priority = Priority(rawValue: task.taskPriority) ?? Priority.none
         cell.layer.borderColor = priority.convertToUIColor().cgColor
         
         let emptyView = UIView()
@@ -338,11 +335,11 @@ extension TasksVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return tasks.count
+        tasks.count
     }
 }
 
@@ -350,5 +347,12 @@ extension TasksVC: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         navigationItem.searchController = nil
+    }
+}
+
+extension TasksVC: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        // write code
     }
 }
