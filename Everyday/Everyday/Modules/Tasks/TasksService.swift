@@ -16,7 +16,7 @@ class TaskService {
     
     private init() {}
     
-    func fetchUserData(completion: @escaping (Result<UserTask, NetworkError>) -> Void) {
+    func getTasks(completion: @escaping (Result<[Task], NetworkError>) -> Void) {
         guard let userUID = Auth.auth().currentUser?.uid else {
             completion(.failure(.invalidUser))
             return
@@ -25,7 +25,7 @@ class TaskService {
         db.collection("user")
             .document(userUID)
             .getDocument { snapshot, error in
-                if error != nil {
+                guard error == nil else {
                     completion(.failure(.unableToComplete))
                     return
                 }
@@ -39,13 +39,48 @@ class TaskService {
                     completion(.failure(.invalidData))
                     return
                 }
-                if let username = snapshotData["username"] as? String,
-                   let email = snapshotData["email"] as? String,
-                   let taskUID = snapshotData["task_id"] as? [DocumentReference] {
-                    let user = UserTask(username: username, email: email, userUID: userUID, taskUID: taskUID)
-                    completion(.success(user))
-                } else {
+                
+                guard let tasksUIDs = snapshotData["task_id"] as? [DocumentReference] else {
                     completion(.failure(.invalidData))
+                    return
+                }
+                
+                var tasks: [Task] = []
+                let group = DispatchGroup()
+                
+                for taskReference in tasksUIDs {
+                    group.enter()
+                    taskReference.getDocument { document, error in
+                        defer {
+                            group.leave()
+                        }
+                        
+                        guard error == nil else {
+                            completion(.failure(.unableToComplete))
+                            return
+                        }
+                        
+                        guard let document = document,
+                              let taskDocumentData = document.data(),
+                              let startTimestamp = taskDocumentData["date_begin"] as? Timestamp,
+                              let endTimestamp = taskDocumentData["date_end"] as? Timestamp,
+                              let title = taskDocumentData["title"] as? String,
+                              let priority = taskDocumentData["priority"] as? Int else {
+                            completion(.failure(.invalidData))
+                            return
+                        }
+                        
+                        let startTime = startTimestamp.dateValue()
+                        let endTime = endTimestamp.dateValue()
+                        let taskName = title
+                        let taskPriority = priority
+                        
+                        tasks.append(.init(startTime: startTime, endTime: endTime, taskName: taskName, taskPriority: taskPriority))
+                    }
+                }
+                
+                group.notify(queue: .main) {
+                    completion(.success(tasks))
                 }
             }
     }

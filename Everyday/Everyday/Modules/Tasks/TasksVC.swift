@@ -43,48 +43,16 @@ final class TasksVC: UIViewController {
     // MARK: - Network
     
     func getTasks() {
-        let group = DispatchGroup()
-        TaskService.shared.fetchUserData { [weak self] result in
+        TaskService.shared.getTasks { [weak self] result in
             guard let self = self else {
                 return
             }
             
             switch result {
-            case .success(let user):
-                for taskReference in user.taskUID {
-                    group.enter()
-                    taskReference.getDocument { document, error in
-                        defer {
-                            group.leave()
-                        }
-                        
-                        guard error == nil else {
-                            // add alert
-                            return
-                        }
-                        
-                        guard let document = document,
-                              let taskDocumentData = document.data(),
-                              let startTimestamp = taskDocumentData["date_begin"] as? Timestamp,
-                              let endTimestamp = taskDocumentData["date_end"] as? Timestamp,
-                              let title = taskDocumentData["title"] as? String,
-                              let priority = taskDocumentData["priority"] as? Int else {
-                            // add alert
-                            return
-                        }
-                        
-                        let startTime = startTimestamp.dateValue()
-                        let endTime = endTimestamp.dateValue()
-                        let taskName = title
-                        let taskTag = priority
-                        
-                        self.tasks.append(.init(startTime: startTime, endTime: endTime, taskName: taskName, taskPriority: taskTag))
-                    }
-                }
-                group.notify(queue: .main) {
-                    self.tasks.sort { $0.startTime < $1.startTime }
-                    self.tableView.reloadData()
-                }
+            case .success(let tasks):
+                self.tasks.append(contentsOf: tasks)
+                self.tasks.sort { $0.startTime < $1.startTime }
+                self.tableView.reloadData()
                 
             case .failure(let error):
                 print(error.rawValue)
