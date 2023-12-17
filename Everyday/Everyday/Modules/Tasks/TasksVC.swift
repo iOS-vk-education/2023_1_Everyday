@@ -314,6 +314,7 @@ extension TasksVC: UITableViewDataSource {
 extension TasksVC: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        navigationItem.searchController?.searchBar.endEditing(true)
         navigationItem.searchController = nil
     }
 }
