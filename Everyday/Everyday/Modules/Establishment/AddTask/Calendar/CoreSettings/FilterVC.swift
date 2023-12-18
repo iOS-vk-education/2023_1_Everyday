@@ -13,7 +13,18 @@ class FilterVC: UIViewController {
     var overlayView: UIView?
     let checkmarkImageView = UIImageView(image: UIImage(systemName: "checkmark"))
     var selectedFieldIndex = 0
-
+    
+    private var onUpdate: ((Int) -> Void)?
+    
+    init(onUpdate: ((Int) -> Void)?) {
+        super.init(nibName: nil, bundle: nil)
+        self.onUpdate = onUpdate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,79 +65,23 @@ class FilterVC: UIViewController {
         // Add a gesture recognizer to handle taps outside the overlay
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideOverlay))
         view.addGestureRecognizer(tapGesture)
-
-        // Update the checkmark position based on the selected field
-        updateCheckmark()
     }
 
     @objc func hideOverlay() {
         dismiss(animated: true, completion: nil)
     }
-
+    
     @objc func openDifferentView(_ sender: UIButton) {
-        if let title = sender.titleLabel?.text {
-            var destinationViewController: UIViewController?
-
-            switch sender.tag {
-            case 1:
-                destinationViewController = SingleDaySelectionVC(monthsLayout: .vertical(
-                                                                                    options: VerticalMonthsLayoutOptions(
-                                                                                        pinDaysOfWeekToTop: false,
-                                                                                        alwaysShowCompleteBoundaryMonths: false,
-                                                                                        scrollsToFirstMonthOnStatusBarTap: false)))
-            case 2:
-                destinationViewController = CalendarVC(monthsLayout: .vertical(
-                                                                        options: VerticalMonthsLayoutOptions(
-                                                                            pinDaysOfWeekToTop: false,
-                                                                            alwaysShowCompleteBoundaryMonths: false,
-                                                                            scrollsToFirstMonthOnStatusBarTap: false)))
-            case 3:
-                destinationViewController = FewDaySelectionVC()
-            default:
-                break
-            }
-            
-            if let destinationVC = destinationViewController {
-                hideOverlay()
-
-                // Закрыть текущий контроллер
-                self.dismiss(animated: true) {
-                    // Удалить предыдущий контроллер из иерархии контроллеров
-                    self.willMove(toParent: nil)
-                    self.view.removeFromSuperview()
-                    self.removeFromParent()
-
-                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                       let window = windowScene.windows.first,
-                       let rootViewController = window.rootViewController {
-                        // Заменить rootViewController новым
-                        window.rootViewController = destinationVC
-
-                        // Произвести анимацию перехода
-                        UIView.transition(with: window,
-                                          duration: 0.5,
-                                          options: .transitionCrossDissolve,
-                                          animations: nil,
-                                          completion: nil)
-
-                        // Обновить selectedFieldIndex и показать/скрыть галочку
-                        self.selectedFieldIndex = sender.tag
-                        self.updateCheckmark()
-                    }
+        hideOverlay()
+            if let title = sender.titleLabel?.text {
+                switch sender.tag {
+                case 1:
+                    onUpdate?(1)
+                case 2:
+                    onUpdate?(2)
+                default:
+                    break
                 }
             }
         }
-    }
-
-    func updateCheckmark() {
-        for subview in overlayView?.subviews ?? [] {
-            if let button = subview as? UIButton, button.tag == selectedFieldIndex {
-                let checkmarkX = button.frame.origin.x + button.frame.width - 30
-                checkmarkImageView.frame.origin.x = checkmarkX
-                checkmarkImageView.isHidden = false
-            } else if let button = subview as? UIButton {
-                checkmarkImageView.isHidden = true
-            }
-        }
-    }
 }

@@ -20,6 +20,10 @@ final class AddTaskVC: UIViewController {
     private let commitButton = UIButton(type: .custom)
     private let buttonStackView = UIStackView()
     
+    // struct CalendarModel { enum State }
+    private var currentCalendarState: CalendarState = .singleDaySelection
+    private var calendarVC: CoreVC?
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,18 +143,28 @@ final class AddTaskVC: UIViewController {
     
     // MARK: - Actions
     
-    @objc
-    private func didTapCalendarButton() {
-        let dayRangeSelectionDemoVC = SingleDaySelectionVC(monthsLayout: .vertical(
-                                                                    options: VerticalMonthsLayoutOptions(
-                                                                        pinDaysOfWeekToTop: false,
-                                                                        alwaysShowCompleteBoundaryMonths: false,
-                                                                        scrollsToFirstMonthOnStatusBarTap: false)))
-        dayRangeSelectionDemoVC.modalPresentationStyle = .fullScreen
+    @objc private func didTapCalendarButton() {
+        calendarVC = CalendarVC(monthsLayout: .vertical(
+            options: VerticalMonthsLayoutOptions(
+                pinDaysOfWeekToTop: false,
+                alwaysShowCompleteBoundaryMonths: false,
+                scrollsToFirstMonthOnStatusBarTap: false)), onUpdate: { [weak self] state in
+                    self?.currentCalendarState = state
+                    self?.updateCalendar()
+                })
 
-        self.present(dayRangeSelectionDemoVC, animated: true, completion: nil)
+        if let calendarVC {
+            calendarVC.modalPresentationStyle = .fullScreen
+            present(calendarVC, animated: true, completion: nil)
+        }
+        
+        updateCalendar()
     }
     
+    private func updateCalendar() {
+        calendarVC?.updateState(calendarState: currentCalendarState)
+    }
+
     @objc
     private func didTapTagButton() {
         print("tapped")
@@ -203,5 +217,10 @@ final class AddTaskVC: UIViewController {
             static let marginHorisontal: CGFloat = 12
             static let height: CGFloat = 40
         }
+    }
+    
+    enum CalendarState: Int {
+        case singleDaySelection = 1
+        case calendar
     }
 }
