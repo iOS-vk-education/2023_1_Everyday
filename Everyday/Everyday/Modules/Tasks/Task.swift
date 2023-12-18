@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 struct Task: Codable, Identifiable, Hashable {
     var id = UUID()
+    let taskReference: DocumentReference
     let startTime: Date
     let endTime: Date
     let taskName: String

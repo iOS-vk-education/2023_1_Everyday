@@ -9,12 +9,53 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+enum NetworkActionType {
+    case add, remove, edit
+}
+
 class TaskService {
     
     static let shared = TaskService()
     private let db = Firestore.firestore()
     
     private init() {}
+    
+    func updateWith(task: Task, actionType: NetworkActionType, completion: @escaping (NetworkError?) -> Void) {
+        getTasks { [self] result in
+            switch result {
+            case .success:
+                switch actionType {
+                case .add:
+                    print("kek")
+                    
+                case .remove:
+                    completion(deleteTask(taskReference: task.taskReference))
+                    
+                case .edit:
+                    print("lol")
+                }
+                
+            case .failure(let error):
+                completion(error)
+            }
+        }
+    }
+    
+    func deleteTask(taskReference: DocumentReference) -> NetworkError? {
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            return .invalidUser
+        }
+        
+        db.collection("user")
+            .document(userUID)
+            .updateData([
+                "task_id": FieldValue.arrayRemove([taskReference])
+            ])
+        
+        taskReference.delete()
+        
+        return nil
+    }
     
     func getTasks(completion: @escaping (Result<[Task], NetworkError>) -> Void) {
         guard let userUID = Auth.auth().currentUser?.uid else {
@@ -75,7 +116,11 @@ class TaskService {
                         let taskName = title
                         let taskPriority = priority
                         
-                        tasks.append(.init(startTime: startTime, endTime: endTime, taskName: taskName, taskPriority: taskPriority))
+                        tasks.append(.init(taskReference: taskReference,
+                                           startTime: startTime,
+                                           endTime: endTime,
+                                           taskName: taskName,
+                                           taskPriority: taskPriority))
                     }
                 }
                 

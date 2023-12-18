@@ -235,19 +235,41 @@ final class TasksVC: UIViewController {
 extension TasksVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "Done") { _, _, completion in
+        let doneAction = UIContextualAction(style: .normal, title: "Done") { _, _, completion in
             completion(true)
         }
-        action.backgroundColor = .systemGreen
-        return UISwipeActionsConfiguration(actions: [action])
+        
+        doneAction.image = UIImage(systemName: "checkmark")
+        doneAction.backgroundColor = .systemGreen
+        
+        return UISwipeActionsConfiguration(actions: [doneAction])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            completion(true)
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+            TaskService.shared.updateWith(task: self.tasks[indexPath.section], actionType: .remove) { [weak self] error in
+                guard let self = self else {
+                    completion(false)
+                    return
+                }
+
+                guard let error = error else {
+                    self.tasks.remove(at: indexPath.section)
+                    let indexSet: IndexSet = [indexPath.section]
+                    tableView.deleteSections(indexSet, with: .fade)
+                    
+                    completion(true)
+                    return
+                }
+                // present alert
+                completion(true)
+            }
         }
-        return UISwipeActionsConfiguration(actions: [action])
+        
+        deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.backgroundColor = .systemRed
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -314,7 +336,6 @@ extension TasksVC: UITableViewDataSource {
 extension TasksVC: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        navigationItem.searchController?.searchBar.endEditing(true)
         navigationItem.searchController = nil
     }
 }
