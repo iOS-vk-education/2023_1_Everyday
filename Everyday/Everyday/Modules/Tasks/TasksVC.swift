@@ -25,16 +25,24 @@ final class TasksVC: UIViewController {
     private var filterByMenu = UIMenu()
     
     var tasks: [Task] = []
+    var filteredTasks: [Task] = []
+    
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureAddTaskButton()
         configureTableView()
         setupMainMenu()
         configureSearchController()
+        configureAddTaskButton()
         configureViewController()
         layoutUI()
         getTasks()
@@ -228,6 +236,16 @@ final class TasksVC: UIViewController {
         
         present(addTaskVC, animated: true, completion: nil)
     }
+    
+    // MARK: - Useful functions
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredTasks = tasks.filter { (task: Task) -> Bool in
+            return task.taskName.lowercased().contains(searchText.lowercased())
+        }
+        
+        tableView.reloadData()
+    }
 }
 
 // MARK: - Extensions
@@ -307,7 +325,13 @@ extension TasksVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TasksTableViewCell.reuseID, for: indexPath) as? TasksTableViewCell else {
             return UITableViewCell()
         }
-        let task = tasks[indexPath.section]
+        let task: Task
+        
+        if isFiltering {
+            task = filteredTasks[indexPath.section]
+        } else {
+            task = tasks[indexPath.section]
+        }
         
         cell.startTimeLabel.text = task.startTime.convertToHoursMinutesFormat()
         cell.endTimeLabel.text = task.endTime.convertToHoursMinutesFormat()
@@ -329,7 +353,11 @@ extension TasksVC: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        tasks.count
+        if isFiltering {
+            return filteredTasks.count
+        }
+        
+        return tasks.count
     }
 }
 
@@ -343,6 +371,10 @@ extension TasksVC: UISearchBarDelegate {
 extension TasksVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        // write code
+        guard let searchText = searchController.searchBar.text else {
+            return
+        }
+        
+        filterContentForSearchText(searchText)
     }
 }
