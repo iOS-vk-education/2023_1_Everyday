@@ -48,11 +48,11 @@ class BaseCoreVC: UIViewController, CoreVC {
     lazy var dayDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = calendar
-        dateFormatter.locale = calendar.locale
+        dateFormatter.locale = Locale(identifier: "ru_RU_POSIX")
         dateFormatter.dateFormat = DateFormatter.dateFormat(
             fromTemplate: "EEEE, MMM d, yyyy",
             options: 0,
-            locale: calendar.locale ?? Locale.current)
+            locale: dateFormatter.locale)
         return dateFormatter
     }()
     

@@ -26,7 +26,6 @@
 		9E887DE42B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DE32B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift */; };
 		9E887DE62B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DE52B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift */; };
 		9E887DEE2B1F838600F3A210 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DED2B1F838600F3A210 /* FilterVC.swift */; };
-		9E887DF42B273BBA00F3A210 /* FewDaySelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DF32B273BBA00F3A210 /* FewDaySelectionVC.swift */; };
 		9E97DB422B04FCAC00491C98 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */; };
 		9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB442B04FF8F00491C98 /* AuthService.swift */; };
 		9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB462B05004500491C98 /* SignUpModel.swift */; };
@@ -58,7 +57,6 @@
 		E449CD8E2B155932003CB934 /* TasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449CD8D2B155932003CB934 /* TasksVC.swift */; };
 		E449CD902B155958003CB934 /* TasksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449CD8F2B155958003CB934 /* TasksService.swift */; };
 		E449CD922B155967003CB934 /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449CD912B155967003CB934 /* UserTask.swift */; };
-		E449CD942B155975003CB934 /* UserTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449CD932B155975003CB934 /* UserTasks.swift */; };
 		E449CD962B155984003CB934 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449CD952B155984003CB934 /* TasksTableViewCell.swift */; };
 		E449CD982B1559EA003CB934 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449CD972B1559EA003CB934 /* User.swift */; };
 		E449CD9A2B155A1A003CB934 /* doneTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449CD992B155A1A003CB934 /* doneTaskService.swift */; };
@@ -74,7 +72,6 @@
 		9E887DE32B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorVIew.swift; sourceTree = "<group>"; };
 		9E887DE52B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeSelectionTracker.swift; sourceTree = "<group>"; };
 		9E887DED2B1F838600F3A210 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
-		9E887DF32B273BBA00F3A210 /* FewDaySelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FewDaySelectionVC.swift; sourceTree = "<group>"; };
 		9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E97DB442B04FF8F00491C98 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9E97DB462B05004500491C98 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
@@ -108,7 +105,6 @@
 		E449CD8D2B155932003CB934 /* TasksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksVC.swift; sourceTree = "<group>"; };
 		E449CD8F2B155958003CB934 /* TasksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksService.swift; sourceTree = "<group>"; };
 		E449CD912B155967003CB934 /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
-		E449CD932B155975003CB934 /* UserTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTasks.swift; sourceTree = "<group>"; };
 		E449CD952B155984003CB934 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		E449CD972B1559EA003CB934 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E449CD992B155A1A003CB934 /* doneTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doneTaskService.swift; sourceTree = "<group>"; };
@@ -186,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				9E887DDF2B1CF9D900F3A210 /* CalendarVC.swift */,
-				9E887DF32B273BBA00F3A210 /* FewDaySelectionVC.swift */,
 			);
 			path = "Selection Type";
 			sourceTree = "<group>";
@@ -207,7 +202,6 @@
 				E449CD8F2B155958003CB934 /* TasksService.swift */,
 				E449CD912B155967003CB934 /* UserTask.swift */,
 				E449CD952B155984003CB934 /* TasksTableViewCell.swift */,
-				E449CD932B155975003CB934 /* UserTasks.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -501,7 +495,6 @@
 				CEA4653B2B0D48A300EC52AE /* Alert.swift in Sources */,
 				E449CD8E2B155932003CB934 /* TasksVC.swift in Sources */,
 				9E887DE62B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift in Sources */,
-				9E887DF42B273BBA00F3A210 /* FewDaySelectionVC.swift in Sources */,
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
 				9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
@@ -512,7 +505,6 @@
 				9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */,
 				9E887DE42B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift in Sources */,
 				9E97DB532B05277C00491C98 /* Validator.swift in Sources */,
-				E449CD942B155975003CB934 /* UserTasks.swift in Sources */,
 				CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */,
 				CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */,
 				CEA4653F2B0E05C500EC52AE /* Color+Ext.swift in Sources */,
@@ -677,6 +669,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = NO;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ed-Everyday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -706,6 +699,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = NO;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ed-Everyday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
