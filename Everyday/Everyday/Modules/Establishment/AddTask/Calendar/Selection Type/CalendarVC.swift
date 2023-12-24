@@ -9,7 +9,15 @@ import HorizonCalendar
 import UIKit
 
 final class CalendarVC: BaseCoreVC {
-    
+
+    // MARK: Internal
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        title = "Day Range Selection"
+    }
+
     override func updateState(calendarState: AddTaskVC.CalendarState) {
         selectedDayRange = nil
         selectedDayRangeAtStartOfDrag = nil
@@ -17,160 +25,120 @@ final class CalendarVC: BaseCoreVC {
         calendarView.daySelectionHandler = nil
         calendarView.multiDaySelectionDragHandler = nil
         calendarView.setContent(makeContent(calendarState: calendarState))
-        
+
         switch calendarState {
         case .singleDaySelection:
-            calendarView.daySelectionHandler = { [weak self] day in
-                guard let self else {
-                    return
-                }
-
-                selectedDate = calendar.date(from: day.components)
-                calendarView.setContent(makeContent(calendarState: calendarState))
-            }
+            setupSingleDaySelectionHandler()
 
         case .calendar:
-            calendarView.daySelectionHandler = { [weak self] day in
-                guard let self else {
-                    return
-                }
-                
-                DayRangeSelectionHelper.updateDayRange(
-                    afterTapSelectionOf: day,
-                    existingDayRange: &selectedDayRange)
-                
-                calendarView.setContent(makeContent(calendarState: calendarState))
-            }
-            
-            calendarView.multiDaySelectionDragHandler = { [weak self, calendar] day, state in
-                guard let self else {
-                    return
-                }
-                
-                DayRangeSelectionHelper.updateDayRange(
-                    afterDragSelectionOf: day,
-                    existingDayRange: &selectedDayRange,
-                    initialDayRange: &selectedDayRangeAtStartOfDrag,
-                    state: state,
-                    calendar: calendar)
-                
-                calendarView.setContent(makeContent(calendarState: calendarState))
-            }
+            setupCalendarSelectionHandlers()
         }
     }
 
-  // MARK: Internal
+    // MARK: Private
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    private var selectedDayRange: DayRange?
+    private var selectedDayRangeAtStartOfDrag: DayRange?
+    private var selectedDate: Date?
 
-    title = "Day Range Selection"
-  }
-    
-    private func makeZalupa1() -> CalendarViewContent {
-        let startDate = calendar.date(from: DateComponents(year: 2020, month: 01, day: 01))!
-        let endDate = calendar.date(from: DateComponents(year: 2021, month: 12, day: 31))!
-
-        let selectedDate = selectedDate
-
-        return CalendarViewContent(
-          calendar: calendar,
-          visibleDateRange: startDate...endDate,
-          monthsLayout: monthsLayout)
-
-          .interMonthSpacing(24)
-          .verticalDayMargin(8)
-          .horizontalDayMargin(8)
-
-          .dayItemProvider { [calendar, dayDateFormatter] day in
-            var invariantViewProperties = DayView.InvariantViewProperties.baseInteractive
-
-            let date = calendar.date(from: day.components)
-            if date == selectedDate {
-                invariantViewProperties.backgroundShapeDrawingConfig.borderColor = UIColor(named: "EverydayOrange") ?? UIColor(.clear) 
-                invariantViewProperties.backgroundShapeDrawingConfig.fillColor =
-                    UIColor(named: "EverydayOrange")?.withAlphaComponent(0.15) ?? UIColor.clear
+    private func setupSingleDaySelectionHandler() {
+        calendarView.daySelectionHandler = { [weak self] day in
+            guard let self = self 
+            else {
+                return
             }
-
-            return DayView.calendarItemModel(
-              invariantViewProperties: invariantViewProperties,
-              content: .init(
-                dayText: "\(day.day)",
-                accessibilityLabel: date.map { dayDateFormatter.string(from: $0) },
-                accessibilityHint: nil))
-          }
+            self.selectedDate = self.calendar.date(from: day.components)
+            self.calendarView.setContent(self.makeContent(calendarState: .singleDaySelection))
+        }
     }
-    
-    private func makeZalupa2() -> CalendarViewContent {
-        let startDate = calendar.date(from: DateComponents(year: 2023, month: 01, day: 01))!
-        let endDate = calendar.date(from: DateComponents(year: 2025, month: 12, day: 31))!
 
-        let dateRanges: Set<ClosedRange<Date>>
-        let selectedDayRange = selectedDayRange
-        if
-          let selectedDayRange,
-          let lowerBound = calendar.date(from: selectedDayRange.lowerBound.components),
-          let upperBound = calendar.date(from: selectedDayRange.upperBound.components)
-        {
-          dateRanges = [lowerBound...upperBound]
-        } else {
-          dateRanges = []
+    private func setupCalendarSelectionHandlers() {
+        calendarView.daySelectionHandler = { [weak self] day in
+            guard let self = self 
+            else {
+                return
+            }
+            DayRangeSelectionHelper.updateDayRange(
+                afterTapSelectionOf: day,
+                existingDayRange: &self.selectedDayRange)
+            self.calendarView.setContent(self.makeContent(calendarState: .calendar))
         }
 
-        return CalendarViewContent(
-          calendar: calendar,
-          visibleDateRange: startDate...endDate,
-          monthsLayout: monthsLayout)
-
-          .interMonthSpacing(24)
-          .verticalDayMargin(8)
-          .horizontalDayMargin(8)
-
-          .dayItemProvider { [calendar, dayDateFormatter] day in
-            var invariantViewProperties = DayView.InvariantViewProperties.baseInteractive
-
-            let isSelectedStyle: Bool
-            if let selectedDayRange {
-              isSelectedStyle = day == selectedDayRange.lowerBound || day == selectedDayRange.upperBound
-            } else {
-              isSelectedStyle = false
+        calendarView.multiDaySelectionDragHandler = { [weak self, calendar] day, state in
+            guard let self = self 
+            else {
+                return
             }
-
-            if isSelectedStyle {
-              invariantViewProperties.backgroundShapeDrawingConfig.fillColor = UIColor(named: "EverydayOrange")?.withAlphaComponent(0.15) ?? UIColor.clear
-              invariantViewProperties.backgroundShapeDrawingConfig.borderColor = UIColor(named: "EverydayOrange") ?? UIColor(.clear) 
-            }
-
-            let date = calendar.date(from: day.components)
-
-            return DayView.calendarItemModel(
-              invariantViewProperties: invariantViewProperties,
-              content: .init(
-                dayText: "\(day.day)",
-                accessibilityLabel: date.map { dayDateFormatter.string(from: $0) },
-                accessibilityHint: nil))
-          }
-
-          .dayRangeItemProvider(for: dateRanges) { dayRangeLayoutContext in
-            DayRangeIndicatorView.calendarItemModel(
-              invariantViewProperties: .init(),
-              content: .init(
-                framesOfDaysToHighlight: dayRangeLayoutContext.daysAndFrames.map { $0.frame }))
-          }
+            DayRangeSelectionHelper.updateDayRange(
+                afterDragSelectionOf: day,
+                existingDayRange: &self.selectedDayRange,
+                initialDayRange: &self.selectedDayRangeAtStartOfDrag,
+                state: state,
+                calendar: calendar)
+            self.calendarView.setContent(self.makeContent(calendarState: .calendar))
+        }
     }
 
     override func makeContent(calendarState: AddTaskVC.CalendarState) -> CalendarViewContent {
         switch calendarState {
         case .singleDaySelection:
-            makeZalupa1()
+            return makeZalupa1()
         case .calendar:
-            makeZalupa2()
+            return makeZalupa2()
         }
-  }
+    }
 
-  // MARK: Private
+    private func makeZalupa1() -> CalendarViewContent {
+        return makeCalendarViewContent(startDate: calendar.date(from: DateComponents(year: 2020, month: 01, day: 01))!,
+                                       endDate: calendar.date(from: DateComponents(year: 2021, month: 12, day: 31))!,
+                                       selectedDate: selectedDate)
+    }
 
-  private var selectedDayRange: DayRange?
-  private var selectedDayRangeAtStartOfDrag: DayRange?
-  private var selectedDate: Date?
+    private func makeZalupa2() -> CalendarViewContent {
+        let startDate = calendar.date(from: DateComponents(year: 2023, month: 01, day: 01))!
+        let endDate = calendar.date(from: DateComponents(year: 2025, month: 12, day: 31))!
+
+        let dateRanges: [ClosedRange<Date>] = selectedDayRange.flatMap { [calendar] in
+            let lowerBound = calendar.date(from: $0.lowerBound.components)
+            let upperBound = calendar.date(from: $0.upperBound.components)
+            return lowerBound.map { [$0...upperBound!] } ?? []
+        } ?? []
+
+        return makeCalendarViewContent(startDate: startDate, endDate: endDate, selectedDate: nil, dateRanges: dateRanges)
+    }
+
+    private func makeCalendarViewContent(startDate: Date, 
+                                         endDate: Date,
+                                         selectedDate: Date?,
+                                         dateRanges: [ClosedRange<Date>] = []) -> CalendarViewContent {
+        return CalendarViewContent(
+            calendar: calendar,
+            visibleDateRange: startDate...endDate,
+            monthsLayout: monthsLayout)
+            .interMonthSpacing(24)
+            .verticalDayMargin(8)
+            .horizontalDayMargin(8)
+            .dayItemProvider { [calendar, dayDateFormatter] day in
+                var invariantViewProperties = DayView.InvariantViewProperties.baseInteractive
+
+                if let date = calendar.date(from: day.components), date == selectedDate {
+                    invariantViewProperties.backgroundShapeDrawingConfig.borderColor = UIColor(named: "EverydayOrange") ?? UIColor(.clear)
+                    invariantViewProperties.backgroundShapeDrawingConfig.fillColor =
+                        UIColor(named: "EverydayOrange")?.withAlphaComponent(0.15) ?? UIColor.clear
+                }
+
+                return DayView.calendarItemModel(
+                    invariantViewProperties: invariantViewProperties,
+                    content: .init(
+                        dayText: "\(day.day)",
+                        accessibilityLabel: calendar.date(from: day.components).map { dayDateFormatter.string(from: $0) },
+                        accessibilityHint: nil))
+            }
+            .dayRangeItemProvider(for: Set(dateRanges)) { dayRangeLayoutContext in
+                DayRangeIndicatorView.calendarItemModel(
+                    invariantViewProperties: .init(),
+                    content: .init(
+                        framesOfDaysToHighlight: dayRangeLayoutContext.daysAndFrames.map { $0.frame }))
+            }
+    }
 }
