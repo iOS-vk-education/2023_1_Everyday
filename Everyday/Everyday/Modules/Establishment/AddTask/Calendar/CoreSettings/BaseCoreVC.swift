@@ -27,7 +27,7 @@ class BaseCoreVC: UIViewController, CoreVC {
 // MARK: - Private properties
     
     let filterButton = UIButton(type: .system)
-    let closeButton = UIButton(type: .system)
+    let closeButton = UIButton(type: .close)
     var onUpdate: ((AddTaskVC.CalendarState) -> Void)?
     var onDismiss: (() -> Void)?
     
@@ -62,11 +62,11 @@ class BaseCoreVC: UIViewController, CoreVC {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(named: "EverydayBlue")
-        
-        filterButton.setTitle("Filter", for: .normal)
+
+        filterButton.setImage(UIImage(systemName: "slider.vertical.3"), for: .normal)
+        filterButton.tintColor = UIColor(named: "EverydayOrange")
         filterButton.addTarget(self, action: #selector(showFilterOverlay), for: .touchUpInside)
-        
-        closeButton.setTitle("Close", for: .normal)
+
         closeButton.addTarget(self, action: #selector(closeOverlay), for: .touchUpInside)
         
         filterButton.translatesAutoresizingMaskIntoConstraints = false
@@ -83,14 +83,14 @@ class BaseCoreVC: UIViewController, CoreVC {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             filterButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            filterButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            filterButton.widthAnchor.constraint(equalToConstant: 80),
+            filterButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            filterButton.widthAnchor.constraint(equalToConstant: 90),
             filterButton.heightAnchor.constraint(equalToConstant: 40),
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            closeButton.widthAnchor.constraint(equalToConstant: 80),
-            closeButton.heightAnchor.constraint(equalToConstant: 40),
+            closeButton.widthAnchor.constraint(equalToConstant: UIButton(type: .system).intrinsicContentSize.width),
+            closeButton.heightAnchor.constraint(equalToConstant: UIButton(type: .system).intrinsicContentSize.height),
             
             calendarView.topAnchor.constraint(equalTo: filterButton.bottomAnchor, constant: 16),
             calendarView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
