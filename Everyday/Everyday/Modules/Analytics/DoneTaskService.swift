@@ -9,8 +9,8 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-class doneTaskService {
-    public static let shared = doneTaskService()
+class DoneTaskService {
+    public static let shared = DoneTaskService()
     private init() {}
     
     public func fetchUser(completion: @escaping (User?, Error?) -> Void) {

@@ -24,7 +24,7 @@ final class ChartGridViewModel: ObservableObject {
     
     func getTaskData() {
         let group = DispatchGroup()
-        doneTaskService.shared.fetchUser { [self] user, error in
+        DoneTaskService.shared.fetchUser { [self] user, error in
                 guard error == nil else {
                     alertItem = AlertContext.invalidResponse
                     return
