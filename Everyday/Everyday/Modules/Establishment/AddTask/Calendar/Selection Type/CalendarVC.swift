@@ -10,7 +10,7 @@ import UIKit
 
 final class CalendarVC: BaseCoreVC {
 
-    // MARK: Internal
+    // MARK: - Internal
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ final class CalendarVC: BaseCoreVC {
         }
     }
 
-    // MARK: Private
+    // MARK: - Private
 
     private var selectedDayRange: DayRange?
     private var selectedDayRangeAtStartOfDrag: DayRange?
@@ -78,7 +78,9 @@ final class CalendarVC: BaseCoreVC {
             self.calendarView.setContent(self.makeContent(calendarState: .calendar))
         }
     }
-
+    
+    // MARK: - Content Creation
+    
     override func makeContent(calendarState: AddTaskVC.CalendarState) -> CalendarViewContent {
         switch calendarState {
         case .singleDaySelection:
@@ -89,14 +91,27 @@ final class CalendarVC: BaseCoreVC {
     }
 
     private func makeZalupa1() -> CalendarViewContent {
-        return makeCalendarViewContent(startDate: calendar.date(from: DateComponents(year: 2020, month: 01, day: 01))!,
-                                       endDate: calendar.date(from: DateComponents(year: 2021, month: 12, day: 31))!,
-                                       selectedDate: selectedDate)
+        let currentDate = Date()
+        let calendar = Calendar.current
+
+        let currentMonth = calendar.component(.month, from: currentDate)
+        let currentYear = calendar.component(.year, from: currentDate)
+
+        let startDate = calendar.date(from: DateComponents(year: currentYear, month: currentMonth, day: 1))!
+        let endDate = calendar.date(byAdding: DateComponents(month: 12, day: -1), to: startDate)!
+
+        return makeCalendarViewContent(startDate: startDate, endDate: endDate, selectedDate: selectedDate)
     }
 
     private func makeZalupa2() -> CalendarViewContent {
-        let startDate = calendar.date(from: DateComponents(year: 2023, month: 01, day: 01))!
-        let endDate = calendar.date(from: DateComponents(year: 2025, month: 12, day: 31))!
+        let currentDate = Date()
+        let calendar = Calendar.current
+
+        let currentMonth = calendar.component(.month, from: currentDate)
+        let currentYear = calendar.component(.year, from: currentDate)
+
+        let startDate = calendar.date(from: DateComponents(year: currentYear, month: currentMonth, day: 1))!
+        let endDate = calendar.date(byAdding: DateComponents(month: 12, day: -1), to: startDate)!
 
         let dateRanges: [ClosedRange<Date>] = selectedDayRange.flatMap { [calendar] in
             let lowerBound = calendar.date(from: $0.lowerBound.components)
