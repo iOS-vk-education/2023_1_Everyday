@@ -84,13 +84,13 @@ final class CalendarVC: BaseCoreVC {
     override func makeContent(calendarState: AddTaskVC.CalendarState) -> CalendarViewContent {
         switch calendarState {
         case .singleDaySelection:
-            return makeZalupa1()
+            return setUpDayCalendar()
         case .calendar:
-            return makeZalupa2()
+            return setUpDayRangeCalendar()
         }
     }
 
-    private func makeZalupa1() -> CalendarViewContent {
+    private func setUpDayCalendar() -> CalendarViewContent {
         let currentDate = Date()
         let calendar = Calendar.current
 
@@ -103,7 +103,7 @@ final class CalendarVC: BaseCoreVC {
         return makeCalendarViewContent(startDate: startDate, endDate: endDate, selectedDate: selectedDate)
     }
 
-    private func makeZalupa2() -> CalendarViewContent {
+    private func setUpDayRangeCalendar() -> CalendarViewContent {
         let currentDate = Date()
         let calendar = Calendar.current
 
