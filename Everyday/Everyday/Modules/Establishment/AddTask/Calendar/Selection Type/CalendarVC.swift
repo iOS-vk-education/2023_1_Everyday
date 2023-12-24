@@ -87,8 +87,9 @@ final class CalendarVC: BaseCoreVC {
 
             let date = calendar.date(from: day.components)
             if date == selectedDate {
-              invariantViewProperties.backgroundShapeDrawingConfig.borderColor = .blue
-              invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .blue.withAlphaComponent(0.15)
+                invariantViewProperties.backgroundShapeDrawingConfig.borderColor = UIColor(named: "EverydayOrange") ?? UIColor(.clear) 
+                invariantViewProperties.backgroundShapeDrawingConfig.fillColor =
+                    UIColor(named: "EverydayOrange")?.withAlphaComponent(0.15) ?? UIColor.clear
             }
 
             return DayView.calendarItemModel(
@@ -136,8 +137,8 @@ final class CalendarVC: BaseCoreVC {
             }
 
             if isSelectedStyle {
-              invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .systemBackground
-              invariantViewProperties.backgroundShapeDrawingConfig.borderColor = UIColor(.accentColor)
+              invariantViewProperties.backgroundShapeDrawingConfig.fillColor = UIColor(named: "EverydayOrange")?.withAlphaComponent(0.15) ?? UIColor.clear
+              invariantViewProperties.backgroundShapeDrawingConfig.borderColor = UIColor(named: "EverydayOrange") ?? UIColor(.clear) 
             }
 
             let date = calendar.date(from: day.components)
