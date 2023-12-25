@@ -11,10 +11,11 @@ import FirebaseFirestore
 struct Task: Codable, Identifiable, Hashable {
     var id = UUID()
     let taskReference: DocumentReference
-    let startTime: Date
-    let endTime: Date
-    let taskName: String
-    let taskPriority: Int
+    var startTime: Date
+    var endTime: Date
+    var taskName: String
+    var taskPriority: Int
+    var doneStatus: Bool = false
 }
 
 enum SortingCategory: String, CaseIterable {

@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 enum NetworkActionType {
-    case add, remove, edit
+    case add, remove, edit, done
 }
 
 class TaskService {
@@ -20,7 +20,7 @@ class TaskService {
     
     private init() {}
     
-    func updateWith(task: Task, actionType: NetworkActionType, completion: @escaping (NetworkError?) -> Void) {
+    func updateWith(task: Task, doneTaskCounter: [Int] = [0, 0, 0, 0], actionType: NetworkActionType, completion: @escaping (NetworkError?) -> Void) {
         getTasks { [self] result in
             switch result {
             case .success:
@@ -33,6 +33,10 @@ class TaskService {
                     
                 case .edit:
                     print("lol")
+                    
+                case .done:
+                    completion(setTaskDoneStatus(task: task))
+                    completion(setDoneTaskCounter(doneTaskCounter: doneTaskCounter))
                 }
                 
             case .failure(let error):
@@ -53,6 +57,14 @@ class TaskService {
             ])
         
         taskReference.delete()
+        
+        return nil
+    }
+    
+    func setTaskDoneStatus(task: Task) -> NetworkError? {
+        task.taskReference.updateData([
+            "status": task.doneStatus
+        ])
         
         return nil
     }
@@ -105,6 +117,7 @@ class TaskService {
                               let taskDocumentData = document.data(),
                               let startTimestamp = taskDocumentData["date_begin"] as? Timestamp,
                               let endTimestamp = taskDocumentData["date_end"] as? Timestamp,
+                              let status = taskDocumentData["status"] as? Bool,
                               let title = taskDocumentData["title"] as? String,
                               let priority = taskDocumentData["priority"] as? Int else {
                             completion(.failure(.invalidData))
@@ -113,6 +126,7 @@ class TaskService {
                         
                         let startTime = startTimestamp.dateValue()
                         let endTime = endTimestamp.dateValue()
+                        let doneStatus = status
                         let taskName = title
                         let taskPriority = priority
                         
@@ -120,7 +134,8 @@ class TaskService {
                                            startTime: startTime,
                                            endTime: endTime,
                                            taskName: taskName,
-                                           taskPriority: taskPriority))
+                                           taskPriority: taskPriority,
+                                           doneStatus: doneStatus))
                     }
                 }
                 
@@ -128,5 +143,26 @@ class TaskService {
                     completion(.success(tasks))
                 }
             }
+    }
+    
+    func setDoneTaskCounter(doneTaskCounter: [Int]) -> NetworkError? {
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            return .invalidUser
+        }
+        
+        let reference = db.collection("done_task").document("\(userUID)_\(Date().convertToMonthDayYearFormat())")
+        
+        reference.setData([
+            "date": Timestamp(date: Date()),
+            "priority": doneTaskCounter
+        ])
+        
+        db.collection("user")
+            .document(userUID)
+            .updateData([
+                "done_task_id": FieldValue.arrayUnion([reference])
+            ])
+        
+        return nil
     }
 }

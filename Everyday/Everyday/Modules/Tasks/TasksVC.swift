@@ -24,13 +24,14 @@ final class TasksVC: UIViewController {
     private var sortByMenu = UIMenu()
     private var filterByMenu = UIMenu()
     
-    var tasks: [Task] = []
-    var filteredTasks: [Task] = []
+    private var tasks: [Task] = []
+    private var filteredTasks: [Task] = []
+    private var doneTaskCounter: [Int] = [0, 0, 0, 0]
     
-    var isSearchBarEmpty: Bool {
+    private var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
-    var isFiltering: Bool {
+    private var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
     
@@ -61,6 +62,9 @@ final class TasksVC: UIViewController {
                 self.tasks.append(contentsOf: tasks)
                 self.tasks.sort { $0.startTime < $1.startTime }
                 self.tableView.reloadData()
+                for task in self.tasks {
+                    self.doneTaskCounter[task.taskPriority] += task.doneStatus ? 1 : 0
+                }
                 
             case .failure(let error):
                 print(error.rawValue)
@@ -254,11 +258,59 @@ extension TasksVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let doneAction = UIContextualAction(style: .normal, title: "Done") { _, _, completion in
-            completion(true)
+            if let cell = tableView.cellForRow(at: indexPath) as? TasksTableViewCell {
+                if !self.tasks[indexPath.section].doneStatus {
+                    self.tasks[indexPath.section].doneStatus = true
+                    self.doneTaskCounter[self.tasks[indexPath.section].taskPriority] += 1
+                } else {
+                    self.tasks[indexPath.section].doneStatus = false
+                    self.doneTaskCounter[self.tasks[indexPath.section].taskPriority] -= 1
+                }
+                
+                TaskService.shared.updateWith(task: self.tasks[indexPath.section],
+                                              doneTaskCounter: self.doneTaskCounter,
+                                              actionType: .done) { [weak self] error in
+                    guard let self = self else {
+                        completion(false)
+                        return
+                    }
+                    
+                    guard let error = error else {
+                        if self.tasks[indexPath.section].doneStatus {
+                            cell.startTimeLabel.textColor = .systemGreen
+                            cell.endTimeLabel.textColor = .systemGreen
+                            cell.taskNameLabel.textColor = .systemGreen
+                            cell.taskNameLabel.addStrikethrough(.single, strikethroughColor: .systemGreen)
+                        } else {
+                            cell.startTimeLabel.textColor = .label
+                            cell.endTimeLabel.textColor = .label
+                            cell.taskNameLabel.textColor = .label
+                            cell.taskNameLabel.removeStrikethrough()
+                        }
+                        completion(true)
+                        return
+                    }
+                    if self.tasks[indexPath.section].doneStatus {
+                        self.tasks[indexPath.section].doneStatus = false
+                        self.doneTaskCounter[self.tasks[indexPath.section].taskPriority] -= 1
+                    } else {
+                        self.tasks[indexPath.section].doneStatus = true
+                        self.doneTaskCounter[self.tasks[indexPath.section].taskPriority] += 1
+                    }
+                    // present alert
+                    completion(false)
+                }
+            }
+            completion(false)
         }
         
-        doneAction.image = UIImage(systemName: "checkmark")
-        doneAction.backgroundColor = .systemGreen
+        if !tasks[indexPath.section].doneStatus {
+            doneAction.image = UIImage(systemName: "checkmark")
+            doneAction.backgroundColor = .systemGreen
+        } else {
+            doneAction.image = UIImage(systemName: "arrow.uturn.left")
+            doneAction.backgroundColor = .systemYellow
+        }
         
         return UISwipeActionsConfiguration(actions: [doneAction])
     }
@@ -280,7 +332,7 @@ extension TasksVC: UITableViewDelegate {
                     return
                 }
                 // present alert
-                completion(true)
+                completion(false)
             }
         }
         
@@ -339,6 +391,18 @@ extension TasksVC: UITableViewDataSource {
         
         let priority = Priority(rawValue: task.taskPriority) ?? Priority.none
         cell.layer.borderColor = priority.convertToUIColor().cgColor
+        
+        if task.doneStatus {
+            cell.startTimeLabel.textColor = .systemGreen
+            cell.endTimeLabel.textColor = .systemGreen
+            cell.taskNameLabel.textColor = .systemGreen
+            cell.taskNameLabel.addStrikethrough(.single, strikethroughColor: .systemGreen)
+        } else {
+            cell.startTimeLabel.textColor = .label
+            cell.endTimeLabel.textColor = .label
+            cell.taskNameLabel.textColor = .label
+            cell.taskNameLabel.removeStrikethrough()
+        }
         
         let emptyView = UIView()
         emptyView.backgroundColor = .brandSecondary

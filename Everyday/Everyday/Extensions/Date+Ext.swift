@@ -21,17 +21,11 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
-}
-
-extension Calendar.Component {
     
-    static func fromString(_ componentString: String) -> Calendar.Component {
-        let componentMapping: [String: Calendar.Component] = [
-            "день": .day,
-            "месяц": .month,
-            "неделя": .weekOfYear
-        ]
-
-        return componentMapping[componentString.lowercased()] ?? .day
+    func convertToMonthDayYearFormat() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM_dd_yyyy"
+        
+        return dateFormatter.string(from: self)
     }
 }

@@ -2,6 +2,7 @@ disabled_rules:
     - trailing_whitespace
     - type_name
     - inclusive_language
+    - legacy_constructor
 
 opt_in_rules:
     - vertical_whitespace_closing_braces
