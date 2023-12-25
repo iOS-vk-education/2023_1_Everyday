@@ -312,7 +312,7 @@ extension TasksVC: UITableViewDelegate {
             doneAction.backgroundColor = .systemYellow
         }
         
-        return UISwipeActionsConfiguration(actions: [doneAction])
+        return UISwipeActionsConfiguration(actions: isFiltering ? [] : [doneAction])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -339,7 +339,7 @@ extension TasksVC: UITableViewDelegate {
         deleteAction.image = UIImage(systemName: "trash")
         deleteAction.backgroundColor = .systemRed
         
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+        return UISwipeActionsConfiguration(actions: isFiltering ? [] : [deleteAction])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
