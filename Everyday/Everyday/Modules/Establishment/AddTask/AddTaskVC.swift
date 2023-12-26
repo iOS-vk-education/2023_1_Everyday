@@ -184,10 +184,9 @@ final class AddTaskVC: UIViewController {
     private func updateCalendar() {
         calendarVC?.updateState(calendarState: currentCalendarState)
     }
-
+    
     @objc
     private func didTapTagButton() {
-        print("tapped")
     }
     
     @objc
