@@ -116,13 +116,3 @@ final class FilterVC: UIViewController {
         FilterVC.selectedButton = sender
     }
 }
-
-extension UIStackView {
-    func addSeparator(color: UIColor) {
-        let separatorView = UIView()
-        separatorView.backgroundColor = color
-        addArrangedSubview(separatorView)
-        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        separatorView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-    }
-}

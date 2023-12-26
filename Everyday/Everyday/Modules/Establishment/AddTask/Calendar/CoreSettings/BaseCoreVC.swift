@@ -24,23 +24,12 @@ protocol CoreVC: UIViewController {
 
 class BaseCoreVC: UIViewController, CoreVC {
     
-// MARK: - Private properties
+// MARK: - Properties
     
     let filterButton = UIButton(type: .system)
     let closeButton = UIButton(type: .close)
     var onUpdate: ((AddTaskVC.CalendarState) -> Void)?
     var onDismiss: (() -> Void)?
-    
-    required init(monthsLayout: MonthsLayout, onUpdate: ((AddTaskVC.CalendarState) -> Void)?) {
-        self.monthsLayout = monthsLayout
-        self.onUpdate = onUpdate
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     let monthsLayout: MonthsLayout
     
     lazy var calendarView = CalendarView(initialContent: makeContent(calendarState: .singleDaySelection))
@@ -55,6 +44,18 @@ class BaseCoreVC: UIViewController, CoreVC {
             locale: dateFormatter.locale)
         return dateFormatter
     }()
+    
+// MARK: - Initialize
+    
+    required init(monthsLayout: MonthsLayout, onUpdate: ((AddTaskVC.CalendarState) -> Void)?) {
+        self.monthsLayout = monthsLayout
+        self.onUpdate = onUpdate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 // MARK: - Lifecycle
     
