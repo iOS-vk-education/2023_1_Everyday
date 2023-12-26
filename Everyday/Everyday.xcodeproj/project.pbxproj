@@ -33,6 +33,11 @@
 		CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45262B016412001F426E /* ChartGridViewModel.swift */; };
 		CE1A452B2B016413001F426E /* AnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45272B016413001F426E /* AnalyticsModel.swift */; };
 		CE1A452C2B016413001F426E /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45282B016413001F426E /* ChartGridView.swift */; };
+		CE3035E72B39F05400B6610C /* Calendar.Component+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3035E62B39F05400B6610C /* Calendar.Component+Ext.swift */; };
+		CE3035E92B39F07400B6610C /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3035E82B39F07300B6610C /* UIColor+Ext.swift */; };
+		CE3CF7682B285FAE0089F1DA /* Priority+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CF7672B285FAE0089F1DA /* Priority+Ext.swift */; };
+		CE43E28F2B3561BC0035CA1C /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43E28E2B3561BC0035CA1C /* UILabel+Ext.swift */; };
+		CE678E282B2CCECE009F6194 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE678E272B2CCECE009F6194 /* NetworkError.swift */; };
 		CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */; };
 		CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */; };
 		CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7FAAE42AECF312000E3209 /* Assets.xcassets */; };
@@ -75,6 +80,11 @@
 		CE1A45262B016412001F426E /* ChartGridViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGridViewModel.swift; sourceTree = "<group>"; };
 		CE1A45272B016413001F426E /* AnalyticsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsModel.swift; sourceTree = "<group>"; };
 		CE1A45282B016413001F426E /* ChartGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
+		CE3035E62B39F05400B6610C /* Calendar.Component+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar.Component+Ext.swift"; sourceTree = "<group>"; };
+		CE3035E82B39F07300B6610C /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		CE3CF7672B285FAE0089F1DA /* Priority+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Priority+Ext.swift"; sourceTree = "<group>"; };
+		CE43E28E2B3561BC0035CA1C /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		CE678E272B2CCECE009F6194 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CE7FAAD82AECF30B000E3209 /* Everyday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everyday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7FAADB2AECF30B000E3209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7FAADD2AECF30B000E3209 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +150,7 @@
 				E449CD912B155967003CB934 /* UserTask.swift */,
 				E449CD952B155984003CB934 /* TasksTableViewCell.swift */,
 				CEE161AD2B22FB780089131D /* Task.swift */,
+				CE678E272B2CCECE009F6194 /* NetworkError.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -300,6 +311,10 @@
 				CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */,
 				CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */,
 				CEA4653E2B0E05C500EC52AE /* Color+Ext.swift */,
+				CE3CF7672B285FAE0089F1DA /* Priority+Ext.swift */,
+				CE43E28E2B3561BC0035CA1C /* UILabel+Ext.swift */,
+				CE3035E62B39F05400B6610C /* Calendar.Component+Ext.swift */,
+				CE3035E82B39F07300B6610C /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -421,8 +436,11 @@
 				E449CD922B155967003CB934 /* UserTask.swift in Sources */,
 				CEE161AE2B22FB780089131D /* Task.swift in Sources */,
 				E449CD982B1559EA003CB934 /* User.swift in Sources */,
+				CE3035E72B39F05400B6610C /* Calendar.Component+Ext.swift in Sources */,
 				9E97DB492B05117A00491C98 /* LoginModel.swift in Sources */,
+				CE3CF7682B285FAE0089F1DA /* Priority+Ext.swift in Sources */,
 				CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */,
+				CE3035E92B39F07400B6610C /* UIColor+Ext.swift in Sources */,
 				E449CD962B155984003CB934 /* TasksTableViewCell.swift in Sources */,
 				CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */,
 				CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */,
@@ -431,6 +449,7 @@
 				E449CD8E2B155932003CB934 /* TasksVC.swift in Sources */,
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
 				9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */,
+				CE678E282B2CCECE009F6194 /* NetworkError.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				CEA465392B0D475600EC52AE /* AnalyticsError.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
@@ -447,6 +466,7 @@
 				CE1A452B2B016413001F426E /* AnalyticsModel.swift in Sources */,
 				9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */,
 				9E97DB512B0522C100491C98 /* WelcomeScreenView.swift in Sources */,
+				CE43E28F2B3561BC0035CA1C /* UILabel+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,9 @@
 import UIKit
 
 class TasksTableViewCell: UITableViewCell {
+    
+    static let reuseID = "TasksTableViewCell"
+    
     let startTimeLabel = UILabel()
     let endTimeLabel = UILabel()
     let taskNameLabel = UILabel()
@@ -15,6 +18,7 @@ class TasksTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setupLabels()
         setupStackViews()
     }
@@ -24,31 +28,28 @@ class TasksTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-       super.layoutSubviews()
+        super.layoutSubviews()
         
-       let spacing: CGFloat = 5
-       self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: spacing, left: 0, bottom: spacing, right: 0))
+        layer.cornerRadius = 10
+        layer.borderWidth = 2
+        backgroundColor = .brandPrimaryLight
     }
-
+    
     private func setupLabels() {
         startTimeLabel.font = UIFont.systemFont(ofSize: 16)
-        startTimeLabel.textColor = UIColor.white
         startTimeLabel.textAlignment = .left
         startTimeLabel.numberOfLines = 0
         
         endTimeLabel.font = UIFont.systemFont(ofSize: 16)
-        endTimeLabel.textColor = UIColor.white
         endTimeLabel.textAlignment = .left
         endTimeLabel.numberOfLines = 0
         
-        taskNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        taskNameLabel.textColor = UIColor.white
-        taskNameLabel.textAlignment = .center
+        taskNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        taskNameLabel.textAlignment = .left
         taskNameLabel.numberOfLines = 0
         
         taskTagLabel.font = UIFont.systemFont(ofSize: 14)
-        taskTagLabel.textColor = UIColor.white
-        taskTagLabel.textAlignment = .center
+        taskTagLabel.textAlignment = .left
         taskTagLabel.numberOfLines = 0
     }
     
@@ -57,28 +58,27 @@ class TasksTableViewCell: UITableViewCell {
         let stackView1 = UIStackView(arrangedSubviews: [startTimeLabel, endTimeLabel])
         stackView1.axis = .vertical
         stackView1.distribution = .fillEqually
-        stackView1.spacing = 5
         
         let stackView2 = UIStackView(arrangedSubviews: [taskNameLabel, taskTagLabel])
         stackView2.axis = .vertical
-        stackView2.distribution = .fillEqually
-        stackView2.spacing = 3
+        stackView2.distribution = .equalSpacing
         
         contentView.addSubview(stackView1)
         contentView.addSubview(stackView2)
         
         stackView1.translatesAutoresizingMaskIntoConstraints = false
         stackView2.translatesAutoresizingMaskIntoConstraints = false
+        let padding: CGFloat = 5
         
         NSLayoutConstraint.activate([
-            stackView1.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView1.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             stackView1.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            stackView1.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView1.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
             stackView1.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3),
 
-            stackView2.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView2.topAnchor.constraint(equalTo: stackView1.topAnchor),
             stackView2.leadingAnchor.constraint(equalTo: stackView1.trailingAnchor, constant: -40),
-            stackView2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView2.bottomAnchor.constraint(equalTo: stackView1.bottomAnchor),
             stackView2.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7)
         ])
     }

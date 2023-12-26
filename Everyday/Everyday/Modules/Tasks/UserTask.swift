@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct UserTask {
     let username: String
     let email: String
     let userUID: String
-    let taskUID: [String]
+    let taskUID: [DocumentReference]
 }
