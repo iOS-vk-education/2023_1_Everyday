@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import HorizonCalendar
 
 final class AddTaskVC: UIViewController {
     
@@ -18,6 +19,8 @@ final class AddTaskVC: UIViewController {
     private let priorityButton = UIButton(type: .custom)
     private let commitButton = UIButton(type: .custom)
     private let buttonStackView = UIStackView()
+    private var currentCalendarState: CalendarState = .singleDaySelection
+    private var calendarVC: CoreVC?
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -37,22 +40,35 @@ final class AddTaskVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        taskNameField.frame = .init(x: Constants.TitleField.marginHorisontal,
-                                    y: view.safeAreaInsets.top + Constants.TitleField.marginTop,
-                                    width: view.frame.width - Constants.TitleField.marginHorisontal * 2,
-                                    height: Constants.TitleField.height)
-        
-        taskDescriptionField.frame = .init(x: Constants.DescriptionField.marginHorisontal,
-                                           y: taskNameField.frame.height + Constants.DescriptionField.marginVertical,
-                                           width: view.frame.width - Constants.DescriptionField.marginHorisontal * 2,
-                                           height: Constants.DescriptionField.height)
-        
-        buttonStackView.frame = .init(x: Constants.StackViewField.marginHorisontal,
-                                      y: taskDescriptionField.frame.origin.y +
-                                         taskDescriptionField.frame.height +
-                                         Constants.StackViewField.marginVertical,
-                                      width: view.frame.width - Constants.StackViewField.marginHorisontal * 2,
-                                      height: Constants.StackViewField.height)
+            taskNameField.frame = CGRect(
+                x: Constants.TitleField.marginHorisontal,
+                y: view.safeAreaInsets.top + Constants.TitleField.marginTop,
+                width: view.frame.width - Constants.TitleField.marginHorisontal * 2,
+                height: Constants.TitleField.height
+            )
+
+            taskDescriptionField.frame = CGRect(
+                x: Constants.DescriptionField.marginHorisontal,
+                y: taskNameField.frame.height + Constants.DescriptionField.marginVertical,
+                width: view.frame.width - Constants.DescriptionField.marginHorisontal * 2,
+                height: Constants.DescriptionField.height
+            )
+
+            buttonStackView.frame = CGRect(
+                x: Constants.StackViewField.marginHorisontal,
+                y: taskDescriptionField.frame.origin.y + taskDescriptionField.frame.height + Constants.StackViewField.marginVertical,
+                width: view.frame.width - Constants.StackViewField.marginHorisontal * 2,
+                height: Constants.StackViewField.height
+            )
+
+            // Ensure buttonStackView has constraints
+            buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.StackViewField.marginHorisontal),
+                buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.StackViewField.marginHorisontal),
+                buttonStackView.topAnchor.constraint(equalTo: taskDescriptionField.bottomAnchor, constant: Constants.StackViewField.marginVertical),
+                buttonStackView.heightAnchor.constraint(equalToConstant: Constants.StackViewField.height)
+            ])
     }
     
     // MARK: - Setup
@@ -113,19 +129,28 @@ final class AddTaskVC: UIViewController {
     private func setupStackView() {
         buttonStackView.spacing = 20
         buttonStackView.alignment = .center
-        
+
         buttonStackView.addArrangedSubview(calendarButton)
         buttonStackView.addArrangedSubview(tagButton)
         buttonStackView.addArrangedSubview(priorityButton)
-        
+
         let placeholderView = UIView()
         placeholderView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         buttonStackView.addArrangedSubview(placeholderView)
-        
+
         buttonStackView.addArrangedSubview(commitButton)
+
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.StackViewField.marginHorisontal),
+            buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.StackViewField.marginHorisontal),
+            buttonStackView.topAnchor.constraint(equalTo: taskDescriptionField.bottomAnchor, constant: Constants.StackViewField.marginVertical),
+            buttonStackView.heightAnchor.constraint(equalToConstant: Constants.StackViewField.height)
+        ])
     }
     
     // MARK: - Layout
+    
      func height() -> CGFloat {
         return Constants.TitleField.marginTop +
             Constants.TitleField.height +
@@ -138,11 +163,28 @@ final class AddTaskVC: UIViewController {
     
     // MARK: - Actions
     
-    @objc
-    private func didTapCalendarButton() {
-        print("tapped")
+    @objc private func didTapCalendarButton() {
+        calendarVC = CalendarVC(monthsLayout: .vertical(
+            options: VerticalMonthsLayoutOptions(
+                pinDaysOfWeekToTop: false,
+                alwaysShowCompleteBoundaryMonths: false,
+                scrollsToFirstMonthOnStatusBarTap: false)), onUpdate: { [weak self] state in
+                    self?.currentCalendarState = state
+                    self?.updateCalendar()
+                })
+
+        if let calendarVC {
+            calendarVC.modalPresentationStyle = .fullScreen
+            present(calendarVC, animated: true, completion: nil)
+        }
+        
+        updateCalendar()
     }
     
+    private func updateCalendar() {
+        calendarVC?.updateState(calendarState: currentCalendarState)
+    }
+
     @objc
     private func didTapTagButton() {
         print("tapped")
@@ -159,19 +201,16 @@ final class AddTaskVC: UIViewController {
     }
     
     @objc func editingChanged(_ textField: UITextField) {
-        if textField.text?.count == 1 {
-            if textField.text?.first == " " {
-                textField.text = ""
-                return
-            }
-        }
         guard let task = taskNameField.text, !task.isEmpty else {
             commitButton.isEnabled = false
             return
         }
-        
+
+        if let firstCharacter = textField.text?.first, textField.text?.count == 1, firstCharacter == " " {
+            textField.text = ""
+        }
+
         taskNameField.text = task.capitalized
-        
         commitButton.isEnabled = true
     }
 
@@ -195,5 +234,10 @@ final class AddTaskVC: UIViewController {
             static let marginHorisontal: CGFloat = 12
             static let height: CGFloat = 40
         }
+    }
+    
+    enum CalendarState: Int {
+        case singleDaySelection = 1
+        case calendar
     }
 }

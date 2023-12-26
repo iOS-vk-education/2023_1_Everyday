@@ -20,6 +20,12 @@
 		9E3F69722AF2DE2400638BC2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69712AF2DE2400638BC2 /* FirebaseFirestoreSwift */; };
 		9E3F69762AF2DE2400638BC2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69752AF2DE2400638BC2 /* FirebaseStorage */; };
 		9E3F69782AF2DE2400638BC2 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */; };
+		9E887DDE2B1CF92100F3A210 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9E887DDD2B1CF92100F3A210 /* HorizonCalendar */; };
+		9E887DE02B1CF9D900F3A210 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DDF2B1CF9D900F3A210 /* CalendarVC.swift */; };
+		9E887DE22B1D3A2F00F3A210 /* BaseCoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DE12B1D3A2F00F3A210 /* BaseCoreVC.swift */; };
+		9E887DE42B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DE32B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift */; };
+		9E887DE62B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DE52B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift */; };
+		9E887DEE2B1F838600F3A210 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DED2B1F838600F3A210 /* FilterVC.swift */; };
 		9E97DB422B04FCAC00491C98 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */; };
 		9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB442B04FF8F00491C98 /* AuthService.swift */; };
 		9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB462B05004500491C98 /* SignUpModel.swift */; };
@@ -28,6 +34,7 @@
 		9E97DB512B0522C100491C98 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB502B0522C100491C98 /* WelcomeScreenView.swift */; };
 		9E97DB532B05277C00491C98 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB522B05277C00491C98 /* Validator.swift */; };
 		9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB582B052CAE00491C98 /* ForgotPasswordVC.swift */; };
+		9EB50BA72B3AE92100FF577C /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BA62B3AE92100FF577C /* UIStackView+Ext.swift */; };
 		9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */; };
 		CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45252B016412001F426E /* ChartDetailView.swift */; };
 		CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45262B016412001F426E /* ChartGridViewModel.swift */; };
@@ -67,6 +74,11 @@
 		9E22B11D2AF9477B0002A1EC /* Coves Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Light.otf"; sourceTree = "<group>"; };
 		9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		9E22B1202AF94A800002A1EC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		9E887DDF2B1CF9D900F3A210 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
+		9E887DE12B1D3A2F00F3A210 /* BaseCoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoreVC.swift; sourceTree = "<group>"; };
+		9E887DE32B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorVIew.swift; sourceTree = "<group>"; };
+		9E887DE52B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeSelectionTracker.swift; sourceTree = "<group>"; };
+		9E887DED2B1F838600F3A210 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		9E97DB412B04FCAC00491C98 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E97DB442B04FF8F00491C98 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9E97DB462B05004500491C98 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
@@ -75,6 +87,7 @@
 		9E97DB502B0522C100491C98 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		9E97DB522B05277C00491C98 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		9E97DB582B052CAE00491C98 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		9EB50BA62B3AE92100FF577C /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
 		9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVC.swift; sourceTree = "<group>"; };
 		CE1A45252B016412001F426E /* ChartDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDetailView.swift; sourceTree = "<group>"; };
 		CE1A45262B016412001F426E /* ChartGridViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGridViewModel.swift; sourceTree = "<group>"; };
@@ -118,6 +131,7 @@
 			files = (
 				9E3F696C2AF2DE2400638BC2 /* FirebaseDatabaseSwift in Frameworks */,
 				9E3F69682AF2DE2400638BC2 /* FirebaseAuthCombine-Community in Frameworks */,
+				9E887DDE2B1CF92100F3A210 /* HorizonCalendar in Frameworks */,
 				9E3F69702AF2DE2400638BC2 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				9E3F69662AF2DE2400638BC2 /* FirebaseAuth in Frameworks */,
 				9E3F69722AF2DE2400638BC2 /* FirebaseFirestoreSwift in Frameworks */,
@@ -140,6 +154,59 @@
 				9E22B11B2AF947740002A1EC /* Coves Bold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9E887DD82B1CF83000F3A210 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				9E887DF22B1F8EC900F3A210 /* CoreSettings */,
+				9E887DF12B1F8E5D00F3A210 /* Selection Type */,
+				9E887DE32B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift */,
+				9E887DE52B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		9E887DD92B1CF83D00F3A210 /* AddTask */ = {
+			isa = PBXGroup;
+			children = (
+				9E887DDB2B1CF8BD00F3A210 /* Tag */,
+				9E887DDA2B1CF8B100F3A210 /* Priority */,
+				9E887DD82B1CF83000F3A210 /* Calendar */,
+				CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */,
+			);
+			path = AddTask;
+			sourceTree = "<group>";
+		};
+		9E887DDA2B1CF8B100F3A210 /* Priority */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Priority;
+			sourceTree = "<group>";
+		};
+		9E887DDB2B1CF8BD00F3A210 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
+		9E887DF12B1F8E5D00F3A210 /* Selection Type */ = {
+			isa = PBXGroup;
+			children = (
+				9E887DDF2B1CF9D900F3A210 /* CalendarVC.swift */,
+			);
+			path = "Selection Type";
+			sourceTree = "<group>";
+		};
+		9E887DF22B1F8EC900F3A210 /* CoreSettings */ = {
+			isa = PBXGroup;
+			children = (
+				9E887DED2B1F838600F3A210 /* FilterVC.swift */,
+				9E887DE12B1D3A2F00F3A210 /* BaseCoreVC.swift */,
+			);
+			path = CoreSettings;
 			sourceTree = "<group>";
 		};
 		9E97DB382AFD5A7300491C98 /* Tasks */ = {
@@ -205,12 +272,12 @@
 			path = WelcomeScreen;
 			sourceTree = "<group>";
 		};
-		9E97DB3E2AFD5AEE00491C98 /* AddTask */ = {
+		9E97DB3E2AFD5AEE00491C98 /* Establishment */ = {
 			isa = PBXGroup;
 			children = (
-				CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */,
+				9E887DD92B1CF83D00F3A210 /* AddTask */,
 			);
-			path = AddTask;
+			path = Establishment;
 			sourceTree = "<group>";
 		};
 		9E97DB3F2AFD5AFA00491C98 /* Profile */ = {
@@ -297,7 +364,7 @@
 				9E97DB432B04FF6100491C98 /* Authorization */,
 				9E97DB402AFD5B4000491C98 /* TabBar */,
 				9E97DB3F2AFD5AFA00491C98 /* Profile */,
-				9E97DB3E2AFD5AEE00491C98 /* AddTask */,
+				9E97DB3E2AFD5AEE00491C98 /* Establishment */,
 				9E97DB3A2AFD5A8600491C98 /* Settings */,
 				9E97DB392AFD5A7E00491C98 /* Analytics */,
 				9E97DB382AFD5A7300491C98 /* Tasks */,
@@ -311,6 +378,7 @@
 				CEEEDEE92B01717400DA6A45 /* UIView+Ext.swift */,
 				CEEEDEEB2B01719C00DA6A45 /* Date+Ext.swift */,
 				CEA4653E2B0E05C500EC52AE /* Color+Ext.swift */,
+				9EB50BA62B3AE92100FF577C /* UIStackView+Ext.swift */,
 				CE3CF7672B285FAE0089F1DA /* Priority+Ext.swift */,
 				CE43E28E2B3561BC0035CA1C /* UILabel+Ext.swift */,
 				CE3035E62B39F05400B6610C /* Calendar.Component+Ext.swift */,
@@ -346,6 +414,7 @@
 				9E3F69712AF2DE2400638BC2 /* FirebaseFirestoreSwift */,
 				9E3F69752AF2DE2400638BC2 /* FirebaseStorage */,
 				9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */,
+				9E887DDD2B1CF92100F3A210 /* HorizonCalendar */,
 			);
 			productName = Everyday;
 			productReference = CE7FAAD82AECF30B000E3209 /* Everyday.app */;
@@ -377,6 +446,7 @@
 			mainGroup = CE7FAACF2AECF30B000E3209;
 			packageReferences = (
 				9E3F695C2AF2DE2300638BC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				9E887DDC2B1CF92100F3A210 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 			);
 			productRefGroup = CE7FAAD92AECF30B000E3209 /* Products */;
 			projectDirPath = "";
@@ -432,8 +502,10 @@
 			files = (
 				9E97DB4B2B051FE100491C98 /* AlertManager.swift in Sources */,
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
+				9E887DE02B1CF9D900F3A210 /* CalendarVC.swift in Sources */,
 				CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */,
 				E449CD922B155967003CB934 /* UserTask.swift in Sources */,
+				9E887DEE2B1F838600F3A210 /* FilterVC.swift in Sources */,
 				CEE161AE2B22FB780089131D /* Task.swift in Sources */,
 				E449CD982B1559EA003CB934 /* User.swift in Sources */,
 				CE3035E72B39F05400B6610C /* Calendar.Component+Ext.swift in Sources */,
@@ -447,14 +519,18 @@
 				CE7FAADE2AECF30B000E3209 /* SceneDelegate.swift in Sources */,
 				CEA4653B2B0D48A300EC52AE /* Alert.swift in Sources */,
 				E449CD8E2B155932003CB934 /* TasksVC.swift in Sources */,
+				9E887DE62B1D3BAF00F3A210 /* DayRangeSelectionTracker.swift in Sources */,
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
 				9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */,
+				9EB50BA72B3AE92100FF577C /* UIStackView+Ext.swift in Sources */,
 				CE678E282B2CCECE009F6194 /* NetworkError.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				CEA465392B0D475600EC52AE /* AnalyticsError.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
+				9E887DE22B1D3A2F00F3A210 /* BaseCoreVC.swift in Sources */,
 				9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */,
+				9E887DE42B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift in Sources */,
 				9E97DB532B05277C00491C98 /* Validator.swift in Sources */,
 				CE84B90B2AF139F800B1E795 /* SignUpVC.swift in Sources */,
 				CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */,
@@ -621,6 +697,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = NO;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ed-Everyday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -650,6 +727,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = NO;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ed-Everyday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -689,6 +767,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.17.0;
+			};
+		};
+		9E887DDC2B1CF92100F3A210 /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -738,6 +824,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9E3F695C2AF2DE2300638BC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		9E887DDD2B1CF92100F3A210 /* HorizonCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E887DDC2B1CF92100F3A210 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			productName = HorizonCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
