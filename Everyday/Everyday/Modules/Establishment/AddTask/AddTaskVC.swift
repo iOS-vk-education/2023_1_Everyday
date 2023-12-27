@@ -203,6 +203,7 @@ final class AddTaskVC: UIViewController, PrioritySelectionDelegate, TagSelection
     private func updateCalendar() {
         calendarVC?.updateState(calendarState: currentCalendarState)
     }
+
     
     @objc private func didTapTagButton() {
         let tagVC = TagVC()

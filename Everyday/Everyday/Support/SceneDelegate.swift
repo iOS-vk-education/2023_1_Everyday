@@ -11,10 +11,39 @@ import FirebaseAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var splashPresenter: SplashPresenterDescription?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        self.setupWindow(with: scene)
-        self.checkAuthentication()
+
+        guard let scene = (scene as? UIWindowScene) else {
+            return
+        }
+        
+        splashPresenter = SplashPresenter(scene: scene)
+        setupWindow(with: scene)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if Auth.auth().currentUser == nil {
+            if let viewController = storyboard.instantiateViewController(withIdentifier: "WelcomeScreenVC") as? WelcomeScreenVC {
+               window?.rootViewController = viewController
+            }
+        } else {
+            if let viewController = storyboard.instantiateViewController(withIdentifier: "EDTabBarController") as? EDTabBarController {
+               window?.rootViewController = viewController
+            }
+        }
+        
+        splashPresenter?.present()
+        
+        let delay: TimeInterval = 2
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            self.splashPresenter?.dismiss { [weak self] in
+                self?.splashPresenter = nil
+            }
+        }
+        
+        checkAuthentication()
     }
     
     private func setupWindow(with scene: UIScene) {
@@ -38,21 +67,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func goToController(with viewController: UIViewController) {
         DispatchQueue.main.async { [weak self] in
-            UIView.animate(withDuration: 0.25) {
-                self?.window?.layer.opacity = 0
-            } completion: { [weak self] _ in
-                
-                let nav = UINavigationController(rootViewController: viewController)
-                if viewController is EDTabBarController {
-                    nav.setNavigationBarHidden(true, animated: false)
-                }
-                nav.modalPresentationStyle = .fullScreen
-                self?.window?.rootViewController = nav
-                
-                UIView.animate(withDuration: 0.25) { [weak self] in
-                    self?.window?.layer.opacity = 1
-                }
+            let nav = UINavigationController(rootViewController: viewController)
+            if viewController is EDTabBarController {
+                nav.setNavigationBarHidden(true, animated: false)
             }
+            nav.modalPresentationStyle = .fullScreen
+            self?.window?.rootViewController = nav
         }
     }
 }
