@@ -35,6 +35,13 @@ final class TasksVC: UIViewController {
       return searchController.isActive && !isSearchBarEmpty
     }
     
+    let noTasksImageView: UIImageView = {
+            let imageView = UIImageView(image: UIImage(named: "im1"))
+            imageView.contentMode = .scaleAspectFit
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            return imageView
+        }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -47,6 +54,7 @@ final class TasksVC: UIViewController {
         configureViewController()
         layoutUI()
         getTasks()
+        updateTableView()
     }
     
     // MARK: - Network
@@ -113,16 +121,20 @@ final class TasksVC: UIViewController {
     }
     
     private func configureAddTaskButton() {
-        let config = UIImage.SymbolConfiguration(pointSize: 60)  // wtf?
+        let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .light)
         let image = UIImage(systemName: "plus.circle.fill", withConfiguration: config)
         
-        addTaskButton.setImage(image, for: .normal)
-        addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
-        addTaskButton.tintColor = .brandSecondary
-        addTaskButton.backgroundColor = .white
-        addTaskButton.layer.cornerRadius = 55
-        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.image = image
+        addTaskButton.configuration = buttonConfig
         
+        addTaskButton.tintColor = UIColor(named: "EverydayOrange")
+        addTaskButton.backgroundColor = .white
+        addTaskButton.layer.cornerRadius = 30
+        addTaskButton.clipsToBounds = true
+        
+        addTaskButton.addTarget(self, action: #selector(addTaskButtonTapped), for: .touchUpInside)
+        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addTaskButton)
     }
     
@@ -136,9 +148,17 @@ final class TasksVC: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         
+        tableView.backgroundView = noTasksImageView
+        noTasksImageView.isHidden = !tasks.isEmpty
+        
+        NSLayoutConstraint.activate([
+            noTasksImageView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            noTasksImageView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
+        ])
+        
         view.addSubview(tableView)
     }
-    
+
     // MARK: - Layout UI
     
     private func layoutUI() {
@@ -364,6 +384,11 @@ extension TasksVC: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         .leastNormalMagnitude
+    }
+    
+    private func updateTableView() {
+        tableView.reloadData()
+        noTasksImageView.isHidden = !tasks.isEmpty
     }
 }
 

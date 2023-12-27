@@ -8,7 +8,26 @@
 import UIKit
 import HorizonCalendar
 
-final class AddTaskVC: UIViewController {
+final class AddTaskVC: UIViewController, PrioritySelectionDelegate, TagSelectionDelegate {
+    
+    var task = AddTaskModel(
+        tag: "",
+        dateBegin: "28.12.2023",
+        dateEnd: "",
+        priority: "",
+        subtask: "",
+        status: "",
+        description: ""
+        
+    )
+    
+    func didSelectPriority(_ priority: String) {
+        task.priority = priority
+    }
+    
+    func didSelectTag(_ tag: String) {
+        task.tag = tag
+    }
     
     // MARK: - Private properties
     
@@ -184,20 +203,34 @@ final class AddTaskVC: UIViewController {
     private func updateCalendar() {
         calendarVC?.updateState(calendarState: currentCalendarState)
     }
-
+    
     @objc private func didTapTagButton() {
         let tagVC = TagVC()
+        tagVC.tagDelegate = self
         tagVC.modalPresentationStyle = .formSheet
         present(tagVC, animated: true, completion: nil)
     }
-
-    @objc
-    private func didTapPriorityButton() {
+    
+    @objc private func didTapPriorityButton() {
+        let priorityVC = PriorityVC()
+        
+        priorityVC.delegate = self
+        priorityVC.modalPresentationStyle = .overFullScreen
+        present(priorityVC, animated: true, completion: nil)
     }
 
     @objc
     private func didTapCommitButton() {
-        print("tapped")
+        task.description =  taskNameField.text ?? ""
+        task.subtask = taskDescriptionField.text ?? ""
+        
+        AddTakService.shared.addTask(task: task) { [weak self] error in
+            if let error = error {
+                print("Failed to add task: \(error.localizedDescription)")
+            } else {
+                self?.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @objc func editingChanged(_ textField: UITextField) {

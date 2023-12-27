@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol TagSelectionDelegate: AnyObject {
+    func didSelectTag(_ tag: String)
+}
+
 class TagVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Private Properties
 
     private var categories = TagModel(tag: [])
+    weak var tagDelegate: TagSelectionDelegate?
     
     private let addButton: UIButton = {
         let button = UIButton(type: .system)
@@ -109,8 +114,8 @@ class TagVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             }
         }
 
-    private func handleSelectedCategory(_ category: String) {
-        print("Handling selected category: \(category)")
+    func handleSelectedCategory(_ category: String) {
+        tagDelegate?.didSelectTag(category)
         dismiss(animated: true, completion: nil)
     }
     

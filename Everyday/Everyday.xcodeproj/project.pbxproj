@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E20F00F2B3CCD530032287C /* AddTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E20F00E2B3CCD530032287C /* AddTaskService.swift */; };
+		9E20F0112B3CCD9E0032287C /* AddTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E20F0102B3CCD9E0032287C /* AddTaskModel.swift */; };
 		9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11B2AF947740002A1EC /* Coves Bold.otf */; };
 		9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11D2AF9477B0002A1EC /* Coves Light.otf */; };
 		9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */; };
@@ -76,6 +78,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E20F00E2B3CCD530032287C /* AddTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskService.swift; sourceTree = "<group>"; };
+		9E20F0102B3CCD9E0032287C /* AddTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskModel.swift; sourceTree = "<group>"; };
 		9E22B11B2AF947740002A1EC /* Coves Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Bold.otf"; sourceTree = "<group>"; };
 		9E22B11D2AF9477B0002A1EC /* Coves Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Light.otf"; sourceTree = "<group>"; };
 		9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				9ED2ABEE2B3B86C800ECB0C1 /* Tag */,
 				9E887DD82B1CF83000F3A210 /* Calendar */,
 				CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */,
+				9E20F00E2B3CCD530032287C /* AddTaskService.swift */,
+				9E20F0102B3CCD9E0032287C /* AddTaskModel.swift */,
 			);
 			path = AddTask;
 			sourceTree = "<group>";
@@ -556,6 +562,7 @@
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				CEA465392B0D475600EC52AE /* AnalyticsError.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
+				9E20F00F2B3CCD530032287C /* AddTaskService.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
 				9E887DE22B1D3A2F00F3A210 /* BaseCoreVC.swift in Sources */,
 				9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */,
@@ -573,6 +580,7 @@
 				CE1A452B2B016413001F426E /* AnalyticsModel.swift in Sources */,
 				9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */,
 				9ED2ABF52B3BAEB500ECB0C1 /* PriorityModel.swift in Sources */,
+				9E20F0112B3CCD9E0032287C /* AddTaskModel.swift in Sources */,
 				9E97DB512B0522C100491C98 /* WelcomeScreenView.swift in Sources */,
 				CE43E28F2B3561BC0035CA1C /* UILabel+Ext.swift in Sources */,
 			);
