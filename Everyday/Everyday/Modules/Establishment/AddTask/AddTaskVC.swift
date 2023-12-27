@@ -185,16 +185,16 @@ final class AddTaskVC: UIViewController {
         calendarVC?.updateState(calendarState: currentCalendarState)
     }
 
-    @objc
-    private func didTapTagButton() {
-        print("tapped")
+    @objc private func didTapTagButton() {
+        let tagVC = TagVC()
+        tagVC.modalPresentationStyle = .formSheet
+        present(tagVC, animated: true, completion: nil)
     }
-    
+
     @objc
     private func didTapPriorityButton() {
-        print("tapped")
     }
-    
+
     @objc
     private func didTapCommitButton() {
         print("tapped")

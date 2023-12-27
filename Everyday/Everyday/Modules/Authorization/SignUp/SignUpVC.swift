@@ -219,7 +219,8 @@ final class SignUpVC: UIViewController {
         let registerUserRequest = SignUpModel(
             username: self.usernameField.text ?? "",
             email: self.emailField.text ?? "",
-            password: self.passwordField.text ?? ""
+            password: self.passwordField.text ?? "",
+            tag: ["Работа", "Учеба", "Досуг", "Дом"]
         )
     
         if !Validator.isValidUsername(for: registerUserRequest.username) {
