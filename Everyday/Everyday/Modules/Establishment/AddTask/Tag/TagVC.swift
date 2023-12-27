@@ -8,13 +8,10 @@
 import UIKit
 
 class TagVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    // MARK: - private properties
 
-    private var categories = TagModel(
-        tag: []
-    )
-    private let addTagView = AddTagView()
+    // MARK: - Private Properties
+
+    private var categories = TagModel(tag: [])
     
     private let addButton: UIButton = {
         let button = UIButton(type: .system)
@@ -39,25 +36,13 @@ class TagVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TagService.shared.fetchTag { [weak self] user, error in
-            guard let self = self else {
-                return
-            }
-            if let error = error {
-                AlertManager.showFetchingUserError(on: self, with: error)
-                return
-            }
-            
-            if let user = user {
-                categories.tag.append(contentsOf: user.tag)
-                self.tableView.reloadData()
-            }
-        }
         view.backgroundColor = UIColor(named: "EverydayBlue")
-
         setupUI()
+        fetchTags()
     }
-    // MARK: - Lifecycle
+
+    // MARK: - UI Setup
+
     private func setupUI() {
         view.addSubview(addButton)
         addButton.translatesAutoresizingMaskIntoConstraints = false
@@ -125,20 +110,53 @@ class TagVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
 
     private func handleSelectedCategory(_ category: String) {
-        // Обработка выбора категории
-        // Например, вы можете передать выбранную категорию в другой метод или делегировать ее обработку
-        print("Обработка выбранной категории: \(category)")
-
+        // Handle the selected category
+        print("Handling selected category: \(category)")
         dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Actions
 
     @objc private func didTapAddButton() {
-        print("Нажата кнопка '+'")
+        // Show the AddTagViewController
+        let addTagViewController = AddTagViewController()
+        addTagViewController.delegate = self
+        present(addTagViewController, animated: true, completion: nil)
     }
 
     @objc private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
     }
+
+    // MARK: - Data Fetching
+
+    private func fetchTags() {
+        TagService.shared.fetchTag { [weak self] user, error in
+            guard let self = self else {
+                return
+            }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+
+            if let user = user {
+                categories.tag.append(contentsOf: user.tag)
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+
+extension TagVC: AddTagViewDelegate {
+    func didTapAddTagButton(tagName: String) {
+            TagService.shared.addTag(tagName) { [weak self] error in
+                if let error = error {
+                    print("Error adding tag: \(error.localizedDescription)")
+                } else {
+                    self?.categories.tag.removeAll()
+                    self?.fetchTags()
+                }
+            }
+        }
 }
