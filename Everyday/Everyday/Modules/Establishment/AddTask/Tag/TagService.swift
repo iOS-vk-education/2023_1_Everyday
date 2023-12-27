@@ -51,4 +51,19 @@ class TagService {
                 completion(error)
             }
         }
+    
+    public func deleteTag(_ deletedTag: String, completion: @escaping (Error?) -> Void) {
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userRef = db.collection("user").document(userUID)
+        
+        userRef.updateData([
+            "tag": FieldValue.arrayRemove([deletedTag])
+        ]) { error in
+            completion(error)
+        }
+    }
 }

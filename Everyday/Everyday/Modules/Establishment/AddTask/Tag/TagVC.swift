@@ -110,9 +110,24 @@ class TagVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
 
     private func handleSelectedCategory(_ category: String) {
-        // Handle the selected category
         print("Handling selected category: \(category)")
         dismiss(animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let deletedTag = categories.tag[indexPath.row]
+
+            TagService.shared.deleteTag(deletedTag) { [weak self] error in
+                if let error = error {
+                    print("Error deleting tag: \(error.localizedDescription)")
+                } else {
+                    self?.categories.tag.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.reloadData()
+                }
+            }
+        }
     }
 
     // MARK: - Actions
