@@ -153,7 +153,7 @@ final class TasksVC: UIViewController {
         
         NSLayoutConstraint.activate([
             noTasksImageView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
-            noTasksImageView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
+            noTasksImageView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor, constant: -50)
         ])
         
         view.addSubview(tableView)
@@ -465,5 +465,11 @@ extension TasksVC: UISearchResultsUpdating {
         }
         
         filterContentForSearchText(searchText)
+    }
+}
+
+extension TasksVC: AddTaskDelegate {
+    func didAddTask() {
+        getTasks()
     }
 }

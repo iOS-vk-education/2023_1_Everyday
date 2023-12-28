@@ -67,6 +67,7 @@ class BaseCoreVC: UIViewController, CoreVC {
         
         calendarView.layer.cornerRadius = 10 
         calendarView.layer.masksToBounds = true
+        calendarView.backgroundColor = UIColor(named: "EverydayLightBlue")
 
         filterButton.setImage(UIImage(systemName: "slider.vertical.3"), for: .normal)
         filterButton.tintColor = UIColor(named: "EverydayOrange")

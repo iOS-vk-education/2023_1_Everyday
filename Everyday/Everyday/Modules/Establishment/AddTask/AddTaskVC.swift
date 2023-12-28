@@ -8,7 +8,13 @@
 import UIKit
 import HorizonCalendar
 
+protocol AddTaskDelegate: AnyObject {
+    func didAddTask()
+}
+
 final class AddTaskVC: UIViewController, PrioritySelectionDelegate, TagSelectionDelegate {
+    
+    weak var addTaskDelegate: AddTaskDelegate?
     
     var task = AddTaskModel(
         tag: "",
@@ -18,7 +24,6 @@ final class AddTaskVC: UIViewController, PrioritySelectionDelegate, TagSelection
         subtask: "",
         status: "",
         description: ""
-        
     )
     
     func didSelectPriority(_ priority: String) {
@@ -204,7 +209,6 @@ final class AddTaskVC: UIViewController, PrioritySelectionDelegate, TagSelection
         calendarVC?.updateState(calendarState: currentCalendarState)
     }
 
-    
     @objc private func didTapTagButton() {
         let tagVC = TagVC()
         tagVC.tagDelegate = self
@@ -222,7 +226,7 @@ final class AddTaskVC: UIViewController, PrioritySelectionDelegate, TagSelection
 
     @objc
     private func didTapCommitButton() {
-        task.description =  taskNameField.text ?? ""
+        task.description = taskNameField.text ?? ""
         task.subtask = taskDescriptionField.text ?? ""
         
         AddTakService.shared.addTask(task: task) { [weak self] error in

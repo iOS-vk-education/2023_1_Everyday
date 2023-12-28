@@ -27,7 +27,7 @@ class AddTakService {
             "priority": task.priority,
             "subtask": task.subtask,
             "status": task.status,
-            "description": task.description
+            "title": task.description
         ]
 
         taskDocumentReference.setData(taskData) { error in
