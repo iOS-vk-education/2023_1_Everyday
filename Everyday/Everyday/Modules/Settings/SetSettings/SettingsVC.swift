@@ -63,21 +63,19 @@ final class SettingsVC: UIViewController {
     }
     
     func updateUsername() {
-        SettingsService.shared.fetchUser { [weak self] userSettings, error in
+        SettingsService.shared.fetchUser { [weak self] userSettings, _ in
             guard let self = self
             else {
                 return
             }
-            if let error = error {
-                AlertManager.showFetchingUserError(on: self, with: error)
-                return
-            }
+//            if let error = error {
+//                return
+//            }
 
             if let userSettings = userSettings {
                 userNameLabel.text = userSettings.username
                 self.avatarURL = userSettings.avatarURL
                 guard let userUID = Auth.auth().currentUser?.uid else {
-                    AlertManager.showUnknownFetchingUserError(on: self)
                     return
                 }
                 uid = userUID
@@ -192,10 +190,9 @@ final class SettingsVC: UIViewController {
     private func downloadImage() {
         let reference = Storage.storage().reference(forURL: avatarURL)
             let megaByte = Int64(3 * 1024 * 1024)
-        reference.getData(maxSize: megaByte) { data, error in
+        reference.getData(maxSize: megaByte) { data, _ in
             
             guard let imageData = data else {
-                AlertManager.showStorageError(on: self)
                 return
             }
             let image = UIImage(data: imageData)
@@ -290,7 +287,6 @@ extension SettingsVC: UINavigationControllerDelegate, UIImagePickerControllerDel
             metadata.contentType = "image/jpeg"
             reference.putData(imageData, metadata: metadata) { (metadata, _) in
                 guard let m = metadata else {
-                    AlertManager.showStorageError(on: self)
                     return
                 }
                 reference.downloadURL { (url, _) in
@@ -306,8 +302,9 @@ extension SettingsVC: UINavigationControllerDelegate, UIImagePickerControllerDel
             switch result {
             case .success(let url):
                 SettingsService.shared.updateAvatarUrl(url: url.absoluteString)
-            case .failure(let error):
-                AlertManager.showErrorSendingStorage(on: self, with: error)
+//            case .failure( _):
+//                print("Fatal error")
+            default: print("error")
             }
         }
     }

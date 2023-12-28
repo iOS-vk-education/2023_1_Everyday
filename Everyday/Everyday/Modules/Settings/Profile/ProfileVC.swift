@@ -71,15 +71,14 @@ final class ProfileVC: UIViewController {
         saveButton.tintColor = .brandSecondary
         navigationItem.leftBarButtonItem = saveButton
         
-        SettingsService.shared.fetchUser { [weak self] userProfile, error in
+        SettingsService.shared.fetchUser { [weak self] userProfile, _ in
             guard let self = self
             else {
                 return
             }
-            if let error = error {
-                AlertManager.showFetchingUserError(on: self, with: error)
-                return
-            }
+//            if let error = error {
+//                return
+//            }
             
             if let userProfile = userProfile {
                 usernameCellModel = userNameCellModel(fieldText: userProfile.username, name: "Имя: ")
@@ -245,14 +244,13 @@ final class ProfileVC: UIViewController {
     
     @objc
     private func didTapExitCell() {
-        AuthService.shared.signOut { [weak self] error in
+        AuthService.shared.signOut { [weak self] _ in
             guard let self = self else {
                 return
             }
-            if let error = error {
-                AlertManager.showLogoutError(on: self, with: error)
-                return
-            }
+//            if let error = error {
+//                return
+//            }
             if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
                 sceneDelegate.checkAuthentication()
             }
@@ -311,7 +309,7 @@ final class ProfileVC: UIViewController {
     private func downloadImage() {
         let reference = Storage.storage().reference(forURL: avatarURL)
             let megaByte = Int64(3 * 1024 * 1024)
-        reference.getData(maxSize: megaByte) { data, error in
+        reference.getData(maxSize: megaByte) { data, _ in
             guard let imageData = data else {
                 return
             }
@@ -332,11 +330,11 @@ final class ProfileVC: UIViewController {
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        reference.putData(imageData, metadata: metadata) { (metadata, error) in
+        reference.putData(imageData, metadata: metadata) { (metadata, _) in
             guard let m = metadata else {
                 return
             }
-            reference.downloadURL { (url, error) in
+            reference.downloadURL { (url, _) in
                 guard let url = url else {
                     return
                 }
@@ -426,7 +424,6 @@ extension ProfileVC: UITableViewDelegate {
 extension ProfileVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if !Validator.isValidUsername(for: textField.text ?? "") {
-            AlertManager.showInvalidUsernameAlert(on: self)
             username = usernameCellModel.fieldText
         } else {
             username = textField.text ?? ""

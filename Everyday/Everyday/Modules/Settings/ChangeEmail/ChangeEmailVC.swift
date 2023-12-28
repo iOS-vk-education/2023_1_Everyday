@@ -207,12 +207,11 @@ final class ChangeEmailVC: UIViewController {
         let currentUser = Auth.auth().currentUser
         
         if !Validator.isValidEmail(for: newEmailField.text ?? "") {
-            AlertManager.showInvalidEmailAlert(on: self)
             return
         }
         Auth.auth().signIn(withEmail: Auth.auth().currentUser?.email ?? "", password: confirmPasswordField.text ?? "") { [weak self] _, error in
             if let error = error {
-                AlertManager.showPasswordResetSent(on: ChangeEmailVC())
+                print(error)
                 return
             }
             if self?.newEmailField.text != Auth.auth().currentUser?.email ?? "" {
@@ -220,7 +219,7 @@ final class ChangeEmailVC: UIViewController {
                 
                 currentUser?.sendEmailVerification(beforeUpdatingEmail: self?.newEmailField.text ?? "") { error in
                     if let error = error {
-                        AlertManager.showUnknownFetchingUserError(on: ChangeEmailVC())
+                        print(error)
                     }
                 }
             }
