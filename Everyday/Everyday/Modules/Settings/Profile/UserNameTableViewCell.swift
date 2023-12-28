@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserNameTableViewCell: UITableViewCell {
+final class UserNameTableViewCell: UITableViewCell {
     let cellTextField = UITextField()
     let cellLabel = UILabel()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -20,6 +20,11 @@ class UserNameTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    public func configure(username: String, name: String) {
+//        cellTextField.text = username
+//        cellLabel.text = name
+//    }
     
     private func setupLabels() {
         cellLabel.font = UIFont(name: "Montserrat-Bold", size: 16)

@@ -6,20 +6,28 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseFirestore
+import FirebaseAuth
 
 final class SettingsVC: UIViewController {
     
     private let changeImageBtnTableView = UITableView()
     private let userImage = UIImageView()
-    private let userName = UILabel()
+    private let userNameLabel = UILabel()
     private let userBlockStackView = UIStackView()
     private let contentView = UIView()
     private let editButtonTitle = UILabel()
+    private var avatarURL: String = ""
+    
+    var uid: String = " "
+    
     private let settingsTableView = UITableView(frame: .zero, style: .insetGrouped)
-    private let changeImageTitleCell = SettingsTableViewCellModel(cellImageName: "camera.badge.ellipsis", cellTitle: "Изменить фото")
-    private let aboutAppCell = [SettingsTableViewCellModel(cellImageName: "person.fill.questionmark", cellTitle: "Обратная связь"),
+    private let changeImageTitleCellModel = SettingsTableViewCellModel(cellImageName: "camera.badge.ellipsis", cellTitle: "Изменить фото")
+    private let aboutAppCellModels = [SettingsTableViewCellModel(cellImageName: "person.fill.questionmark", cellTitle: "Обратная связь"),
                                      SettingsTableViewCellModel(cellImageName: "newspaper.fill", cellTitle: "Блог"),
                                      SettingsTableViewCellModel(cellImageName: "book.fill", cellTitle: "FAQ")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "EverydayBlue")
@@ -41,6 +49,10 @@ final class SettingsVC: UIViewController {
         setupConstraints()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        updateUsername()
+    }
+    
     // MARK: - Setup
     private func setupUI() {
         setupStackViews()
@@ -50,6 +62,29 @@ final class SettingsVC: UIViewController {
         setupTableView()
     }
     
+    func updateUsername() {
+        SettingsService.shared.fetchUser { [weak self] userSettings, error in
+            guard let self = self
+            else {
+                return
+            }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+
+            if let userSettings = userSettings {
+                userNameLabel.text = userSettings.username
+                self.avatarURL = userSettings.avatarURL
+                guard let userUID = Auth.auth().currentUser?.uid else {
+                    AlertManager.showUnknownFetchingUserError(on: self)
+                    return
+                }
+                uid = userUID
+                downloadImage()
+            }
+        }
+    }
     private func setupContentView() {
         contentView.addSubviews(userBlockStackView, settingsTableView)
         
@@ -63,11 +98,10 @@ final class SettingsVC: UIViewController {
         settingsTableView.translatesAutoresizingMaskIntoConstraints = false
     }
     private func setupLabels() {
-        userName.text = "Артур Сардарян"
-        userName.font = UIFont(name: "Montserrat-Bold", size: 16)
-        userName.textColor = UIColor(.white)
-        userName.textAlignment = .center
-        userName.translatesAutoresizingMaskIntoConstraints = false
+        userNameLabel.font = UIFont(name: "Montserrat-Bold", size: 16)
+        userNameLabel.textColor = UIColor(.white)
+        userNameLabel.textAlignment = .center
+        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         editButtonTitle.textColor = UIColor(named: "EverydayOrange")
         editButtonTitle.font = UIFont(name: "Montserrat-Bold", size: 16)
@@ -80,13 +114,13 @@ final class SettingsVC: UIViewController {
         userBlockStackView.spacing = 10
         userBlockStackView.distribution = .fill
         userBlockStackView.addArrangedSubview(userImage)
-        userBlockStackView.addArrangedSubview(userName)
+        userBlockStackView.addArrangedSubview(userNameLabel)
         
         userBlockStackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupUserImage() {
-        userImage.image = UIImage(named: "logo")
+        userImage.image = UIImage(named: "artur")
         userImage.layer.masksToBounds = false
         userImage.layer.cornerRadius = UIScreen.main.bounds.size.width * 0.4 / 2
         userImage.clipsToBounds = true
@@ -109,11 +143,11 @@ final class SettingsVC: UIViewController {
             userImage.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.4),
             userImage.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.4),
             
-            userName.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 10),
-            userName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            userNameLabel.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 10),
+            userNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
             settingsTableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            settingsTableView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 0.03 * view.bounds.height),
+            settingsTableView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 0.03 * view.bounds.height),
             settingsTableView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.9),
             settingsTableView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height * 0.4)
         ])
@@ -141,15 +175,32 @@ final class SettingsVC: UIViewController {
     
     @objc
     private func didTapChangeUserImageButton() {
-        let profileVC = ProfileVC()
-        navigationController?.pushViewController(profileVC, animated: true)
-//        ProfileVC().didTapchangeImageButton()
+        let imagePickerController = UIImagePickerController()
+
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        self.present(imagePickerController, animated: true, completion: nil)
     }
     
     @objc
     private func didTapEditButton() {
         let profileVC = ProfileVC()
         navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    @objc
+    private func downloadImage() {
+        let reference = Storage.storage().reference(forURL: avatarURL)
+            let megaByte = Int64(3 * 1024 * 1024)
+        reference.getData(maxSize: megaByte) { data, error in
+            
+            guard let imageData = data else {
+                AlertManager.showStorageError(on: self)
+                return
+            }
+            let image = UIImage(data: imageData)
+            self.userImage.image = image
+        }
     }
 }
 
@@ -171,23 +222,19 @@ extension SettingsVC: UITableViewDataSource {
             
             let cellImageConfiguration = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 20))
             if indexPath.section == 0 {
-                let cellButton = changeImageTitleCell
+                let cellButton = changeImageTitleCellModel
                 cell.accessoryType = .disclosureIndicator
                 cell.cellImage.image = UIImage(systemName: cellButton.cellImageName, withConfiguration: cellImageConfiguration)
                 cell.cellLabel.text = cellButton.cellTitle
                 cell.backgroundColor = .brandPrimaryLight
-                
-                cell.selectionStyle = .none
                 
                 return cell
             } else {
-                let cellButton = aboutAppCell[indexPath.row]
+                let cellButton = aboutAppCellModels[indexPath.row]
                 cell.accessoryType = .disclosureIndicator
                 cell.cellImage.image = UIImage(systemName: cellButton.cellImageName, withConfiguration: cellImageConfiguration)
                 cell.cellLabel.text = cellButton.cellTitle
                 cell.backgroundColor = .brandPrimaryLight
-                
-                cell.selectionStyle = .none
                 
                 return cell
             }
@@ -205,9 +252,10 @@ extension SettingsVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if tableView == settingsTableView {
             if indexPath.section == 0 {
-                didTapChangeUserImageButton()
+               didTapChangeUserImageButton()
             } else {
                 switch indexPath.row {
                 case 0: print("dd")
@@ -215,6 +263,51 @@ extension SettingsVC: UITableViewDelegate {
                 case 2: print("kk")
                 default: print("ll")
                 }
+            }
+        }
+    }
+}
+
+extension SettingsVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        picker.dismiss(animated: true)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        userImage.image = image
+        
+        func uploadImage(photo: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
+            guard let userUID = Auth.auth().currentUser?.uid else {
+                return
+            }
+            
+            let reference = Storage.storage().reference().child("avatars").child(userUID)
+            guard let imageData = userImage.image?.jpegData(compressionQuality: 0.4) else {
+                return
+            }
+            
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            reference.putData(imageData, metadata: metadata) { (metadata, _) in
+                guard let m = metadata else {
+                    AlertManager.showStorageError(on: self)
+                    return
+                }
+                reference.downloadURL { (url, _) in
+                    guard let url = url else {
+                        return
+                    }
+                    completion(.success(url))
+                }
+            }
+        }
+        
+        uploadImage(photo: image) { result in
+            switch result {
+            case .success(let url):
+                SettingsService.shared.updateAvatarUrl(url: url.absoluteString)
+            case .failure(let error):
+                AlertManager.showErrorSendingStorage(on: self, with: error)
             }
         }
     }

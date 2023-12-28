@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChangeOrExitTableViewCell: UITableViewCell {
+final class ChangeOrExitTableViewCell: UITableViewCell {
     let cellLabel = UILabel()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

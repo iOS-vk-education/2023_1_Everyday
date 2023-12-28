@@ -15,4 +15,5 @@ struct SignUpModel {
     let task: [DocumentReference] = []
     let doneTask: [DocumentReference] = []
     let event: [DocumentReference] = []
+    let avatarURL: String = ""
 }

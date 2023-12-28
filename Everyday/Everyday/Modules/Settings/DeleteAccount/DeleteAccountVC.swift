@@ -5,14 +5,10 @@
 //  Created by Yaz on 23.11.2023.
 //
 
-//
-//  ChangePasswordVC.swift
-//  Everyday
-//
-//  Created by Yaz on 19.11.2023.
-//
-
 import UIKit
+import FirebaseStorage
+import FirebaseFirestore
+import FirebaseAuth
 
 final class DeleteAccountVC: UIViewController {
     
@@ -25,6 +21,8 @@ final class DeleteAccountVC: UIViewController {
     private let forgotPasswordButton = UIButton(type: .custom)
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    
+    var uid: String = " "
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -124,6 +122,7 @@ final class DeleteAccountVC: UIViewController {
         confirmButton.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         confirmButton.setTitleColor(.white, for: .normal)
         confirmButton.layer.cornerRadius = 5
+        confirmButton.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
         confirmButton.translatesAutoresizingMaskIntoConstraints = false
         
         let attributes: [NSAttributedString.Key: Any] = [
@@ -168,7 +167,6 @@ final class DeleteAccountVC: UIViewController {
         [confirmEmailField, confirmPasswordField, confirmButton].forEach { element in
             element.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
             element.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05).isActive = true
-//            element.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         }
     }
     
@@ -183,6 +181,41 @@ final class DeleteAccountVC: UIViewController {
     @objc
     private func didTapCloseButton() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func didTapConfirmButton() {
+        let password = confirmPasswordField.text ?? ""
+        let email = confirmEmailField.text ?? ""
+        
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let currentUser = Auth.auth().currentUser
+        let credential: AuthCredential = EmailAuthProvider.credential(withEmail: email,
+                                                                      password: password
+        )
+        currentUser?.reauthenticate(with: credential) {_, error  in
+            if let error = error {
+                print(error)
+            } else {
+                db.collection("user").document(userUID).delete {error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+                
+                currentUser?.delete { error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+        }
+        let welcomeScreenVC = WelcomeScreenVC()
+        navigationController?.pushViewController(welcomeScreenVC, animated: true)
     }
     
     // MARK: - Keyboard Actions

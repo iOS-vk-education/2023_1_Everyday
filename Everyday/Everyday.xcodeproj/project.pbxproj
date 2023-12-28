@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C44E1682B30819A00237F1F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44E1672B30819A00237F1F /* Profile.swift */; };
+		8C44E16A2B30827B00237F1F /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44E1692B30827B00237F1F /* SettingsModel.swift */; };
+		8C44E16C2B30831700237F1F /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44E16B2B30831700237F1F /* SettingsService.swift */; };
 		8CB6EA382B13EEDB00FDAB6D /* DeleteAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6EA372B13EEDB00FDAB6D /* DeleteAccountVC.swift */; };
 		8CB6EA3B2B13EF4000FDAB6D /* ChangeEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6EA3A2B13EF4000FDAB6D /* ChangeEmailVC.swift */; };
 		8CB6EA3E2B13EF8500FDAB6D /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6EA3D2B13EF8500FDAB6D /* ChangePasswordVC.swift */; };
@@ -66,6 +69,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C44E1672B30819A00237F1F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		8C44E1692B30827B00237F1F /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		8C44E16B2B30831700237F1F /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		8CB6EA372B13EEDB00FDAB6D /* DeleteAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountVC.swift; sourceTree = "<group>"; };
 		8CB6EA3A2B13EF4000FDAB6D /* ChangeEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailVC.swift; sourceTree = "<group>"; };
 		8CB6EA3D2B13EF8500FDAB6D /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 				CE84B9062AF1398B00B1E795 /* SettingsVC.swift */,
 				8CC6D97C2B1E2A3B00E64AED /* SettingsTableViewCellModel.swift */,
 				8CB6EA3F2B14D72200FDAB6D /* SettingsTableViewCell.swift */,
+				8C44E1692B30827B00237F1F /* SettingsModel.swift */,
 			);
 			path = SetSettings;
 			sourceTree = "<group>";
@@ -219,6 +226,7 @@
 				8CB6EA392B13EF1700FDAB6D /* ChangeEmail */,
 				8CB6EA362B13EEA500FDAB6D /* DeleteAccount */,
 				9E97DB3F2AFD5AFA00491C98 /* Profile */,
+				8C44E16B2B30831700237F1F /* SettingsService.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 				8CB6EA412B152B5400FDAB6D /* ChangeOrExitTableViewCell.swift */,
 				8CD020CE2B1559C400458C90 /* UserNameTableViewCell.swift */,
 				8CC6D97E2B1E44CD00E64AED /* ProfileTableViewCellModels.swift */,
+				8C44E1672B30819A00237F1F /* Profile.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -479,13 +488,13 @@
 				8CC6D97D2B1E2A3B00E64AED /* SettingsTableViewCellModel.swift in Sources */,
 				CE84B9092AF139E500B1E795 /* LoginVC.swift in Sources */,
 				8CB6EA3E2B13EF8500FDAB6D /* ChangePasswordVC.swift in Sources */,
-				9E97DB5D2B0535EA00491C98 /* TaskService.swift in Sources */,
 				8CC6D97F2B1E44CD00E64AED /* ProfileTableViewCellModels.swift in Sources */,
 				E449CD922B155967003CB934 /* UserTask.swift in Sources */,
 				CEE161AE2B22FB780089131D /* Task.swift in Sources */,
 				E449CD982B1559EA003CB934 /* User.swift in Sources */,
 				9E97DB492B05117A00491C98 /* LoginModel.swift in Sources */,
 				CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */,
+				8C44E16A2B30827B00237F1F /* SettingsModel.swift in Sources */,
 				E449CD962B155984003CB934 /* TasksTableViewCell.swift in Sources */,
 				CEEEDEEC2B01719C00DA6A45 /* Date+Ext.swift in Sources */,
 				CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */,
@@ -497,8 +506,10 @@
 				CE84B90F2AF13A5000B1E795 /* AddTaskVC.swift in Sources */,
 				8CD020CF2B1559C400458C90 /* UserNameTableViewCell.swift in Sources */,
 				9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */,
+				8C44E16C2B30831700237F1F /* SettingsService.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
 				CEA465392B0D475600EC52AE /* AnalyticsError.swift in Sources */,
+				8C44E1682B30819A00237F1F /* Profile.swift in Sources */,
 				8CB6EA382B13EEDB00FDAB6D /* DeleteAccountVC.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,

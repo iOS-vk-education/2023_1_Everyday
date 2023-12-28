@@ -16,7 +16,6 @@ opt_in_rules:
     - operator_usage_whitespace
     - explicit_init
     - fatal_error_message
-    - force_unwrapping
     - conditional_returns_on_newline
     
 warning_threshold: 1
@@ -60,4 +59,4 @@ cyclomatic_complexity:
     
 nesting:
   type_level:
-    warning: 3 
+    warning: 3

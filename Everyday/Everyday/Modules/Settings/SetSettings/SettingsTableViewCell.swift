@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell {
+final class SettingsTableViewCell: UITableViewCell {
     let cellImage = UIImageView()
     let cellLabel = UILabel()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

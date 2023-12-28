@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseFirestore
+import FirebaseAuth
 
 final class ProfileVC: UIViewController {
     
@@ -16,13 +19,27 @@ final class ProfileVC: UIViewController {
     private let userImage = UIImageView()
     private let changeUserImageButton = UIButton()
     private let deleteAccountButton = UIButton()
-    private let userNameTableView = UITableView()
-    private let changeTableView = UITableView()
-    private let userNameCell = userNameCellModel(textFieldText: "Артур Сардарян", name: "Имя: ")
-    private let changeOrExitCell = [changeOrExitCellModel(titleText: "Изменить Email"),
+    private var username = String()
+    private var avatarURL: String = ""
+    
+    var uid: String = " "
+    
+    private let changeTableView: UITableView = {
+        let table = UITableView(frame: .zero, style: .insetGrouped)
+        
+        table.register(UserNameTableViewCell.self, forCellReuseIdentifier: "fieldCell")
+        
+        table.register(ChangeOrExitTableViewCell.self, forCellReuseIdentifier: "changeCell")
+        
+        return table
+    }()
+    
+    private var usernameCellModel = userNameCellModel(fieldText: "", name: "Имя: ")
+    private let changeOrExitCellModels = [changeOrExitCellModel(titleText: "Изменить Email"),
                                 changeOrExitCellModel(titleText: "Изменить пароль"),
                                 changeOrExitCellModel(titleText: "Выйти")]
-    private let pencil = UIImageView()
+    private let pencilImageView = UIImageView()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -54,13 +71,30 @@ final class ProfileVC: UIViewController {
         saveButton.tintColor = .brandSecondary
         navigationItem.leftBarButtonItem = saveButton
         
+        SettingsService.shared.fetchUser { [weak self] userProfile, error in
+            guard let self = self
+            else {
+                return
+            }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+            
+            if let userProfile = userProfile {
+                usernameCellModel = userNameCellModel(fieldText: userProfile.username, name: "Имя: ")
+                self.avatarURL = userProfile.avatarURL
+                guard let userUID = Auth.auth().currentUser?.uid else {
+                    return
+                }
+                uid = userUID
+                downloadImage()
+                changeTableView.reloadData()
+            }
+        }
+        
         changeTableView.dataSource = self
         changeTableView.delegate = self
-        changeTableView.register(ChangeOrExitTableViewCell.self, forCellReuseIdentifier: "changeCell")
-        
-        userNameTableView.dataSource = self
-        userNameTableView.delegate = self
-        userNameTableView.register(UserNameTableViewCell.self, forCellReuseIdentifier: "fieldCell")
         
         setupUI()
         
@@ -85,17 +119,11 @@ final class ProfileVC: UIViewController {
     }
     
     private func setupTableView() {
-        changeTableView.backgroundColor = .brandPrimaryLight
+        changeTableView.backgroundColor = .none
         changeTableView.layer.cornerRadius = 10
         changeTableView.separatorColor = .brandPrimary
         changeTableView.isScrollEnabled = false
         changeTableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        userNameTableView.backgroundColor = .brandPrimaryLight
-        userNameTableView.layer.cornerRadius = 10
-        userNameTableView.separatorColor = .brandPrimary
-        userNameTableView.isScrollEnabled = false
-        userNameTableView.translatesAutoresizingMaskIntoConstraints = false
     }
     private func setupScrollView() {
         scrollView.addSubview(contentView)
@@ -105,20 +133,20 @@ final class ProfileVC: UIViewController {
     }
     
     private func setupContentView() {
-        contentView.addSubviews(userImage, changeUserImageButton, deleteAccountButton, userNameTableView)
+        contentView.addSubviews(userImage, changeUserImageButton, deleteAccountButton)
         contentView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func setupImage() {
-        userImage.image = UIImage(named: "logo")
+        userImage.image = UIImage(named: "artur")
         userImage.layer.cornerRadius = UIScreen.main.bounds.size.width * 0.5 / 2
         userImage.clipsToBounds = true
         userImage.translatesAutoresizingMaskIntoConstraints = false
         
         let cellImageConfiguration = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 20))
-        pencil.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        pencil.image = UIImage(systemName: "pencil.circle", withConfiguration: cellImageConfiguration)
-        pencil.tintColor = .lightGray
+        pencilImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        pencilImageView.image = UIImage(systemName: "pencil.circle", withConfiguration: cellImageConfiguration)
+        pencilImageView.tintColor = .lightGray
     }
     
     private func setupButtons() {
@@ -131,6 +159,7 @@ final class ProfileVC: UIViewController {
         changeUserImageButton.setTitle("Выбрать фотографию", for: .normal)
         changeUserImageButton.setTitleColor(.brandSecondary, for: .normal)
         changeUserImageButton.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 16)
+        changeUserImageButton.addTarget(self, action: #selector(didTapChangePhotoButton), for: .touchUpInside)
         changeUserImageButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -148,16 +177,11 @@ final class ProfileVC: UIViewController {
             contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
             
-            userNameTableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            userNameTableView.topAnchor.constraint(equalTo: changeUserImageButton.bottomAnchor, constant: 30),
-            userNameTableView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.8),
-            userNameTableView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height * 0.05),
-            
             changeTableView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             changeTableView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.8),
-            changeTableView.topAnchor.constraint(equalTo: userNameTableView.bottomAnchor, constant: 30),
+            changeTableView.topAnchor.constraint(equalTo: changeUserImageButton.bottomAnchor, constant: 30),
             
-            changeTableView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height * 0.15),
+            changeTableView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height * 0.3),
             
             userImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             userImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -182,6 +206,18 @@ final class ProfileVC: UIViewController {
     
     @objc
     private func didTapSaveButton() {
+        didTapWholeView()
+        SettingsService.shared.updateUsername(username: username)
+        
+        uploadImage(photo: userImage.image!) { result in
+            switch result {
+            case .success(let url):
+                SettingsService.shared.updateAvatarUrl(url: url.absoluteString)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
         navigationController?.popViewController(animated: true)
     }
     
@@ -199,12 +235,12 @@ final class ProfileVC: UIViewController {
     
     @objc
     private func editingUserNameDidEnd() {
-        pencil.tintColor = .lightGray
+        pencilImageView.tintColor = .lightGray
     }
         
     @objc
-    func textFieldIsEditing() {
-        pencil.tintColor = .brandSecondary
+    private func textFieldIsEditing() {
+        pencilImageView.tintColor = .brandSecondary
     }
     
     @objc
@@ -222,6 +258,16 @@ final class ProfileVC: UIViewController {
             }
         }
     }
+    
+    @objc
+    private func didTapChangePhotoButton(_ sender: Any) {
+        let imagePickerController = UIImagePickerController()
+
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
     // MARK: - Keyboard Actions
     @objc
     private func didTapCloseButton() {
@@ -229,7 +275,7 @@ final class ProfileVC: UIViewController {
     }
     
     @objc
-    func keyboardWillShow(notification: Notification) {
+    private func keyboardWillShow(notification: Notification) {
         guard
             let userInfo = notification.userInfo,
             let keyboardFrameInfo = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
@@ -242,48 +288,94 @@ final class ProfileVC: UIViewController {
     }
     
     @objc
-    func keyboardWillHide(notification: Notification) {
+    private func keyboardWillHide(notification: Notification) {
         scrollView.contentInset.bottom = 0
     }
     
     @objc
-    func didTapWholeView() {
-        pencil.tintColor = .lightGray
+    private func didTapWholeView() {
+        pencilImageView.tintColor = .lightGray
         view.endEditing(true)
     }
     
     // MARK: - Swipe Actions
     
     @objc
-    func swipeFunc(gesture: UISwipeGestureRecognizer) {
+    private func swipeFunc(gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .right {
             navigationController?.popViewController(animated: true)
         }
     }
+    
+    @objc
+    private func downloadImage() {
+        let reference = Storage.storage().reference(forURL: avatarURL)
+            let megaByte = Int64(3 * 1024 * 1024)
+        reference.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                return
+            }
+            let image = UIImage(data: imageData)
+            self.userImage.image = image
+        }
+    }
+    
+    private func uploadImage(photo: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let reference = Storage.storage().reference().child("avatars").child(userUID)
+        guard let imageData = userImage.image?.jpegData(compressionQuality: 0.4) else {
+            return
+        }
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        reference.putData(imageData, metadata: metadata) { (metadata, error) in
+            guard let m = metadata else {
+                return
+            }
+            reference.downloadURL { (url, error) in
+                guard let url = url else {
+                    return
+                }
+                completion(.success(url))
+            }
+        }
+    }
 }
 
+// MARK: - Extensions
+
 extension ProfileVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == changeTableView {
-            return 3
-        } else {
+        if section == 0 {
             return 1
+        } else {
+            return 3
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if tableView == userNameTableView {
+        if indexPath == [0, 0] {
+            tableView.register(UserNameTableViewCell.self, forCellReuseIdentifier: "fieldCell")
             if let cell = tableView.dequeueReusableCell(withIdentifier: "fieldCell", for: indexPath) as? UserNameTableViewCell {
                 
-                let cellTexts = userNameCell
+                let cellTexts = usernameCellModel
                 
                 cell.cellLabel.text = cellTexts.name
-                cell.cellTextField.text = cellTexts.textFieldText
+                cell.cellTextField.text = cellTexts.fieldText
                 cell.cellTextField.addTarget(self, action: #selector(editingUserNameDidEnd), for: .editingDidEndOnExit)
+                cell.cellTextField.delegate = self
+                cell.cellTextField.delegate = self
                 cell.cellTextField.addTarget(self, action: #selector(textFieldIsEditing), for: .editingDidBegin)
                 
-                cell.accessoryView = pencil
+                cell.accessoryView = pencilImageView
                 cell.selectionStyle = .none
                 cell.backgroundColor = .brandPrimaryLight
                 
@@ -292,16 +384,13 @@ extension ProfileVC: UITableViewDataSource {
                 let defaultCell = UITableViewCell()
                 return defaultCell
             }
-        }
-        
-        if tableView == changeTableView {
+        } else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "changeCell", for: indexPath) as? ChangeOrExitTableViewCell {
-                let cellLabel = changeOrExitCell[indexPath.row]
+                let cellLabel = changeOrExitCellModels[indexPath.row]
                 
                 cell.accessoryType = .disclosureIndicator
                 cell.cellLabel.text = cellLabel.titleText
                 cell.backgroundColor = .brandPrimaryLight
-                cell.selectionStyle = .none
                 if indexPath.row == 2 {
                     cell.backgroundColor = .brandSecondary
                 }
@@ -312,28 +401,46 @@ extension ProfileVC: UITableViewDataSource {
                 return defaultCell
             }
         }
-        return UITableViewCell()
     }
 }
 
 extension ProfileVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return view.bounds.height * 0.05
-        } else {
-            return 120
-        }
+        return view.bounds.height * 0.05
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == changeTableView {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 1 {
             switch indexPath.row {
             case 0: didTapChangeEmailCell()
             case 1: didTapChangePasswordCell()
             case 2: didTapExitCell()
             default:
-                print("error")
+                print("fatalError")
             }
         }
+    }
+}
+
+extension ProfileVC: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if !Validator.isValidUsername(for: textField.text ?? "") {
+            AlertManager.showInvalidUsernameAlert(on: self)
+            username = usernameCellModel.fieldText
+        } else {
+            username = textField.text ?? ""
+        }
+    }
+}
+
+extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey
+                                                                                                       : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        userImage.image = image
     }
 }

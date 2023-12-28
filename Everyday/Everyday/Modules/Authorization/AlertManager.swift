@@ -99,3 +99,15 @@ extension AlertManager {
         self.showBasicAlert(on: vc, title: "Ошибка при выводе пользователей", message: nil)
     }
 }
+
+// MARK: - Firebase Storage Errors
+extension AlertManager {
+    
+    public static func showStorageError(on vc: UIViewController) {
+        self.showBasicAlert(on: vc, title: "Ошибка при сохранении или загрузки фото", message: nil)
+    }
+    
+    public static func showErrorSendingStorage(on vc: UIViewController, with error: Error) {
+        self.showBasicAlert(on: vc, title: "Ошибка при сохранении или загрузки фото", message: "\(error.localizedDescription)")
+    }
+}

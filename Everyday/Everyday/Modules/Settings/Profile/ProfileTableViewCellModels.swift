@@ -8,7 +8,7 @@
 import Foundation
 
 struct userNameCellModel {
-    let textFieldText: String
+    var fieldText: String
     let name: String
 }
 

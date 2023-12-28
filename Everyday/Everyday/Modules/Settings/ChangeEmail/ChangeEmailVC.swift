@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseFirestore
+import FirebaseAuth
 
 final class ChangeEmailVC: UIViewController {
     
@@ -16,9 +19,11 @@ final class ChangeEmailVC: UIViewController {
     private let emailStackView = UIStackView()
     private let confirmButton = UIButton()
     private let forgotPasswordButton = UIButton(type: .custom)
+    private let showPasswordButton = UIButton(type: .custom)
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
+    var uid: String = " "
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +82,8 @@ final class ChangeEmailVC: UIViewController {
     
     private func setupContentView() {
         contentView.addSubviews(newEmailField, confirmPasswordField,
-                                confirmButton, forgotPasswordButton, emailStackView)
+                                confirmButton, forgotPasswordButton, emailStackView,
+                                showPasswordButton)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -96,6 +102,10 @@ final class ChangeEmailVC: UIViewController {
     private func setupFields() {
         newEmailField.attributedPlaceholder = NSAttributedString(string: "Новый Email")
         confirmPasswordField.attributedPlaceholder = NSAttributedString(string: "Подтвердите пароль")
+        
+        confirmPasswordField.isSecureTextEntry = true
+        confirmPasswordField.rightView = showPasswordButton
+        confirmPasswordField.rightViewMode = .always
         
         [newEmailField, confirmPasswordField].forEach { field in
             field.backgroundColor = .white
@@ -130,6 +140,13 @@ final class ChangeEmailVC: UIViewController {
         forgotPasswordButton.addTarget(self, action: #selector(didTapForgotPasswordButton), for: .touchUpInside)
         
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        showPasswordButton.contentMode = .scaleAspectFill
+        showPasswordButton.setImage(UIImage(named: "no_eye"), for: .normal)
+        showPasswordButton.setImage(UIImage(named: "eye"), for: .selected)
+        showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        
+        showPasswordButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: - Layout
@@ -155,6 +172,11 @@ final class ChangeEmailVC: UIViewController {
             confirmPasswordField.topAnchor.constraint(equalTo: emailStackView.topAnchor, constant: 0.08 * view.bounds.height),
             confirmButton.topAnchor.constraint(equalTo: emailStackView.topAnchor, constant: 0.16 * view.bounds.height),
             
+            showPasswordButton.widthAnchor.constraint(equalTo: confirmPasswordField.widthAnchor, constant: 0.16 * contentView.bounds.width),
+            showPasswordButton.heightAnchor.constraint(equalTo: confirmPasswordField.heightAnchor),
+            showPasswordButton.trailingAnchor.constraint(equalTo: confirmPasswordField.trailingAnchor, constant: -0.08 * contentView.bounds.width),
+            showPasswordButton.centerYAnchor.constraint(equalTo: confirmPasswordField.centerYAnchor),
+            
             forgotPasswordButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             forgotPasswordButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
@@ -162,7 +184,6 @@ final class ChangeEmailVC: UIViewController {
         [newEmailField, confirmPasswordField, confirmButton].forEach { element in
             element.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
             element.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05).isActive = true
-//            element.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         }
     }
     
@@ -180,7 +201,36 @@ final class ChangeEmailVC: UIViewController {
     }
     
     @objc func didTapConfirmButton() {
-        print("jf")
+        print("")
+        let db = Firestore.firestore()
+        let userUID = Auth.auth().currentUser?.uid
+        let currentUser = Auth.auth().currentUser
+        
+        if !Validator.isValidEmail(for: newEmailField.text ?? "") {
+            AlertManager.showInvalidEmailAlert(on: self)
+            return
+        }
+        Auth.auth().signIn(withEmail: Auth.auth().currentUser?.email ?? "", password: confirmPasswordField.text ?? "") { [weak self] _, error in
+            if let error = error {
+                AlertManager.showPasswordResetSent(on: ChangeEmailVC())
+                return
+            }
+            if self?.newEmailField.text != Auth.auth().currentUser?.email ?? "" {
+                ChangeEmailService.shared.changeEmail(newEmail: self?.newEmailField.text ?? "")
+                
+                currentUser?.sendEmailVerification(beforeUpdatingEmail: self?.newEmailField.text ?? "") { error in
+                    if let error = error {
+                        AlertManager.showUnknownFetchingUserError(on: ChangeEmailVC())
+                    }
+                }
+            }
+        }
+    }
+            
+    @objc func togglePasswordVisibility() {
+        confirmPasswordField.isSecureTextEntry.toggle()
+        let isOpen = !confirmPasswordField.isSecureTextEntry
+        (confirmPasswordField.rightView as? UIButton)?.isSelected = isOpen
     }
     
     // MARK: - Keyboard Actions

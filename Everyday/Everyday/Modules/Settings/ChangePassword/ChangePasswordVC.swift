@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseFirestore
+import FirebaseAuth
 
 final class ChangePasswordVC: UIViewController {
     
@@ -19,6 +22,8 @@ final class ChangePasswordVC: UIViewController {
     private let forgotPasswordButton = UIButton(type: .custom)
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    
+    var uid: String = " "
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -166,7 +171,6 @@ final class ChangePasswordVC: UIViewController {
         [oldPasswordField, newPasswordField, repeatNewPasswordField, confirmButton].forEach { element in
             element.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.75).isActive = true
             element.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05).isActive = true
-//            element.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         }
     }
     
@@ -184,9 +188,41 @@ final class ChangePasswordVC: UIViewController {
     }
     
     @objc func didTapConfirmButton() {
-        print("jf")
+        let validationErrors = Validator.validatePassword(for: newPasswordField.text ?? "")
+        
+        if !validationErrors.isEmpty {
+            let errorMessage = validationErrors.joined(separator: "\n")
+            AlertManager.showInvalidPasswordAlert(on: self, message: errorMessage)
+        }
+        
+        if newPasswordField.text == repeatNewPasswordField.text {
+            let password = oldPasswordField.text ?? ""
+            let currentUser = Auth.auth().currentUser
+            let email = Auth.auth().currentUser?.email ?? ""
+            print(email)
+            let credential: AuthCredential = EmailAuthProvider.credential(withEmail: email,
+                                                                          password: password
+            )
+            currentUser?.reauthenticate(with: credential) {_, error  in
+                if let error = error {
+                    print(error)
+                }
+            }
+            
+            Auth.auth().signIn(withEmail: Auth.auth().currentUser?.email ?? "", password: oldPasswordField.text ?? "") { [weak self] _, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                currentUser?.updatePassword(to: self?.newPasswordField.text ?? "") { error in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                }
+            }
+        }
     }
-    
     // MARK: - Keyboard Actions
     
     @objc
