@@ -18,8 +18,8 @@ final class AddTaskVC: UIViewController, PrioritySelectionDelegate, TagSelection
     
     var task = AddTaskModel(
         tag: "",
-        dateBegin: "28.12.2023",
-        dateEnd: "",
+        dateBegin: nil,
+        dateEnd: nil,
         priority: "",
         subtask: "",
         status: "",
@@ -196,7 +196,12 @@ final class AddTaskVC: UIViewController, PrioritySelectionDelegate, TagSelection
                     self?.currentCalendarState = state
                     self?.updateCalendar()
                 })
-
+        
+            calendarVC?.onFinish = { period in
+                self.task.dateBegin = period.start
+                self.task.dateEnd = period.end
+            }
+        
         if let calendarVC {
             calendarVC.modalPresentationStyle = .fullScreen
             present(calendarVC, animated: true, completion: nil)

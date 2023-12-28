@@ -18,11 +18,14 @@ protocol CoreVC: UIViewController {
     
     func updateState(calendarState: AddTaskVC.CalendarState)
     func makeContent(calendarState: AddTaskVC.CalendarState) -> CalendarViewContent
+    
+    var onFinish: (((start: Date?, end: Date?)) -> Void)? { get set }
 }
 
 // MARK: - BaseCoreVC
 
 class BaseCoreVC: UIViewController, CoreVC {
+    var onFinish: (((start: Date?, end: Date?)) -> Void)?
     
 // MARK: - Properties
     
@@ -143,7 +146,8 @@ class BaseCoreVC: UIViewController, CoreVC {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc private func saveSelectedDate() {
+    @objc public func saveSelectedDate() {
+        fatalError("updateState(calendarState:) has not been implemented")
     }
 }
 

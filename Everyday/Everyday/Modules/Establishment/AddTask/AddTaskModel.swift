@@ -9,8 +9,8 @@ import Foundation
 
 struct AddTaskModel {
     var tag: String
-    var dateBegin: String
-    var dateEnd: String
+    var dateBegin: Date?
+    var dateEnd: Date?
     var priority: String
     var subtask: String
     var status: String
