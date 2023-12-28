@@ -9,7 +9,6 @@ import HorizonCalendar
 import UIKit
 
 final class CalendarVC: BaseCoreVC {
-
     // MARK: - Internal
 
     override func viewDidLoad() {
@@ -155,5 +154,22 @@ final class CalendarVC: BaseCoreVC {
                     content: .init(
                         framesOfDaysToHighlight: dayRangeLayoutContext.daysAndFrames.map { $0.frame }))
             }
+    }
+    
+    override func saveSelectedDate() {
+        if let selectedDay = self.selectedDate {
+            onFinish?((selectedDay, selectedDay))
+            dismiss(animated: true, completion: nil)
+        }
+        if let selectedRange = self.selectedDayRange {
+            onFinish?((convertDayToDate(day: selectedRange.lowerBound),
+                       convertDayToDate(day: selectedRange.upperBound)))
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func convertDayToDate(day: Day) -> Date? {
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: DateComponents(year: day.month.year, month: day.month.month, day: day.day))
     }
 }

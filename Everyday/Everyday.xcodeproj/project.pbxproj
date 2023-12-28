@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E0F2D7E2B3CE34000CBA05D /* LaunchScreen.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BAD2B3B4EB100FF577C /* LaunchScreen.storyboard */; };
+		9E0F2D7F2B3CE34300CBA05D /* Main.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BAB2B3B4EA700FF577C /* Main.storyboard */; };
+		9E20F00F2B3CCD530032287C /* AddTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E20F00E2B3CCD530032287C /* AddTaskService.swift */; };
+		9E20F0112B3CCD9E0032287C /* AddTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E20F0102B3CCD9E0032287C /* AddTaskModel.swift */; };
 		9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11B2AF947740002A1EC /* Coves Bold.otf */; };
 		9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11D2AF9477B0002A1EC /* Coves Light.otf */; };
 		9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */; };
@@ -20,7 +24,7 @@
 		9E3F69722AF2DE2400638BC2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69712AF2DE2400638BC2 /* FirebaseFirestoreSwift */; };
 		9E3F69762AF2DE2400638BC2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69752AF2DE2400638BC2 /* FirebaseStorage */; };
 		9E3F69782AF2DE2400638BC2 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9E3F69772AF2DE2400638BC2 /* FirebaseStorageCombine-Community */; };
-		9E887DDE2B1CF92100F3A210 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9E887DDD2B1CF92100F3A210 /* HorizonCalendar */; };
+		9E887DDE2B1CF92100F3A210 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9E887DDD2B1CF92100F3A210 /* HorizonCalendar */; settings = {ATTRIBUTES = (Required, ); }; };
 		9E887DE02B1CF9D900F3A210 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DDF2B1CF9D900F3A210 /* CalendarVC.swift */; };
 		9E887DE22B1D3A2F00F3A210 /* BaseCoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DE12B1D3A2F00F3A210 /* BaseCoreVC.swift */; };
 		9E887DE42B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E887DE32B1D3B4500F3A210 /* DayRangeIndicatorVIew.swift */; };
@@ -35,11 +39,15 @@
 		9E97DB532B05277C00491C98 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB522B05277C00491C98 /* Validator.swift */; };
 		9E97DB592B052CAE00491C98 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DB582B052CAE00491C98 /* ForgotPasswordVC.swift */; };
 		9EB50BA72B3AE92100FF577C /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BA62B3AE92100FF577C /* UIStackView+Ext.swift */; };
-		9EB50BAC2B3B4EA700FF577C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EB50BAB2B3B4EA700FF577C /* Main.storyboard */; };
-		9EB50BAE2B3B4EB100FF577C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EB50BAD2B3B4EB100FF577C /* LaunchScreen.storyboard */; };
-		9EB50BB32B3B560E00FF577C /* SplashAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BB02B3B560E00FF577C /* SplashAnimator.swift */; };
-		9EB50BB42B3B560E00FF577C /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BB12B3B560E00FF577C /* SplashViewController.swift */; };
-		9EB50BB52B3B560E00FF577C /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BB22B3B560E00FF577C /* SplashPresenter.swift */; };
+		9ED4CD632B3CE1970094A76B /* PriorityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2ABF22B3B8F1900ECB0C1 /* PriorityVC.swift */; };
+		9ED4CD642B3CE1BA0094A76B /* TagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2ABEF2B3B86F400ECB0C1 /* TagVC.swift */; };
+		9ED4CD652B3CE1E80094A76B /* TagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2ABF82B3BAFEE00ECB0C1 /* TagService.swift */; };
+		9ED4CD662B3CE1F00094A76B /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2ABF62B3BAECD00ECB0C1 /* TagModel.swift */; };
+		9ED4CD672B3CE1F90094A76B /* AddTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2ABFB2B3BBC7700ECB0C1 /* AddTagVC.swift */; };
+		9ED4CD682B3CE2090094A76B /* PriorityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2ABF42B3BAEB500ECB0C1 /* PriorityModel.swift */; };
+		9ED4CD692B3CE2220094A76B /* SplashAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BB02B3B560E00FF577C /* SplashAnimator.swift */; };
+		9ED4CD6A2B3CE2250094A76B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BB12B3B560E00FF577C /* SplashViewController.swift */; };
+		9ED4CD6B2B3CE2280094A76B /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB50BB22B3B560E00FF577C /* SplashPresenter.swift */; };
 		9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */; };
 		CE1A45292B016413001F426E /* ChartDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45252B016412001F426E /* ChartDetailView.swift */; };
 		CE1A452A2B016413001F426E /* ChartGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A45262B016412001F426E /* ChartGridViewModel.swift */; };
@@ -74,6 +82,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E20F00E2B3CCD530032287C /* AddTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskService.swift; sourceTree = "<group>"; };
+		9E20F0102B3CCD9E0032287C /* AddTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskModel.swift; sourceTree = "<group>"; };
 		9E22B11B2AF947740002A1EC /* Coves Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Bold.otf"; sourceTree = "<group>"; };
 		9E22B11D2AF9477B0002A1EC /* Coves Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Coves Light.otf"; sourceTree = "<group>"; };
 		9E22B11F2AF94A800002A1EC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -97,6 +107,12 @@
 		9EB50BB02B3B560E00FF577C /* SplashAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimator.swift; sourceTree = "<group>"; };
 		9EB50BB12B3B560E00FF577C /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		9EB50BB22B3B560E00FF577C /* SplashPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		9ED2ABEF2B3B86F400ECB0C1 /* TagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagVC.swift; sourceTree = "<group>"; };
+		9ED2ABF22B3B8F1900ECB0C1 /* PriorityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityVC.swift; sourceTree = "<group>"; };
+		9ED2ABF42B3BAEB500ECB0C1 /* PriorityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityModel.swift; sourceTree = "<group>"; };
+		9ED2ABF62B3BAECD00ECB0C1 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
+		9ED2ABF82B3BAFEE00ECB0C1 /* TagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagService.swift; sourceTree = "<group>"; };
+		9ED2ABFB2B3BBC7700ECB0C1 /* AddTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagVC.swift; sourceTree = "<group>"; };
 		9EDE907D2AF84E2E00F16F3C /* WelcomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVC.swift; sourceTree = "<group>"; };
 		CE1A45252B016412001F426E /* ChartDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDetailView.swift; sourceTree = "<group>"; };
 		CE1A45262B016412001F426E /* ChartGridViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGridViewModel.swift; sourceTree = "<group>"; };
@@ -178,26 +194,15 @@
 		9E887DD92B1CF83D00F3A210 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
-				9E887DDB2B1CF8BD00F3A210 /* Tag */,
-				9E887DDA2B1CF8B100F3A210 /* Priority */,
+				9ED2ABFA2B3BBC5600ECB0C1 /* AddTag */,
+				9ED2ABF12B3B8F0500ECB0C1 /* Priority */,
+				9ED2ABEE2B3B86C800ECB0C1 /* Tag */,
 				9E887DD82B1CF83000F3A210 /* Calendar */,
 				CE84B90E2AF13A5000B1E795 /* AddTaskVC.swift */,
+				9E20F00E2B3CCD530032287C /* AddTaskService.swift */,
+				9E20F0102B3CCD9E0032287C /* AddTaskModel.swift */,
 			);
 			path = AddTask;
-			sourceTree = "<group>";
-		};
-		9E887DDA2B1CF8B100F3A210 /* Priority */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Priority;
-			sourceTree = "<group>";
-		};
-		9E887DDB2B1CF8BD00F3A210 /* Tag */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tag;
 			sourceTree = "<group>";
 		};
 		9E887DF12B1F8E5D00F3A210 /* Selection Type */ = {
@@ -334,6 +339,33 @@
 				9EB50BB22B3B560E00FF577C /* SplashPresenter.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		9ED2ABEE2B3B86C800ECB0C1 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				9ED2ABEF2B3B86F400ECB0C1 /* TagVC.swift */,
+				9ED2ABF62B3BAECD00ECB0C1 /* TagModel.swift */,
+				9ED2ABF82B3BAFEE00ECB0C1 /* TagService.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
+		9ED2ABF12B3B8F0500ECB0C1 /* Priority */ = {
+			isa = PBXGroup;
+			children = (
+				9ED2ABF22B3B8F1900ECB0C1 /* PriorityVC.swift */,
+				9ED2ABF42B3BAEB500ECB0C1 /* PriorityModel.swift */,
+			);
+			path = Priority;
+			sourceTree = "<group>";
+		};
+		9ED2ABFA2B3BBC5600ECB0C1 /* AddTag */ = {
+			isa = PBXGroup;
+			children = (
+				9ED2ABFB2B3BBC7700ECB0C1 /* AddTagVC.swift */,
+			);
+			path = AddTag;
 			sourceTree = "<group>";
 		};
 		CE7FAACF2AECF30B000E3209 = {
@@ -482,10 +514,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EB50BAE2B3B4EB100FF577C /* LaunchScreen.storyboard in Resources */,
 				9E22B11C2AF947740002A1EC /* Coves Bold.otf in Resources */,
 				9E22B1212AF94A800002A1EC /* Montserrat-SemiBold.ttf in Resources */,
-				9EB50BAC2B3B4EA700FF577C /* Main.storyboard in Resources */,
 				9E22B1222AF94A800002A1EC /* Montserrat-Bold.ttf in Resources */,
 				CE7FAAE52AECF312000E3209 /* Assets.xcassets in Resources */,
 				9E22B11E2AF9477B0002A1EC /* Coves Light.otf in Resources */,
@@ -521,6 +551,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E0F2D7F2B3CE34300CBA05D /* Main.storyboard in Sources */,
+				9E0F2D7E2B3CE34000CBA05D /* LaunchScreen.storyboard in Sources */,
+				9ED4CD6B2B3CE2280094A76B /* SplashPresenter.swift in Sources */,
+				9ED4CD6A2B3CE2250094A76B /* SplashViewController.swift in Sources */,
+				9ED4CD692B3CE2220094A76B /* SplashAnimator.swift in Sources */,
+				9ED4CD682B3CE2090094A76B /* PriorityModel.swift in Sources */,
+				9ED4CD672B3CE1F90094A76B /* AddTagVC.swift in Sources */,
+				9ED4CD662B3CE1F00094A76B /* TagModel.swift in Sources */,
+				9ED4CD652B3CE1E80094A76B /* TagService.swift in Sources */,
+				9ED4CD642B3CE1BA0094A76B /* TagVC.swift in Sources */,
+				9ED4CD632B3CE1970094A76B /* PriorityVC.swift in Sources */,
 				9E97DB4B2B051FE100491C98 /* AlertManager.swift in Sources */,
 				CE7FAADC2AECF30B000E3209 /* AppDelegate.swift in Sources */,
 				9E887DE02B1CF9D900F3A210 /* CalendarVC.swift in Sources */,
@@ -530,7 +571,6 @@
 				CEE161AE2B22FB780089131D /* Task.swift in Sources */,
 				E449CD982B1559EA003CB934 /* User.swift in Sources */,
 				CE3035E72B39F05400B6610C /* Calendar.Component+Ext.swift in Sources */,
-				9EB50BB52B3B560E00FF577C /* SplashPresenter.swift in Sources */,
 				9E97DB492B05117A00491C98 /* LoginModel.swift in Sources */,
 				CE3CF7682B285FAE0089F1DA /* Priority+Ext.swift in Sources */,
 				CEEEDEEA2B01717400DA6A45 /* UIView+Ext.swift in Sources */,
@@ -547,9 +587,9 @@
 				9EB50BA72B3AE92100FF577C /* UIStackView+Ext.swift in Sources */,
 				CE678E282B2CCECE009F6194 /* NetworkError.swift in Sources */,
 				CE84B90D2AF13A3B00B1E795 /* ProfileVC.swift in Sources */,
-				9EB50BB32B3B560E00FF577C /* SplashAnimator.swift in Sources */,
 				CEA465392B0D475600EC52AE /* AnalyticsError.swift in Sources */,
 				9E97DB452B04FF8F00491C98 /* AuthService.swift in Sources */,
+				9E20F00F2B3CCD530032287C /* AddTaskService.swift in Sources */,
 				CE84B9122AF13ABE00B1E795 /* EDTabBarController.swift in Sources */,
 				9E887DE22B1D3A2F00F3A210 /* BaseCoreVC.swift in Sources */,
 				9E97DB472B05004500491C98 /* SignUpModel.swift in Sources */,
@@ -561,10 +601,10 @@
 				CE84B9072AF1398B00B1E795 /* SettingsVC.swift in Sources */,
 				E449CD9A2B155A1A003CB934 /* DoneTaskService.swift in Sources */,
 				E449CD902B155958003CB934 /* TasksService.swift in Sources */,
-				9EB50BB42B3B560E00FF577C /* SplashViewController.swift in Sources */,
 				CE1A452C2B016413001F426E /* ChartGridView.swift in Sources */,
 				CE1A452B2B016413001F426E /* AnalyticsModel.swift in Sources */,
 				9EDE907E2AF84E2E00F16F3C /* WelcomeScreenVC.swift in Sources */,
+				9E20F0112B3CCD9E0032287C /* AddTaskModel.swift in Sources */,
 				9E97DB512B0522C100491C98 /* WelcomeScreenView.swift in Sources */,
 				CE43E28F2B3561BC0035CA1C /* UILabel+Ext.swift in Sources */,
 			);
