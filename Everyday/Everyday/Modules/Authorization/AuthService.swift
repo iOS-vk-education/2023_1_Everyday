@@ -28,6 +28,7 @@ class AuthService {
         let event = userRequest.event
         let doneTask = userRequest.doneTask
         let tag = userRequest.tag
+        let avatarURL = "gs://everyday-423e1.appspot.com/avatars/standartImage.jpg"
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
@@ -49,7 +50,8 @@ class AuthService {
                     "task_id": task,
                     "event_id": event,
                     "done_task": doneTask,
-                    "tag": tag
+                    "tag": tag,
+                    "avatarURL": avatarURL
                 ]) { error in
                      if let error = error {
                         completion(false, error)
