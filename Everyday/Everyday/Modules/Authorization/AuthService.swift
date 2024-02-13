@@ -27,6 +27,7 @@ class AuthService {
         let task = userRequest.task
         let event = userRequest.event
         let doneTask = userRequest.doneTask
+        let tag = userRequest.tag
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
@@ -47,7 +48,8 @@ class AuthService {
                     "email": email,
                     "task_id": task,
                     "event_id": event,
-                    "done_task": doneTask
+                    "done_task": doneTask,
+                    "tag": tag
                 ]) { error in
                      if let error = error {
                         completion(false, error)

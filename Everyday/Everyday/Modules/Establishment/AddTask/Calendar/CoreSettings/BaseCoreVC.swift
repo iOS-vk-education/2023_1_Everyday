@@ -18,16 +18,20 @@ protocol CoreVC: UIViewController {
     
     func updateState(calendarState: AddTaskVC.CalendarState)
     func makeContent(calendarState: AddTaskVC.CalendarState) -> CalendarViewContent
+    
+    var onFinish: (((start: Date?, end: Date?)) -> Void)? { get set }
 }
 
 // MARK: - BaseCoreVC
 
 class BaseCoreVC: UIViewController, CoreVC {
+    var onFinish: (((start: Date?, end: Date?)) -> Void)?
     
 // MARK: - Properties
     
     let filterButton = UIButton(type: .system)
     let closeButton = UIButton(type: .close)
+    let saveButton = UIButton(type: .system)
     var onUpdate: ((AddTaskVC.CalendarState) -> Void)?
     var onDismiss: (() -> Void)?
     let monthsLayout: MonthsLayout
@@ -66,6 +70,7 @@ class BaseCoreVC: UIViewController, CoreVC {
         
         calendarView.layer.cornerRadius = 10 
         calendarView.layer.masksToBounds = true
+        calendarView.backgroundColor = UIColor(named: "EverydayLightBlue")
 
         filterButton.setImage(UIImage(systemName: "slider.vertical.3"), for: .normal)
         filterButton.tintColor = UIColor(named: "EverydayOrange")
@@ -73,11 +78,16 @@ class BaseCoreVC: UIViewController, CoreVC {
 
         closeButton.addTarget(self, action: #selector(closeOverlay), for: .touchUpInside)
         
+        saveButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        saveButton.tintColor = UIColor(named: "EverydayOrange")
+        saveButton.addTarget(self, action: #selector(saveSelectedDate), for: .touchUpInside)
+        
         filterButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         calendarView.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubviews(calendarView, filterButton, closeButton)
+        view.addSubviews(calendarView, filterButton, closeButton, saveButton)
         
         setupConstraints()
     }
@@ -90,6 +100,11 @@ class BaseCoreVC: UIViewController, CoreVC {
             filterButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
             filterButton.widthAnchor.constraint(equalToConstant: 90),
             filterButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            saveButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            saveButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 48),
+            saveButton.widthAnchor.constraint(equalToConstant: 90),
+            saveButton.heightAnchor.constraint(equalToConstant: 40),
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
@@ -129,6 +144,10 @@ class BaseCoreVC: UIViewController, CoreVC {
     
     @objc func closeOverlay() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc public func saveSelectedDate() {
+        fatalError("updateState(calendarState:) has not been implemented")
     }
 }
 
