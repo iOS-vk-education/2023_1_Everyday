@@ -76,9 +76,6 @@ final class ProfileVC: UIViewController {
             else {
                 return
             }
-            //            if let error = error {
-            //                return
-            //            }
             
             if let userProfile = userProfile {
                 usernameCellModel = userNameCellModel(fieldText: userProfile.username, name: "Имя: ")

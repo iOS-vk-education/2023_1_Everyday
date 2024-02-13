@@ -56,7 +56,6 @@ final class SettingsVC: UIViewController {
     // MARK: - Setup
     private func setupUI() {
         updateUsername()
-        print(avatarURL, "llll")
         setupStackViews()
         setupContentView()
         setupUserImage()
@@ -70,9 +69,6 @@ final class SettingsVC: UIViewController {
             else {
                 return
             }
-//            if let error = error {
-//                return
-//            }
 
             if let userSettings = userSettings {
                 userNameLabel.text = userSettings.username
@@ -304,8 +300,6 @@ extension SettingsVC: UINavigationControllerDelegate, UIImagePickerControllerDel
             switch result {
             case .success(let url):
                 SettingsService.shared.updateAvatarUrl(url: url.absoluteString)
-//            case .failure( _):
-//                print("Fatal error")
             default: print("error")
             }
         }

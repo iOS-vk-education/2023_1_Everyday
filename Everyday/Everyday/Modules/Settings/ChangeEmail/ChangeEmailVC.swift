@@ -201,7 +201,6 @@ final class ChangeEmailVC: UIViewController {
     }
     
     @objc func didTapConfirmButton() {
-        print("")
         let db = Firestore.firestore()
         let userUID = Auth.auth().currentUser?.uid
         let currentUser = Auth.auth().currentUser

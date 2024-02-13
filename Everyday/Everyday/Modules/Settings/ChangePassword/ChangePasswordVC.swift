@@ -199,7 +199,6 @@ final class ChangePasswordVC: UIViewController {
             let password = oldPasswordField.text ?? ""
             let currentUser = Auth.auth().currentUser
             let email = Auth.auth().currentUser?.email ?? ""
-            print(email)
             let credential: AuthCredential = EmailAuthProvider.credential(withEmail: email,
                                                                           password: password
             )
